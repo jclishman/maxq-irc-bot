@@ -62,7 +62,7 @@ while True:
     	pong(text)
 
     db.get_post_queue()
-    
+
     if irc_stream.find('PRIVMSG') != -1:
 
     	message_author = irc_stream.split('!',1)[0][1:]
