@@ -1,15 +1,19 @@
 import socket
+import json
 import time
 import db
+
 
 irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 HOST = 'irc.snoonet.org'
 PORT = 6667 #port
 NICK = 'lishbot'
 admin = 'jclishman'
-channel = ''
-channels = ['#groupofthrones, #lishbot']
-password = 'hunter2'
+channels = ['#groupofthrones', '#lishbot']
+
+# Secret credentials :)
+credentials = json.load(open('_secret.json'))
+password = credentials['nickserv_password']
 
 # Responds to server pings
 def pong(text):
@@ -31,34 +35,32 @@ print('Connecting...')
 irc.send(parse("USER " + NICK + " " + NICK + " " + NICK + " :GOE bot\r\n"))
 irc.send(parse("NICK " + NICK + "\r\n"))
 
-has_responded_to_initial_ping = False
+has_responded_to_ping = False
 
 # Responds to the initial server ping on connection
-while not has_responded_to_initial_ping:
+while not has_responded_to_ping:
     text=irc.recv(1024).decode("UTF-8").strip('\r\n')
 
     if text.find('PING') != -1:
     	pong(text)
-    	has_responded_to_initial_ping = True
+    	has_responded_to_ping = True
 
 
 time.sleep(2)
 
 # Identifies nickname
-irc.send(parse('PRIVMSG NickServ IDENTIFY ' + password))
+irc.send(parse('PRIVMSG NickServ IDENTIFY {}'.format(password)))
 
 # Joins channel(s)
-
 for channel in channels:
 
-	irc.send(('JOIN ' + channel + '\n').encode())
+	irc.send(('JOIN {}\n').format(channel).encode())
 	time.sleep(2)
 
 # Reads messages
 while True:
-	#post_queue = []
-
 	irc_stream = irc.recv(1024).decode('UTF-8')
+
 	print(irc_stream)
 
 	# Sends ping

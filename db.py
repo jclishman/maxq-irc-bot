@@ -19,7 +19,7 @@ def insert_message(service, author, message, url):
 
 # Updates the PUBLISHED entry to 1
 def update_after_publish(target_id):
-	database_cursor.execute("UPDATE messages SET published = 1 WHERE id =" + str(target_id))
+	database_cursor.execute("UPDATE messages SET published = 1 WHERE id ={}".format(str(target_id)))
 	database.commit()
 
 # Gets the queue of messages that haven't been posted

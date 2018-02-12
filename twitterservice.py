@@ -3,7 +3,6 @@ import tweepy
 import json
 import sqlite3
 import db
-import irc
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -33,7 +32,7 @@ class MyStreamListener(StreamListener):
 
     	# Sends the tweet to the database
     	def send_tweet_to_db():
-    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/' + data['user']['screen_name'] + '/status/' + data['id_str'])
+    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str']))        
 
     	# Is the tweet from somebody the bot cares about?
     	if user_of_tweet != None:
@@ -58,7 +57,6 @@ class MyStreamListener(StreamListener):
     	if status == 420:
     		return False
 
-    	print(status)
 
 # Makes the stream object
 myStreamListener = MyStreamListener()
