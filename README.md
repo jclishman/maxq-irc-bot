@@ -1,1 +1,1 @@
-# maxq-irc-bot
+# MaxQ bot for IRC

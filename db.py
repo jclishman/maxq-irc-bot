@@ -13,7 +13,7 @@ def output_rows_messages():
 
 # Inserts a row into the messages table 
 def insert_message(service, author, message, url):
-	print (service + author, message, url)
+	print (service, author, message, url)
 	database_cursor.execute("INSERT INTO messages (service, author, message, url) VALUES(?,?,?,?)", [service, author, message, url])
 	database.commit()
 
