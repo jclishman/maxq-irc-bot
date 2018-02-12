@@ -3,6 +3,7 @@ import tweepy
 import json
 import sqlite3
 import db
+import irc
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))

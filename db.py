@@ -26,8 +26,7 @@ def update_after_publish(target_id):
 def get_post_queue():
 	database_cursor.execute("SELECT * FROM messages WHERE published = 0")
 
-	for row in database_cursor.fetchall():
-		return row
+	return database_cursor.fetchall()
 
 # Gets the accounts that the bot is following on Twitter
 def get_following_twitter():
