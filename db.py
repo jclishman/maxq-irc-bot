@@ -1,7 +1,7 @@
 import sqlite3
 
 # Connects to the database
-database = sqlite3.connect('database.db')
+database = sqlite3.connect('database.db', check_same_thread=False)
 database_cursor = database.cursor()
 
 # Outputs all the rows

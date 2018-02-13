@@ -3,6 +3,7 @@ import tweepy
 import json
 import sqlite3
 import db
+import cProfile
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -38,7 +39,7 @@ class MyStreamListener(StreamListener):
     		#print("Tweet deleted")
     		user_of_tweet = None
 
-    	# Sends the tweet to the database
+    	# Sends the tweet to the database    Username                 Message            URL               
     	def send_tweet_to_db():
     		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str']))        
 
@@ -61,15 +62,18 @@ class MyStreamListener(StreamListener):
     			send_tweet_to_db()
     			#print(data['text'])
     	
+    
 
     def on_error(self, status):
     	if status == 420:
     		return False
 
+def run():
 
-# Makes the stream object
-myStreamListener = MyStreamListener()
-myStream = tweepy.Stream(auth, myStreamListener)
+	# Makes the stream object
+	myStreamListener = MyStreamListener()
+	myStream = tweepy.Stream(auth, myStreamListener)
 
-# Streams tweets
-myStream.filter(follow=following)
+	# Streams tweets
+	myStream.filter(follow=following)
+
