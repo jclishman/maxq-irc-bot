@@ -1,15 +1,16 @@
 # Todo
+# Optimize Twitter performance, goal < 100ms
 # Two threads running at once (Instagram)
 # Logging
-# Change username/pwd
+# IRC Commands
+# Separate logic for EsperNet and SnooNet
+# Get NickServ to work properly / Change NickServ Password
 
 import twitterservice, db
 import socket, ssl
 import threading
 import json
 import time
-import cProfile
-import timeit
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
