@@ -1,7 +1,6 @@
 # Todo
 # Optimize Twitter performance, goal < 100ms
 # Two threads running at once (Instagram)
-# Logging
 # IRC Commands
 # Separate logic for EsperNet and SnooNet
 # Get NickServ to work properly / Change NickServ Password
@@ -19,7 +18,7 @@ HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admin = 'jclishman'
-channels = ['#groupofthrones']
+channels = ['#lishbot']
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -145,7 +144,8 @@ while True:
 		send_message(message)
 		
 		# Sends how long it took from tweet creation to irc message (debug)
-		print('Took ' + str(round(time.time() - start_time, 5)) + 's')
+		send_message('Took ' + str(round(time.time() - start_time, 5)) + 's')
+		print(str(round(time.time() - start_time, 5)), file=open("output.txt", "a"))
 		
 		# Anti-bot spam
 		time.sleep(1)
