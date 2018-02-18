@@ -1,5 +1,4 @@
 # Todo
-# Optimize Twitter performance, goal < 100ms
 # Two threads running at once (Instagram)
 # IRC Commands
 # Separate logic for EsperNet and SnooNet
@@ -18,7 +17,7 @@ HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admin = 'jclishman'
-channels = ['#lishbot']
+channels = ['#groupofthrones']
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -37,7 +36,7 @@ def send_message(message):
 	for channel in channels:
 		irc.send(parse('PRIVMSG ' + channel + ' :' + message))
 
-
+# Estabilishes a secure SSL connection
 s.connect((HOST, PORT))
 irc = ssl.wrap_socket(s)
 
@@ -46,15 +45,15 @@ print('Connecting...')
 time.sleep(2)
 
 # Tells the server who it is
-irc.send(parse("USER " + NICK + " " + NICK + " " + NICK + " :Bot\r\n"))
-irc.send(parse("NICK " + NICK + "\r\n"))
+irc.send(parse("USER " + NICK + " " + NICK + " " + NICK + " :Bot"))
+irc.send(parse("NICK " + NICK))
 
 time.sleep(2)
 
-has_responded_to_ping = False
-
 
 # Responds to the initial server ping on connection
+has_responded_to_ping = False
+
 while not has_responded_to_ping:
     text=irc.recv(1024).decode("UTF-8").strip('\r\n')
 
@@ -66,7 +65,7 @@ while not has_responded_to_ping:
 time.sleep(2)
 
 # Identifies nickname
-irc.send(parse('PRIVMSG NickServ IDENTIFY {} {}'.format(NICK, password)))
+irc.send(parse('PRIVMSG NickServ IDENTIFY %s %s' % (NICK, password)))
 
 # Joins channel(s)
 for channel in channels:
@@ -84,20 +83,15 @@ class myThread(threading.Thread):
 
 	def run(self):
 		print ("Starting " + self.name)
-		twitterservice_thread(self.name)
+		twitterservice.run()
 		print ("Exiting " + self.name)
 
 
-# Twitter thread
-def twitterservice_thread(threadName):
-	twitterservice.run()
-
 thread1 = myThread(1, "Twitter thread")
-
-# Starts the thread
 thread1.start()
 
 # Reads messages
+# setBlocking needs to be False to allow for the passive sending of messages
 irc.setblocking(False)
 while True:
 	irc_stream = None
@@ -137,15 +131,12 @@ while True:
 	start_time = time.time()
 	for row in db.get_post_queue():
 
-		# Assembles the IRC message
-		message = '[{}] @{} wrote: {} {}'.format(row[1], row[2], row[3], row[4])
-		
-		# Sends the IRC message
-		send_message(message)
+		# Assembles and sends the IRC message
+		send_message('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3], row[4]))
 		
 		# Sends how long it took from tweet creation to irc message (debug)
 		send_message('Took ' + str(round(time.time() - start_time, 5)) + 's')
-		print(str(round(time.time() - start_time, 5)), file=open("output.txt", "a"))
+		#print(str(round(time.time() - start_time, 5)), file=open("output.txt", "a"))
 		
 		# Anti-bot spam
 		time.sleep(1)

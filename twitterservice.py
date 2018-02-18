@@ -27,6 +27,7 @@ class MyStreamListener(StreamListener):
        	# Converts the data into usable JSON
     	data = json.loads(data)
 
+
     	# Puts user attributes into this list if the tweeet is from somebody the bot is following
     	# If the tweet isn't from someone the bot is following, set to None
     	# For some reason the twitter API also tells you when someone deletes a tweet
@@ -41,7 +42,7 @@ class MyStreamListener(StreamListener):
 
     	# Sends the tweet to the database    Username                 Message            URL               
     	def send_tweet_to_db():
-    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/{}/status/{}'.format(data['user']['screen_name'], data['id_str']))        
+    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']))        
 
     	# Is the tweet from somebody the bot cares about?
     	if user_of_tweet != None:
@@ -62,7 +63,6 @@ class MyStreamListener(StreamListener):
     			send_tweet_to_db()
     			#print(data['text'])
     	
-    
 
     def on_error(self, status):
     	if status == 420:
