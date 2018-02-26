@@ -116,10 +116,10 @@ while True:
 		message_channel = irc_stream.split('PRIVMSG',1)[1].split(':', 1)[0].lstrip()
 		message_contents = irc_stream.split('PRIVMSG',1)[1].split(':',1)[1]
 
-		# Debugging
-		# print('Author: ' + message_author)
-		# print('Channel: ' + message_channel)
-		# print('Contents: ' + message_contents)
+		Debugging
+		print('Author: ' + message_author)
+		print('Channel: ' + message_channel)
+		print('Contents: ' + message_contents)
 
 		# Admins can make the bot quit
 		if message_author == admin and message_contents.rstrip() == 'bye':

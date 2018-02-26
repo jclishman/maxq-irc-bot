@@ -3,7 +3,7 @@ import tweepy
 import json
 import sqlite3
 import db
-import cProfile
+
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -14,7 +14,7 @@ auth.set_access_token(credentials["access_token"], credentials["access_secret"])
 api = tweepy.API(auth)
 
 # Gets the list of users and their attributes from the database
-users_list = db.get_following_twitter()
+users_list = db.get_following("twitter")
 
 # Puts all the User IDs into a set for optimal performance
 following = {x[1] for x in users_list}

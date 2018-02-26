@@ -1,0 +1,78 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex be6ad8b..0e35a44 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,3 +1,4 @@[m
+ .idea[m
+ __pycache__[m
+ _secret.json[m
+[32m+[m[32moutput.txt[m
+\ No newline at end of file[m
+[1mdiff --git a/database.db b/database.db[m
+[1mindex 0dd9d47..9b3cff6 100644[m
+Binary files a/database.db and b/database.db differ
+[1mdiff --git a/db.py b/db.py[m
+[1mindex dbb13b3..7a2e495 100644[m
+[1m--- a/db.py[m
+[1m+++ b/db.py[m
+[36m@@ -29,8 +29,8 @@[m [mdef get_post_queue():[m
+ 	return database_cursor.fetchall()[m
+ [m
+ # Gets the accounts that the bot is following on Twitter[m
+[31m-def get_following_twitter():[m
+[31m-	database_cursor.execute("SELECT * FROM following WHERE twitter = 1")[m
+[32m+[m[32mdef get_following(platform):[m
+[32m+[m	[32mdatabase_cursor.execute(("SELECT * FROM following WHERE %s = 1") % platform)[m
+ 	[m
+ 	return database_cursor.fetchall()[m
+ 	#return {x[0] for x in database_cursor.fetchall()}[m
+[1mdiff --git a/irc.py b/irc.py[m
+[1mindex 6e9b360..bba7515 100644[m
+[1m--- a/irc.py[m
+[1m+++ b/irc.py[m
+[36m@@ -116,10 +116,10 @@[m [mwhile True:[m
+ 		message_channel = irc_stream.split('PRIVMSG',1)[1].split(':', 1)[0].lstrip()[m
+ 		message_contents = irc_stream.split('PRIVMSG',1)[1].split(':',1)[1][m
+ [m
+[31m-		# Debugging[m
+[31m-		# print('Author: ' + message_author)[m
+[31m-		# print('Channel: ' + message_channel)[m
+[31m-		# print('Contents: ' + message_contents)[m
+[32m+[m		[32mDebugging[m
+[32m+[m		[32mprint('Author: ' + message_author)[m
+[32m+[m		[32mprint('Channel: ' + message_channel)[m
+[32m+[m		[32mprint('Contents: ' + message_contents)[m
+ [m
+ 		# Admins can make the bot quit[m
+ 		if message_author == admin and message_contents.rstrip() == 'bye':[m
+[1mdiff --git a/output.txt b/output.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 3be676d..0000000[m
+[1m--- a/output.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,3 +0,0 @@[m
+[31m-0.44251[m
+[31m-0.23781[m
+[31m-0.43047[m
+[1mdiff --git a/twitterservice.py b/twitterservice.py[m
+[1mindex 141850c..6bc95ed 100644[m
+[1m--- a/twitterservice.py[m
+[1m+++ b/twitterservice.py[m
+[36m@@ -3,7 +3,7 @@[m [mimport tweepy[m
+ import json[m
+ import sqlite3[m
+ import db[m
+[31m-import cProfile[m
+[32m+[m
+ [m
+ # Secret credentials :)[m
+ credentials = json.load(open('_secret.json'))[m
+[36m@@ -14,7 +14,7 @@[m [mauth.set_access_token(credentials["access_token"], credentials["access_secret"])[m
+ api = tweepy.API(auth)[m
+ [m
+ # Gets the list of users and their attributes from the database[m
+[31m-users_list = db.get_following_twitter()[m
+[32m+[m[32musers_list = db.get_following("twitter")[m
+ [m
+ # Puts all the User IDs into a set for optimal performance[m
+ following = {x[1] for x in users_list}[m

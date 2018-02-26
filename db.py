@@ -29,8 +29,8 @@ def get_post_queue():
 	return database_cursor.fetchall()
 
 # Gets the accounts that the bot is following on Twitter
-def get_following_twitter():
-	database_cursor.execute("SELECT * FROM following WHERE twitter = 1")
+def get_following(platform):
+	database_cursor.execute(("SELECT * FROM following WHERE %s = 1") % platform)
 	
 	return database_cursor.fetchall()
 	#return {x[0] for x in database_cursor.fetchall()}
