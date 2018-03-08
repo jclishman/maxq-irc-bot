@@ -17,7 +17,7 @@ HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admin = 'jclishman'
-channels = ['#lishbot]
+channels = ['#lishbot']
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
