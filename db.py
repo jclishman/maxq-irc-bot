@@ -44,10 +44,10 @@ def follow_account(username, user_id, retweets, replies, platform):
 		follow_cursor = database.cursor()
 		
 		if platform == 'twitter':
-			follow_cursor.execute("INSERT INTO following (username, user_id, retweets, replies, twitter) VALUES(?,?,?,?,?)", [username, user_id, retweets, replies, 1])
+			follow_cursor.execute("INSERT INTO following (username, twitter_id, retweets, replies) VALUES(?,?,?,?)", [username, user_id, retweets, replies])
 
 		if platform == 'instagram':
-			follow_cursor.execute("INSERT INTO following (username, user_id, instagram) VALUES(?,?,?)", [username, user_id, 1])
+			follow_cursor.execute("INSERT INTO following (username, instagram_id) VALUES(?,?,?)", [username, user_id])
 
 		database.commit()
 
@@ -73,7 +73,10 @@ def get_following(platform):
 	try:
 		database = sqlite3.connect('database.db')
 		get_following_cursor = database.cursor()
-		get_following_cursor.execute(("SELECT * FROM following WHERE %s = 1") % platform)
+
+		if platform == 'twitter': get_following_cursor.execute(("SELECT * FROM following WHERE twitter_id != 0"))
+		if platform == 'instagram': get_following_cursor.execute(("SELECT * FROM following WHERE instagram_id != 0"))
+
 	
 		print("> db.py - Got the following list")
 		return get_following_cursor.fetchall()

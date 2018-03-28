@@ -3,6 +3,7 @@
 # IRC Commands
 # Separate logic for EsperNet and SnooNet
 # Get NickServ to work properly / Change NickServ Password
+print ('> Now entering MaxQ...')
 
 import twitterservice, db
 import socket, ssl
@@ -40,7 +41,7 @@ def send_message(message):
 s.connect((HOST, PORT))
 irc = ssl.wrap_socket(s)
 
-print('Connecting...')
+print('> Connecting...')
 
 time.sleep(2)
 
@@ -116,7 +117,7 @@ while True:
 		message_channel = irc_stream.split('PRIVMSG',1)[1].split(':', 1)[0].lstrip()
 		message_contents = irc_stream.split('PRIVMSG',1)[1].split(':',1)[1]
 
-		Debugging
+		#Debugging
 		print('Author: ' + message_author)
 		print('Channel: ' + message_channel)
 		print('Contents: ' + message_contents)
