@@ -1,4 +1,5 @@
 import sqlite3
+from bot_logging import logger
 
 # Because the database is running on multiple threads, each method needs its own database connection and cursor
 
@@ -13,7 +14,7 @@ def output_rows_messages():
 
 # Inserts a row into the messages table 
 def insert_message(service, author, message, url):
-	print (service, author, message, url)
+	#print (service, author, message, url)
 	
 	try:
 		database = sqlite3.connect('database.db')
@@ -22,7 +23,7 @@ def insert_message(service, author, message, url):
 		database.commit()
 
 	except sqlite3.OperationalError as e:
-		print("[ERROR] " + str(e))
+		logger.error(str(e))
 
 # Updates the PUBLISHED entry to 1
 def update_after_publish(target_id):
@@ -34,7 +35,7 @@ def update_after_publish(target_id):
 		database.commit()
 
 	except sqlite3.OperationalError as e:
-		print("[ERROR] " + str(e))
+		logger.error(str(e))
 
 # Follows accounts
 def follow_account(username, user_id, retweets, replies, platform):
@@ -47,12 +48,25 @@ def follow_account(username, user_id, retweets, replies, platform):
 			follow_cursor.execute("INSERT INTO following (username, twitter_id, retweets, replies) VALUES(?,?,?,?)", [username, user_id, retweets, replies])
 
 		if platform == 'instagram':
-			follow_cursor.execute("INSERT INTO following (username, instagram_id) VALUES(?,?,?)", [username, user_id])
+			follow_cursor.execute("INSERT INTO following (username, instagram_) VALUES(?,?,?)", [username, user_id])
+
+		database.commit()
+	
+	except sqlite3.OperationalError as e:
+		logger.error(str(e))
+
+def update_instagram_timestamp(username, timestamp):
+
+	try:
+		database = sqlite3.connect('database.db')
+		insta_timestamp_cursor =  database.cursor()
+
+		insta_timestamp_cursor.execute("UPDATE following SET instagram_checked_at = %d WHERE username = '%s'" % (timestamp, username))
 
 		database.commit()
 
-	except:
-		print("ERROR")
+	except sqlite3.OperationalError as e:
+		logger.error(str(e))
 
 # Gets the queue of messages that haven't been posted
 def get_post_queue():
@@ -65,7 +79,7 @@ def get_post_queue():
 		return post_cursor.fetchall()
 
 	except sqlite3.OperationalError as e:
-		print("[ERROR] " + str(e))
+		logger.error(str(e))
 
 # Gets the accounts that the bot is following
 def get_following(platform):
@@ -75,11 +89,11 @@ def get_following(platform):
 		get_following_cursor = database.cursor()
 
 		if platform == 'twitter': get_following_cursor.execute(("SELECT * FROM following WHERE twitter_id != 0"))
-		if platform == 'instagram': get_following_cursor.execute(("SELECT * FROM following WHERE instagram_id != 0"))
+		if platform == 'instagram': get_following_cursor.execute(("SELECT * FROM following WHERE instagram != 0"))
 
 	
-		print("> db.py - Got the following list")
+		#print("> db.py - Got the following list")
 		return get_following_cursor.fetchall()
 
 	except sqlite3.OperationalError as e:
-		print("[ERROR] " + str(e))
+		logger.error(str(e))

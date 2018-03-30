@@ -53,7 +53,7 @@ class MyStreamListener(StreamListener):
     			#print (data['text'])
 
     		# Is a reply?                  Is the reply flag of the user set to 1?
-    		if data['in_reply_to_status_id'] != None and user_of_tweet[3]:
+    		if data['in_reply_to_status_id'] != None and user_of_tweet[3] == 1:
     			send_tweet_to_db()
     			#print (data['text'])
 

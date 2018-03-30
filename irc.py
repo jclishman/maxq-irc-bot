@@ -1,15 +1,19 @@
 # Todo
+# Get Instagram working
 # Two threads running at once (Instagram)
 # IRC Commands
 # Separate logic for EsperNet and SnooNet
-# Get NickServ to work properly / Change NickServ Password
-print ('> Now entering MaxQ...')
+# Launch mode (separate following list)
+# New name
 
+from bot_logging import logger
 import twitterservice, db
 import socket, ssl
 import threading
 import json
 import time
+
+logger.info('Now Entering MaxQ...')
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -26,7 +30,7 @@ password = credentials['nickserv_password']
 
 # Responds to server pings
 def pong(text):
-    print('PONG' + text.split()[1])
+    logger.info('PONG' + text.split()[1])
     irc.send(parse('PONG ' + text.split()[1]))
 
 # Makes things human-readable
@@ -37,36 +41,37 @@ def send_message(message):
 	for channel in channels:
 		irc.send(parse('PRIVMSG ' + channel + ' :' + message))
 
+
 # Estabilishes a secure SSL connection
 s.connect((HOST, PORT))
 irc = ssl.wrap_socket(s)
 
-print('> Connecting...')
+logger.info('Connecting...')
 
-time.sleep(2)
+time.sleep(5)
 
 # Tells the server who it is
-irc.send(parse("USER " + NICK + " " + NICK + " " + NICK + " :Bot"))
-irc.send(parse("NICK " + NICK))
+irc.send(parse('USER ' + NICK + ' ' + NICK + ' ' + NICK + ' :Bot'))
+irc.send(parse('NICK ' + NICK))
+logger.info('Server Ident')
 
 time.sleep(2)
-
 
 # Responds to the initial server ping on connection
 has_responded_to_ping = False
 
 while not has_responded_to_ping:
-    text=irc.recv(1024).decode("UTF-8").strip('\r\n')
+    text=irc.recv(1024).decode('UTF-8').strip('\r\n')
 
     if text.find('PING') != -1:
     	pong(text)
     	has_responded_to_ping = True
 
-
 time.sleep(2)
 
 # Identifies nickname
-irc.send(parse('PRIVMSG NickServ IDENTIFY %s %s' % (NICK, password)))
+irc.send(parse(('NickServ IDENTIFY %s %s\n' % (NICK, password))))
+logger.info('NickServ Ident')
 
 # Joins channel(s)
 for channel in channels:
@@ -83,12 +88,11 @@ class myThread(threading.Thread):
 		self.name = name
 
 	def run(self):
-		print ("Starting " + self.name)
+		logger.info('Starting ' + self.name)
 		twitterservice.run()
-		print ("Exiting " + self.name)
 
 
-thread1 = myThread(1, "Twitter thread")
+thread1 = myThread(1, 'Twitter thread')
 thread1.start()
 
 # Reads messages
@@ -101,10 +105,10 @@ while True:
 		irc_stream = irc.recv(1024).decode('UTF-8')
 
 	except OSError as e:
-		#print("No data")
+		#print('No data')
 		time.sleep(0.05)
 
-	if irc_stream is not None: print(irc_stream)
+	if irc_stream is not None: logger.info(irc_stream)
 
 	# Sends ping
 	if irc_stream is not None and irc_stream.find('PING') != -1:
@@ -118,26 +122,30 @@ while True:
 		message_contents = irc_stream.split('PRIVMSG',1)[1].split(':',1)[1]
 
 		#Debugging
-		print('Author: ' + message_author)
-		print('Channel: ' + message_channel)
-		print('Contents: ' + message_contents)
+		#logger.info(irc_stream)
+		logger.debug('Author: ' + message_author)
+		logger.debug('Author: ' + message_channel)
+		logger.debug('Content: ' + message_contents)
 
 		# Admins can make the bot quit
 		if message_author == admin and message_contents.rstrip() == 'bye':
-			irc.send(parse("QUIT"))
-			print('Exiting...')
+			irc.send(parse('QUIT'))
+			logger.info('Exiting')
 			time.sleep(1)
-			break 
+			sys.exit()
+			irc.close()
 
 	start_time = time.time()
 	for row in db.get_post_queue():
 
 		# Assembles and sends the IRC message
-		send_message('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3], row[4]))
+		logger.info('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+		send_message('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
 		
 		# Sends how long it took from tweet creation to irc message (debug)
-		send_message('Took ' + str(round(time.time() - start_time, 5)) + 's')
-		#print(str(round(time.time() - start_time, 5)), file=open("output.txt", "a"))
+ 
+		logger.info('Post #' + str(row[0]) + ', Took ' + str(round(time.time() - start_time, 5)) + 's\n')
+		#print(str(round(time.time() - start_time, 5)), file=open('output.txt', 'a'))
 		
 		# Anti-bot spam
 		time.sleep(1)
