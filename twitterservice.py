@@ -27,7 +27,6 @@ class MyStreamListener(StreamListener):
        	# Converts the data into usable JSON
     	data = json.loads(data)
 
-
     	# Puts user attributes into this list if the tweeet is from somebody the bot is following
     	# If the tweet isn't from someone the bot is following, set to None
     	# For some reason the twitter API also tells you when someone deletes a tweet

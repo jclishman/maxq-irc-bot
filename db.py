@@ -55,13 +55,26 @@ def follow_account(username, user_id, retweets, replies, platform):
 	except sqlite3.OperationalError as e:
 		logger.error(str(e))
 
+def get_instagram_timestamp(username):
+
+	try:
+		database = sqlite3.connect('database.db')
+		insta_get_timestamp_cursor = database.cursor()
+
+		insta_get_timestamp_cursor.execute("SELECT instagram_timestamp_at FROM following WHERE username = '%s'" % username)
+
+		return insta_get_timestamp_cursor.fetchone()[0]
+
+	except sqlite3.OperationalError as e:
+		logger.error(str(e))
+
 def update_instagram_timestamp(username, timestamp):
 
 	try:
 		database = sqlite3.connect('database.db')
 		insta_timestamp_cursor =  database.cursor()
 
-		insta_timestamp_cursor.execute("UPDATE following SET instagram_checked_at = %d WHERE username = '%s'" % (timestamp, username))
+		insta_timestamp_cursor.execute("UPDATE following SET instagram_timestamp_at = %s WHERE username = '%s'" % (timestamp, username))
 
 		database.commit()
 

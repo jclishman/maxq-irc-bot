@@ -1,17 +1,19 @@
-# Todo
-# Get Instagram working
-# Two threads running at once (Instagram)
+# TODO:
+# Instagram
+# Subreddit
+# YouTube
 # IRC Commands
 # Separate logic for EsperNet and SnooNet
-# Launch mode (separate following list)
+# "Launch mode" (separate following list)
 # New name
 
 from bot_logging import logger
-import twitterservice, db
+import twitterservice, instagramservice, db
 import socket, ssl
 import threading
 import json
 import time
+import sys
 
 logger.info('Now Entering MaxQ...')
 
@@ -79,21 +81,24 @@ for channel in channels:
 	irc.send(('JOIN {}\n').format(channel).encode())
 	time.sleep(2)
 
-# Threading magic
-# I barely understand how this works, so not gonna touch it
-class myThread(threading.Thread):
-	def __init__(self, threadID, name):
-		threading.Thread.__init__(self)
-		self.threadID = threadID
-		self.name = name
+# Threading
 
-	def run(self):
-		logger.info('Starting ' + self.name)
-		twitterservice.run()
+def twitter_thread():
+	logger.info('Starting Twitter Thread')
+	twitterservice.run()
 
+def insta_thread():
+	logger.info('Starting Instragram Thread')
+	instagramservice.run()
 
-thread1 = myThread(1, 'Twitter thread')
-thread1.start()
+twitter = threading.Thread(name='Twitter_Thread', target=twitter_thread)
+insta = threading.Thread(name='Instagram_Thread', target=insta_thread)
+
+twitter.daemon = True
+insta.daemon = True
+
+twitter.start()
+insta.start()
 
 # Reads messages
 # setBlocking needs to be False to allow for the passive sending of messages
@@ -123,17 +128,15 @@ while True:
 
 		#Debugging
 		#logger.info(irc_stream)
-		logger.debug('Author: ' + message_author)
-		logger.debug('Author: ' + message_channel)
-		logger.debug('Content: ' + message_contents)
+		logger.info('Author: ' + message_author)
+		logger.info('Channel: ' + message_channel)
+		logger.info('Content: ' + message_contents)
 
 		# Admins can make the bot quit
 		if message_author == admin and message_contents.rstrip() == 'bye':
-			irc.send(parse('QUIT'))
+			irc.send(parse('QUIT :RUD'))
 			logger.info('Exiting')
-			time.sleep(1)
-			sys.exit()
-			irc.close()
+			exit()
 
 	start_time = time.time()
 	for row in db.get_post_queue():
@@ -155,3 +158,4 @@ while True:
 
 
 irc.close()
+
