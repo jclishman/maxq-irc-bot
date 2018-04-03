@@ -1,30 +1,28 @@
 # TODO:
-# Instagram
-# Subreddit
-# YouTube
-# IRC Commands
+# Instagram error handling
+# IRC Commands (Maybe use a config instead?)
 # Separate logic for EsperNet and SnooNet
-# "Launch mode" (separate following list)
+# "Launch mode" (just show tweets from spacex/elon)
 # New name
 
 from bot_logging import logger
-import twitterservice, instagramservice, db
+import twitterservice, instagramservice, redditservice, db
 import socket, ssl
 import threading
 import json
 import time
-import sys
+import os
 
 logger.info('Now Entering MaxQ...')
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-#HOST = 'irc.esper.net'
-HOST = 'irc.snoonet.org'
+HOST = 'irc.esper.net'
+#HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admin = 'jclishman'
-channels = ['#lishbot']
+channels = ['#spacex']
 
 # Secret credentials :)
 credentials = json.load(open('_secret.json'))
@@ -32,7 +30,7 @@ password = credentials['nickserv_password']
 
 # Responds to server pings
 def pong(text):
-    logger.info('PONG' + text.split()[1])
+    logger.debug('PONG' + text.split()[1])
     irc.send(parse('PONG ' + text.split()[1]))
 
 # Makes things human-readable
@@ -43,6 +41,12 @@ def send_message(message):
 	for channel in channels:
 		irc.send(parse('PRIVMSG ' + channel + ' :' + message))
 
+def restart_irc():
+	logger.info('Restarting...')
+	os.system('start cmd /c irc.py')
+	time.sleep(5)
+	irc.send(parse('QUIT :Be right back!'))
+	exit()
 
 # Estabilishes a secure SSL connection
 s.connect((HOST, PORT))
@@ -82,7 +86,6 @@ for channel in channels:
 	time.sleep(2)
 
 # Threading
-
 def twitter_thread():
 	logger.info('Starting Twitter Thread')
 	twitterservice.run()
@@ -91,14 +94,21 @@ def insta_thread():
 	logger.info('Starting Instragram Thread')
 	instagramservice.run()
 
+def reddit_thread():
+	logger.info('Starting Reddit Thread')
+	redditservice.run()
+
 twitter = threading.Thread(name='Twitter_Thread', target=twitter_thread)
 insta = threading.Thread(name='Instagram_Thread', target=insta_thread)
+reddit = threading.Thread(name='Reddit_Thread', target=reddit_thread)
 
 twitter.daemon = True
 insta.daemon = True
+reddit.daemon = True
 
 twitter.start()
 insta.start()
+reddit.start()
 
 # Reads messages
 # setBlocking needs to be False to allow for the passive sending of messages
@@ -115,7 +125,7 @@ while True:
 
 	if irc_stream is not None: logger.info(irc_stream)
 
-	# Sends ping
+	# Sends server ping
 	if irc_stream is not None and irc_stream.find('PING') != -1:
 		pong(text)
 	
@@ -133,21 +143,28 @@ while True:
 		logger.info('Content: ' + message_contents)
 
 		# Admins can make the bot quit
-		if message_author == admin and message_contents.rstrip() == 'bye':
-			irc.send(parse('QUIT :RUD'))
+		if message_author == admin and message_contents.rstrip() == 'restart':
+			restart_irc()
+			os.system('exit')
+		elif message_author == admin and message_contents.rstrip() == 'quit':
+			irc.send(parse('QUIT :HTTP Error 418 - Stuck in orbit between Earth and Mars.'))
 			logger.info('Exiting')
 			exit()
 
-	start_time = time.time()
 	for row in db.get_post_queue():
 
 		# Assembles and sends the IRC message
-		logger.info('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
-		send_message('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+		# Platform-specific formatting
+		if row[1] != 'Reddit': 
+			send_message('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+			logger.info('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
 		
+		else: 
+			send_message('[%s] %s %s' % (row[1], row[3], row[4]))
+			logger.info('[%s] %s %s' % (row[1], row[3], row[4]))
+
 		# Sends how long it took from tweet creation to irc message (debug)
- 
-		logger.info('Post #' + str(row[0]) + ', Took ' + str(round(time.time() - start_time, 5)) + 's\n')
+		logger.info('Post #' + str(row[0]) + ', Took ' + str(round(time.time() - row[6], 5)) + 's\n')
 		#print(str(round(time.time() - start_time, 5)), file=open('output.txt', 'a'))
 		
 		# Anti-bot spam

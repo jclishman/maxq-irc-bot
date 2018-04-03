@@ -10,6 +10,10 @@ def get_instagram_data(username):
 	return requests.get(('https://www.instagram.com/%s/?__a=1') % username)
 
 def run():
+
+	# Bot won't post anything new on startup, to avoid spam
+	startup = True
+
 	class InstagramUser():
 		name = ''
 		info = ''
@@ -18,10 +22,21 @@ def run():
 		post_caption = ''
 
 		def get_data(self):
-			f = open('INFOTEXT.txt', 'w')
-			print(self.info.text, file=f)
+	
+			try:
+				self.json = json.loads(self.info.text)
 
-			self.json = json.loads(self.info.text)
+			except json.decoder.JSONDecodeError as e:
+
+				# Reached the Instagram rate limit, sleep for a minute
+				logger.error('Status Code: ' + str(self.info.status_code))
+				logger.error(str(e))
+				logger.error('Waiting for 60s, then trying again')
+				time.sleep(60)
+
+				self.json = json.loads(self.info.text)
+				exit()
+			# ADD MORE ERROR CODES HERE. 404, 500, etc
 
 			# JSON for the most recent post id
 			self.post_id = self.json['graphql']['user']['edge_owner_to_timeline_media']['edges'][0]['node']['shortcode']
@@ -55,11 +70,12 @@ def run():
 			logger.debug('Previous timestamp: ' + str(stored_timestamp))
 
 			# Rate limiter
-			time.sleep(2)
+			time.sleep(3.5)
 
 			# Is it a new post?
 			if user.post_timestamp > stored_timestamp:
-				
+				start_time = time.time()
+
 				# Tries to get the post caption, if there is one
 				try:
 					user.post_caption = user.json['graphql']['user']['edge_owner_to_timeline_media']['edges'][0]['node']['edge_media_to_caption']['edges'][0]['node']['text']
@@ -74,8 +90,10 @@ def run():
 				db.update_instagram_timestamp(user.name, str(user.post_timestamp))
 				logger.info('Updated database\n')
 
-				db.insert_message('Instagram', user.name, user.post_caption, 'https://instagram.com/p/%s' % user.post_id)
+				if startup == False: db.insert_message('Instagram', user.name, user.post_caption, 'https://instagram.com/p/%s' % user.post_id, start_time)
 
 			else:
 				logger.debug('Did not find new post\n')
 
+
+		startup = False

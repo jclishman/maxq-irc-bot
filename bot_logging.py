@@ -1,16 +1,11 @@
 import logging
-import time
 import sys
+import time
 
-current_time = time.strftime('%Y-%m-%d %H%M%S')
-
+current_time = time.strftime('%Y-%m-%d')
 
 # Logging!
-logging.basicConfig(
-    stream=sys.stdout,
-    level=logging.INFO,
-    format=('%(asctime)s [%(levelname)s] > %(message)s'),
-)
+logging.basicConfig(stream=sys.stdout, level=logging.INFO, format=('%(asctime)s [%(levelname)s] > %(message)s'),)
 
 logger = logging.getLogger(__name__)
 
@@ -19,5 +14,4 @@ handler.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s [%(levelname)s] > %(message)s')
 handler.setFormatter(formatter)
-
 logger.addHandler(handler)

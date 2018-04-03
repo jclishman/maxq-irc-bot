@@ -3,7 +3,7 @@ from bot_logging import logger
 
 # Because the database is running on multiple threads, each method needs its own database connection and cursor
 
-# Outputs all the rows
+# Outputs all the messages
 def output_rows_messages():
 	database = sqlite3.connect('database.db')
 	output_rows_cursor = database.cursor()
@@ -13,13 +13,13 @@ def output_rows_messages():
 		print (row)
 
 # Inserts a row into the messages table 
-def insert_message(service, author, message, url):
+def insert_message(service, author, message, url, start_time):
 	#print (service, author, message, url)
 	
 	try:
 		database = sqlite3.connect('database.db')
 		insert_message_cursor = database.cursor()
-		insert_message_cursor.execute("INSERT INTO messages (service, author, message, url) VALUES(?,?,?,?)", [service, author, message, url])
+		insert_message_cursor.execute("INSERT INTO messages (service, author, message, url, start_time) VALUES(?,?,?,?,?)", [service, author, message, url, start_time])
 		database.commit()
 
 	except sqlite3.OperationalError as e:

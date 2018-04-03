@@ -1,5 +1,6 @@
 from tweepy.streaming import StreamListener
 import tweepy
+import time
 import json
 import sqlite3
 import db
@@ -40,27 +41,24 @@ class MyStreamListener(StreamListener):
     		user_of_tweet = None
 
     	# Sends the tweet to the database    Username                 Message            URL               
-    	def send_tweet_to_db():
-    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']))        
+    	def send_tweet_to_db(start_time):
+    		db.insert_message('Twitter', data['user']['screen_name'], data['text'], 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)        
 
     	# Is the tweet from somebody the bot cares about?
     	if user_of_tweet != None:
-    		
+    		start_time = time.time()
+
      		# Is it a retweet?             Is the retweet flag of the user set to 1?
     		if "retweeted_status" in data and user_of_tweet[2] == 1:
-    			send_tweet_to_db()
-    			#print (data['text'])
+    			send_tweet_to_db(start_time)
 
     		# Is a reply?                  Is the reply flag of the user set to 1?
     		if data['in_reply_to_status_id'] != None and user_of_tweet[3] == 1:
-    			send_tweet_to_db()
-    			#print (data['text'])
+    			send_tweet_to_db(start_time)
 
     		# If it's a normal tweet
     		elif "retweeted_status" not in data:
-    			#print("not a retweeted_status")
-    			send_tweet_to_db()
-    			#print(data['text'])
+    			send_tweet_to_db(start_time)
     	
 
     def on_error(self, status):
