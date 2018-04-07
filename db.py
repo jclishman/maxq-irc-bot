@@ -1,5 +1,5 @@
-import sqlite3
 from bot_logging import logger
+import sqlite3
 
 # Because the database is running on multiple threads, each method needs its own database connection and cursor
 
@@ -38,20 +38,42 @@ def update_after_publish(target_id):
 		logger.error(str(e))
 
 # Follows accounts
-def follow_account(username, user_id, retweets, replies, platform):
+def follow_account(username, user_id, retweets, replies):
 
 	try:
 		database = sqlite3.connect('database.db')	
 		follow_cursor = database.cursor()
 		
-		if platform == 'twitter':
-			follow_cursor.execute("INSERT INTO following (username, twitter_id, retweets, replies) VALUES(?,?,?,?)", [username, user_id, retweets, replies])
-
-		if platform == 'instagram':
-			follow_cursor.execute("INSERT INTO following (username, instagram_) VALUES(?,?,?)", [username, user_id])
-
+		follow_cursor.execute("INSERT INTO following (username, twitter_id, retweets, replies) VALUES(?,?,?,?)", [username, user_id, retweets, replies])
+		logger.info('Added to DB')
 		database.commit()
 	
+	except sqlite3.OperationalError as e:
+		logger.error(str(e))
+# Unfollows accounts
+def unfollow_account(user_id):
+
+	try: 
+		database = sqlite3.connect('database.db')
+		unfollow_cursor = database.cursor()
+
+		unfollow_cursor.execute("DELETE FROM following WHERE twitter_id = %s" % user_id)
+		database.commit()
+		logger.info('Deleted from DB')
+	
+	except sqlite3.OperationalError as e:
+		logger.error(str(e))
+
+# Sets flags
+def set_flags(user_id, retweets, replies):
+
+	try:
+		database = sqlite3.connect('database.db')
+		set_flags_cursor = database.cursor()
+
+		set_flags_cursor.execute("UPDATE following SET retweets = %i, replies = %i WHERE twitter_id = %s" % (retweets, replies, user_id))
+		logger.info('Updated DB flags')
+		database.commit()
 	except sqlite3.OperationalError as e:
 		logger.error(str(e))
 

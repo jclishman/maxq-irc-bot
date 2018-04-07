@@ -5,9 +5,8 @@ import json
 import sqlite3
 import db
 
-
 # Secret credentials :)
-credentials = json.load(open('_secret.json'))
+credentials = json.load(open('_config.json'))
 
 # API Authentication
 auth = tweepy.OAuthHandler(credentials["consumer_key"], credentials["consumer_secret"])
@@ -32,12 +31,10 @@ class MyStreamListener(StreamListener):
     	# If the tweet isn't from someone the bot is following, set to None
     	# For some reason the twitter API also tells you when someone deletes a tweet
     	# If you try to get the needed properties from a deleted tweet, it throws a KeyError
-    	# So we'll check for that.
     	try:
     		user_of_tweet = next((x for x in users_list if x[1] == data['user']['id_str']), None)
 
     	except KeyError as e:
-    		#print("Tweet deleted")
     		user_of_tweet = None
 
     	# Sends the tweet to the database    Username                 Message            URL               
@@ -74,3 +71,11 @@ def run():
 	# Streams tweets
 	myStream.filter(follow=following)
 
+def getID(username):
+
+    try:
+        user_data = api.get_user(screen_name = username)
+        return user_data.id
+
+    except tweepy.error.TweepError:
+        return None   

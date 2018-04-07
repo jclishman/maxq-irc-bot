@@ -11,7 +11,7 @@ def get_instagram_data(username):
 
 def run():
 
-	# Bot won't post anything new on startup, to avoid spam
+	# Bot won't post anything new on startup
 	startup = True
 
 	class InstagramUser():
@@ -26,17 +26,16 @@ def run():
 			try:
 				self.json = json.loads(self.info.text)
 
-			except json.decoder.JSONDecodeError as e:
+			except Exception as e:
+				status_code = str(self.info.status_code)
 
-				# Reached the Instagram rate limit, sleep for a minute
-				logger.error('Status Code: ' + str(self.info.status_code))
+				# Error handling
+				logger.error('Status Code: ' + status_code)
 				logger.error(str(e))
-				logger.error('Waiting for 60s, then trying again')
-				time.sleep(60)
+				logger.error('Waiting for 2 minutes, then trying again')
+				time.sleep(120)
 
 				self.json = json.loads(self.info.text)
-				exit()
-			# ADD MORE ERROR CODES HERE. 404, 500, etc
 
 			# JSON for the most recent post id
 			self.post_id = self.json['graphql']['user']['edge_owner_to_timeline_media']['edges'][0]['node']['shortcode']

@@ -1,5 +1,4 @@
 .idea
 __pycache__
 Logs
-_secret.json
-output.txt
+_config.json
