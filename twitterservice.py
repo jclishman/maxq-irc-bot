@@ -1,3 +1,4 @@
+from bot_logging import logger
 from tweepy.streaming import StreamListener
 import tweepy
 import time
@@ -22,6 +23,8 @@ following = {x[1] for x in users_list}
 
 # Tweet stream
 class MyStreamListener(StreamListener):
+
+
     def on_data(self, data):
 
         # Converts the data into usable JSON
@@ -44,7 +47,8 @@ class MyStreamListener(StreamListener):
                               start_time)
 
         # Is the tweet from somebody the bot cares about?
-        if user_of_tweet != None:
+        if user_of_tweet is not None:
+
             start_time = time.time()
 
             # Is it a retweet?             Is the retweet flag of the user set to 1?
@@ -52,26 +56,25 @@ class MyStreamListener(StreamListener):
                 send_tweet_to_db(start_time)
 
             # Is a reply?                  Is the reply flag of the user set to 1?
-            if data['in_reply_to_status_id'] is not None and user_of_tweet[3] == 1:
+            elif data['in_reply_to_status_id'] is not None and user_of_tweet[3] == 1:
                 send_tweet_to_db(start_time)
 
             # If it's a normal tweet
-            elif "retweeted_status" not in data:
+            elif "retweeted_status" not in data and data["in_reply_to_status_id"] is None:
                 send_tweet_to_db(start_time)
 
     def on_error(self, status):
         if status == 420:
             return False
 
-
 def run():
+
     # Makes the stream object
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth, myStreamListener)
 
     # Streams tweets
     myStream.filter(follow=following)
-
 
 def getID(username):
     try:

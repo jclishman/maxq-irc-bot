@@ -1,3 +1,7 @@
+# When a tweet is from an important person in reply to someone else, add (responding to) @user: original
+# Auto thread restart on kill
+# Flake8, pylint
+
 from bot_logging import logger
 import twitterservice, instagramservice, redditservice
 import commands, db
@@ -152,9 +156,14 @@ while True:
         is_privmsg = False
 
         message_author = irc_stream.split('!', 1)[0][1:]
-        message_author_hostname = irc_stream.split('@', 1)[1].split()[0]
         message_channel = irc_stream.split('PRIVMSG', 1)[1].split(':', 1)[0].lstrip()
         message_contents = irc_stream.split('PRIVMSG', 1)[1].split(':', 1)[1]
+
+        try:
+            message_author_hostname = irc_stream.split('@', 1)[1].split()[0]
+        except IndexError as e:
+            logger.error(str(e))
+            message_author_hostname = ''
 
         logger.info('Author: ' + message_author)
         logger.info('Hostname: ' + message_author_hostname)

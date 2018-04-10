@@ -71,7 +71,7 @@ def run():
             logger.debug('Previous timestamp: ' + str(stored_timestamp))
 
             # Rate limiter
-            time.sleep(3.5)
+            time.sleep(5)
 
             # Is it a new post?
             if user.post_timestamp > stored_timestamp:
