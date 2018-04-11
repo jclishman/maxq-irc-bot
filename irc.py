@@ -1,5 +1,4 @@
 # When a tweet is from an important person in reply to someone else, add (responding to) @user: original
-# Auto thread restart on kill
 # Flake8, pylint
 
 from bot_logging import logger
@@ -63,6 +62,33 @@ def get_status():
     reddit_alive = reddit.is_alive()
 
     return [twitter_alive, insta_alive, reddit_alive]
+
+def check_threads():
+    status = get_status()
+
+    # Twitter
+    if not status[0]:
+        send_privmsg('jclishman', 'Twitter is down. Restarting...')
+        logger.error('Twitter is down, restarting')
+        twitter = threading.Thread(name='Twitter_Thread', target=twitter_thread)
+        twitter.daemon = True
+        twitter.start()
+
+    # Instagram
+    if not status[1]:
+        send_privmsg('jclishman', 'Instagram is down. Restarting...')
+        logger.error('Instagram is down, restarting')
+        insta = threading.Thread(name='Instagram_Thread', target=insta_thread)
+        insta.daemon = True
+        insta.start()
+
+    # Reddit
+    if not status[2]:
+        send_privmsg('jclishman', 'Reddit is down. Restarting...')
+        logger.error('Reddit is down, restarting')
+        reddit = threading.Thread(name='Reddit_Thread', target=reddit_thread)
+        reddit.daemon = True
+        reddit.start()
 
 
 # Establishes a secure SSL connection
@@ -231,3 +257,5 @@ while True:
 
         # Updates the database after it posts something
         db.update_after_publish(row[0])
+
+        check_threads()
