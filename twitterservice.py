@@ -42,10 +42,14 @@ class MyStreamListener(StreamListener):
 
         # Sends the tweet to the database    Username                 Message            URL
         def send_tweet_to_db(start_time):
-            if "extended_tweet" in data:
-                text = data['extended_tweet']['full_text'].replace('&amp;', '&')
+            if "retweeted_status" in data:
+                tweet = data['retweeted_status']
             else:
-                text = data['text'].replace('&amp;', '&')
+                tweet = data
+            if "extended_tweet" in tweet:
+                text = tweet['extended_tweet']['full_text'].replace('&amp;', '&')
+            else:
+                text = tweet['text'].replace('&amp;', '&')
                 
             #db.insert_message('Twitter', data['user']['screen_name'], message_modifier + text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
             print('Twitter', data['user']['screen_name'], text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
