@@ -67,8 +67,13 @@ def run():
             response = self.request(username=username, endpoint='username')
 
             if response.status_code is not 200:
-                logger.error("Instagram responded with status code %s" % str(response.status_code))
-                raise Exception("Instagram responded with status_code %s" % str(response.status_code))
+
+                if response.status_code is 503:
+                    logger.error("Instagram responded with status code %s" % str(response.status_code))
+                    time.sleep(60)
+
+                else:
+                    raise Exception("Instagram responded with status_code %s" % str(response.status_code))
 
             json_response = response.json()
 
@@ -84,11 +89,21 @@ def run():
             response = self.request(endpoint='graphql', query_variable=variables)
 
             if response.status_code is not 200:
+
                 logger.error("Instagram responded with status code %s" % str(response.status_code))
-                raise Exception("Instagram responded with status_code %s" % str(response.status_code))
+
+                if response.status_code is 503:
+                    time.sleep(60)
+
+                elif response.status_code is 429:
+                    time.sleep(300)
+                    logger.error("Sleeping for 5 minutes")
+                    
+                else:
+                    raise Exception("Instagram responded with status_code %s" % str(response.status_code))
 
             post = response.json()['data']['user']['edge_owner_to_timeline_media']['edges'][0]
-
+            
             post_data = {
                 'shortcode': post['node']['shortcode'],
                 'created_at_timestamp': post['node']['taken_at_timestamp'],
@@ -105,18 +120,25 @@ def run():
     users_list = db.get_following('instagram')
 
     username_list = {x[0] for x in users_list}
+    user_element_list = []
 
-    username = ''
+    for username in username_list:
+        user = InstagramUser()
+
+        user_element = [username, user.get_user_id(username)]
+        user_element_list.append(user_element)
+
+        time.sleep(5)
 
     while True:
 
-        for username in username_list:
+        for user_element in user_element_list:
 
             # Gets the ID of the post again, and compares it against the stored value
             user = InstagramUser()
+            username = user_element[0]
 
-            user_id = user.get_user_id(username)
-            post_data = user.get_recent_post(user_id)
+            post_data = user.get_recent_post(user_element[1])
 
             stored_timestamp = db.get_instagram_timestamp(username)
 
@@ -125,6 +147,7 @@ def run():
                 start_time = time.time()
 
                 logger.info('Found new Instagram post')
+                logger.info('Username: ' + username)
                 logger.info('Shortcode: ' + post_data["shortcode"])
                 logger.info('Caption: ' + post_data["caption"])
                 logger.info('Timestamp: ' + str(post_data["created_at_timestamp"]))
@@ -138,6 +161,6 @@ def run():
             else:
                 logger.debug('Did not find new post\n')
 
-            time.sleep(3)
+            time.sleep(5)
 
         startup = False

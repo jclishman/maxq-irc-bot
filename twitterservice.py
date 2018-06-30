@@ -47,8 +47,7 @@ class MyStreamListener(StreamListener):
             else:
                 text = data['text'].replace('&amp;', '&')
                 
-            #db.insert_message('Twitter', data['user']['screen_name'], message_modifier + text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
-            print('Twitter', data['user']['screen_name'], text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
+            db.insert_message('Twitter', data['user']['screen_name'], text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
 
         # Is the tweet from somebody the bot cares about?
         if user_of_tweet is not None:
@@ -87,5 +86,3 @@ def getID(username):
 
     except tweepy.error.TweepError:
         return None
-
-run()
