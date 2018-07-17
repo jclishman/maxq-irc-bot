@@ -21,7 +21,7 @@ HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admins = config["admin_hostnames"]
-channels = ['#groupofthrones']
+channels = ['#lishbot']
 
 
 # Responds to server pings
@@ -170,7 +170,7 @@ while True:
         if not message_channel.startswith('#'): is_privmsg = True
 
         # Admins can make the bot check status, restart, and quit
-        if message_author_hostname in admins:
+        if message_author_hostname in admins or message_author == 'jclishman':
 
             if message_contents.rstrip() == '!!status':
                 status = get_status()
@@ -180,6 +180,11 @@ while True:
 
                 if not is_privmsg: send_message_to_channel(message_channel, message)
                 else: send_privmsg(message_author, message)
+
+            elif message_contents.rstrip() == '!!changelog':
+                with open('changelog.txt') as f:
+                    message = f.read()
+                send_message_to_channel(message_channel, message)
 
             elif message_contents.rstrip() == '!!restart':
                 restart_irc()
