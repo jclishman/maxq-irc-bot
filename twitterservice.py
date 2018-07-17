@@ -41,13 +41,23 @@ class MyStreamListener(StreamListener):
         except KeyError as e:
             user_of_tweet = None
 
-        # Sends the tweet to the database    Username                 Message            URL
+        # Sends the tweet to the database
         def send_tweet_to_db(start_time):
+            # Gets the full tweet text if it's concatenated by Twitter
             if "extended_tweet" in data:
                 text = html.unescape(data['extended_tweet']['full_text'])
+
+            # Gets the full retweet text if it's concatenated by Twitter
+            if "retweeted_status" in data and "extended_tweet" in data["retweeted_status"]:
+                text = html.unescape(data['retweeted_status']['extended_tweet']['full_text'])
+
+            # Not an extended tweet
             else:
                 text = html.unescape(data['text'])
-                
+            
+            # Logs raw JSON    
+            #logger.info(json.dumps(data))
+
             db.insert_message('Twitter', data['user']['screen_name'], text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
 
         # Is the tweet from somebody the bot cares about?
