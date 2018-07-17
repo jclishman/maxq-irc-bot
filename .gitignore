@@ -2,3 +2,4 @@
 __pycache__
 Logs
 _config.json
+database.db
