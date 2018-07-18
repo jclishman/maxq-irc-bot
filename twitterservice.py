@@ -45,11 +45,11 @@ class MyStreamListener(StreamListener):
         def send_tweet_to_db(start_time):
             # Gets the full tweet text if it's concatenated by Twitter
             if "extended_tweet" in data:
-                text = html.unescape(data['extended_tweet']['full_text'])
+                text = "RT @%s: %s" % (data['retweeted_status']['user']['screen_name'], html.unescape(data['extended_tweet']['full_text']))
 
             # Gets the full retweet text if it's concatenated by Twitter
-            if "retweeted_status" in data and "extended_tweet" in data["retweeted_status"]:
-                text = html.unescape(data['retweeted_status']['extended_tweet']['full_text'])
+            elif "retweeted_status" in data and "extended_tweet" in data['retweeted_status']:
+                text = "RT @%s: %s" % (data['retweeted_status']['user']['screen_name'], html.unescape(data['retweeted_status']['extended_tweet']['full_text']))
 
             # Not an extended tweet
             else:
