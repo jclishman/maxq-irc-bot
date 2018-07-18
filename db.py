@@ -131,3 +131,19 @@ def get_following(platform):
 
     except sqlite3.OperationalError as e:
         logger.error(str(e))
+
+
+# Get whether or not a tweet has been posted
+def get_tweet_posted(tweet_url):
+    try:
+        database = sqlite3.connect('database.db')
+        get_tweet_posted_cursor = database.cursor()
+
+        get_tweet_posted_cursor.execute("SELECT id FROM messages WHERE url='%s'" % tweet_url)
+
+        return get_tweet_posted_cursor.fetchall()
+
+    except sqlite3.OperationalError as e:
+        logger.error(str(e))
+
+        

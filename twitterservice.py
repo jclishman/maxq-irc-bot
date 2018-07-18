@@ -45,11 +45,12 @@ class MyStreamListener(StreamListener):
         def send_tweet_to_db(start_time):
             # Gets the full tweet text if it's concatenated by Twitter
             if "extended_tweet" in data:
-                text = "RT @%s: %s" % (data['retweeted_status']['user']['screen_name'], html.unescape(data['extended_tweet']['full_text']))
+                text = html.unescape(data['extended_tweet']['full_text'])
 
             # Gets the full retweet text if it's concatenated by Twitter
             elif "retweeted_status" in data and "extended_tweet" in data['retweeted_status']:
-                text = "RT @%s: %s" % (data['retweeted_status']['user']['screen_name'], html.unescape(data['retweeted_status']['extended_tweet']['full_text']))
+                rt_data = data['retweeted_status']
+                text = "RT @%s: %s" % (rt_data['user']['screen_name'], html.unescape(rt_data['extended_tweet']['full_text']))
 
             # Not an extended tweet
             else:
@@ -57,8 +58,8 @@ class MyStreamListener(StreamListener):
             
             # Logs raw JSON    
             #logger.info(json.dumps(data))
-
-            db.insert_message('Twitter', data['user']['screen_name'], text, 'https://twitter.com/%s/status/%s' % (data['user']['screen_name'], data['id_str']), start_time)
+            tweet_url = make_url_from_tweet(data['user']['screen_name'], data['id_str'])
+            db.insert_message('Twitter', data['user']['screen_name'], text, tweet_url, start_time)
 
         # Is the tweet from somebody the bot cares about?
         if user_of_tweet is not None:
@@ -67,7 +68,15 @@ class MyStreamListener(StreamListener):
 
             # Is it a retweet?             Is the retweet flag of the user set to 1?
             if "retweeted_status" in data and user_of_tweet[2] == 1:
-                send_tweet_to_db(start_time)
+                rt_data = data['retweeted_status']
+
+                # Has the retweeted status been posted before?
+                if db.get_tweet_posted(make_url_from_tweet(rt_data['user']['screen_name'], rt_data['id_str'])) == []:
+                    send_tweet_to_db(start_time)
+
+                # Yes it has, don't post it again
+                else:
+                   logger.info("Retweet has already been posted")
 
             # Is a reply?                  Is the reply flag of the user set to 1?
             elif data['in_reply_to_status_id'] is not None and user_of_tweet[3] == 1:
@@ -97,3 +106,6 @@ def getID(username):
 
     except tweepy.error.TweepError:
         return None
+
+def make_url_from_tweet(screen_name, id_str):
+    return 'https://twitter.com/%s/status/%s' % (screen_name, id_str)
