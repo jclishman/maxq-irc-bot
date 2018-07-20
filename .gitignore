@@ -3,5 +3,4 @@ __pycache__
 Logs
 JSON
 _config.json
-database.db
-changelog.txt
+*.db

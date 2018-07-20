@@ -180,11 +180,6 @@ while True:
 
                 if not is_privmsg: send_message_to_channel(message_channel, message)
                 else: send_privmsg(message_author, message)
-
-            elif message_contents.rstrip() == '!!changelog':
-                with open('changelog.txt') as f:
-                    message = f.read()
-                send_message_to_channel(message_channel, message)
             
             elif message_contents.rstrip() == '!!restart':
                 restart_irc()
