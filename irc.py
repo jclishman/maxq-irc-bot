@@ -185,7 +185,7 @@ while True:
                 with open('changelog.txt') as f:
                     message = f.read()
                 send_message_to_channel(message_channel, message)
-
+            
             elif message_contents.rstrip() == '!!restart':
                 restart_irc()
                 os.system('exit')

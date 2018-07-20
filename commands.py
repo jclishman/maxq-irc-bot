@@ -5,7 +5,6 @@ import db
 
 NICK = 'MaxQ'
 
-
 def parse(message_contents):
     # Default values
     retweets = 0
@@ -92,7 +91,6 @@ def parse(message_contents):
         elif user_id is None: return 'Error: @%s does not exist' % target
 
     else: return 'Error: No target account'
-
 
 def in_database(user_id):
     users_list = db.get_following('twitter')
