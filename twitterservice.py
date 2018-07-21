@@ -97,10 +97,10 @@ class MyStreamListener(StreamListener):
                 if not has_tweet_been_posted(reply_data['user']['screen_name'], reply_data['id_str']):
 
                     # Avoid IRC double pings
-                    usernames_to_remove = ['@elonmusk', '@SpaceX', '@' + data['user']['screen_name']]
+                    usernames_to_remove = ['@elonmusk', '@SpaceX']
                     
                     for username in usernames_to_remove:
-                        reply_data['full_text'] = reply_data['full_text'].replace(username, '')
+                        reply_data['full_text'] = reply_data['full_text'].replace(username, username[:-1])
 
                     reply_data['text'] = reply_data['full_text']
 
@@ -114,6 +114,7 @@ class MyStreamListener(StreamListener):
                 # Yes, don't send it again
                 else:
                     send_tweet_to_db(data, start_time)
+                    logger.info("Parent tweet already posted")
 
             # If it's a normal tweet
             elif "retweeted_status" not in data and data["in_reply_to_status_id"] is None:
