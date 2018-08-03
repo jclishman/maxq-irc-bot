@@ -80,7 +80,7 @@ class MyStreamListener(StreamListener):
 
                 # Has the retweeted status already been posted?
                 # No, post it
-                if not has_tweet_been_posted(data['user']['screen_name'], data['id_str']):
+                if not has_tweet_been_posted(rt_data['user']['screen_name'], rt_data['id_str']):
                     send_tweet_to_db(data, start_time)
 
                 # Yes, don't post it
@@ -97,10 +97,14 @@ class MyStreamListener(StreamListener):
                 if not has_tweet_been_posted(reply_data['user']['screen_name'], reply_data['id_str']):
 
                     # Avoid IRC double pings
-                    usernames_to_remove = ['@elonmusk', '@SpaceX']
+                    usernames_to_modify = ['@elonmusk', '@SpaceX']
                     
-                    for username in usernames_to_remove:
-                        reply_data['full_text'] = reply_data['full_text'].replace(username, username[:-1])
+                    for username in usernames_to_modify:
+                        ZWJ = "‍"
+                        
+                        # Inserts a Zero Width Joiner
+                        username_zwj = username[:2] + ZWJ + username[2:]
+                        reply_data['full_text'] = reply_data['full_text'].replace(username, username_zwj)
 
                     reply_data['text'] = reply_data['full_text']
 
