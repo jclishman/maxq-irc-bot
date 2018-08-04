@@ -4,17 +4,18 @@ import json
 import time
 import db
 
-web_api = Client(auto_patch=True, drop_incompat_keys=False)
-
-feed = []
-startup = True
-user_dict = {
-	"SpaceX": "20311520", 
-	"elonmusk": "17644112", 
-	"jclishman.testing": "7400533474"
-}
-
 def run():
+
+    web_api = Client(auto_patch=True, drop_incompat_keys=False)
+
+    feed = []
+    startup = True
+    user_dict = {
+        "SpaceX": "20311520", 
+        "elonmusk": "17644112", 
+        "jclishman.testing": "7400533474"
+    }
+
     while True:
     	for id_str in list(user_dict.values()):
     		try:
