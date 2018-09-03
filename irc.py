@@ -1,7 +1,7 @@
 # Reddit AMA mode
 
 from bot_logging import logger
-import twitterservice, instagramservice, redditservice
+import twitterservice, instagramservice, redditservice, launchservice
 import commands, db
 import socket, ssl
 import threading
@@ -210,6 +210,18 @@ while True:
                 parsed_command = commands.parse(message_contents)
                 send_privmsg(message_author, parsed_command)
                 logger.info('Returned: ' + parsed_command)
+
+        if ".nextlaunch" in message_contents.rstrip():
+            
+            try:
+                launch_param = message_contents.rstrip().replace(".nextlaunch", '')
+                logger.info("Got launch with parameters " + str(launch_param))
+
+            except:
+                logger.info("Got launch with no parameters")
+                launch_param = ''
+
+            send_message_to_channel(message_channel, launchservice.get_launch(launch_param)) 
 
     for row in db.get_post_queue():
 
