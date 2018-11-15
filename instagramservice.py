@@ -22,8 +22,8 @@ def run():
                 time.sleep(5)
                 
             except Exception as e:
-                logger.error(str(e))
-                logger.error("Error getting feed. Sleeping for 30s")
+                #logger.error(str(e))
+                #logger.error("Error getting feed. Sleeping for 30s")
                 time.sleep(30)
 
         for post in feed:

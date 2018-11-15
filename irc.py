@@ -127,6 +127,8 @@ time.sleep(2)
 irc.send(parse(('NickServ IDENTIFY %s %s\n' % (NICK, password))))
 logger.info('NickServ Ident')
 
+time.sleep(2)
+
 # Joins channel(s)
 for channel in channels:
     irc.send(('JOIN %s\n' % channel).encode())
@@ -197,6 +199,10 @@ while True:
                 send_privmsg(message_author, 'Twitter: ' + str(twitter_following))
                 send_privmsg(message_author, 'Instagram: ' + str(instagram_following))
 
+
+            elif '!!say' in message_contents.rstrip():
+                send_message_to_channels(message_contents.replace('!!say ', ''))
+
             elif message_contents.startswith(("%s: ") % NICK) and not is_privmsg:
                 logger.info('Got command')
 
@@ -211,7 +217,7 @@ while True:
                 send_privmsg(message_author, parsed_command)
                 logger.info('Returned: ' + parsed_command)
 
-        if ".nextlaunch" in message_contents.rstrip():
+        if message_contents.rstrip().startswith(".nextlaunch"):
             
             try:
                 launch_param = message_contents.rstrip().replace(".nextlaunch", '')
@@ -234,6 +240,10 @@ while True:
         elif row[1] == 'Reddit':
             send_message_to_channels('[%s] %s %s' % (row[1], row[3], row[4]))
             logger.info('[%s] %s %s' % (row[1], row[3], row[4]))
+
+        elif row[1] == 'Reddit AMA':
+            send_message_to_channels('[%s] u/%s: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+            logger.info('[%s] u/%s: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
 
         # Sends how long it took from tweet creation to irc message (debug)
         logger.info('Post #' + str(row[0]) + ', Took ' + str(round(time.time() - row[6], 5)) + 's\n')

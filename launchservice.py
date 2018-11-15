@@ -68,7 +68,7 @@ def get_launch(search):
     # Query for search
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
-    query = "mode=verbose&limit=1&startdate={}&name={}"\
+    query = "mode=verbose&next=1&name={}"\
             .format(url_starttime, urllib.parse.quote(search))
 
     # Get the launches
