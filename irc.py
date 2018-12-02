@@ -16,12 +16,12 @@ config = json.load(open('_config.json'))
 password = config['nickserv_password']
 
 # IRC Config
-#HOST = 'irc.esper.net'
+# HOST = 'irc.esper.net'
 HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admins = config["admin_hostnames"]
-channels = ['#listhbot']
+channels = ['#lishbot']
 
 
 # Responds to server pings
@@ -232,7 +232,7 @@ while True:
                 launch_param = ''
 
             send_message_to_channel(message_channel, launchservice.get_launch(launch_param)) 
-    
+
         if message_contents.rstrip().startswith(".expand"):
         
             try:
