@@ -1,0 +1,2510 @@
+{
+ "a-train": {
+  "acronym": "a-train",
+  "acronym_display": "A-Train",
+  "expansion": "Afternoon Train satellite constellation",
+  "usage": 0
+ },
+ "aces": {
+  "acronym": "aces",
+  "acronym_display": "ACES",
+  "expansion": "Advanced Cryogenic Evolved Stage; Advanced Crew Entry Suit",
+  "usage": 0
+ },
+ "acs": {
+  "acronym": "acs",
+  "acronym_display": "ACS",
+  "expansion": "Attitude Control System",
+  "usage": 0
+ },
+ "adept": {
+  "acronym": "adept",
+  "acronym_display": "ADEPT",
+  "expansion": "Adaptive Deployable Entry and Placement Technology carbon-fiber heatshield",
+  "usage": 0
+ },
+ "aeb": {
+  "acronym": "aeb",
+  "acronym_display": "AEB",
+  "expansion": "Agencia Espaciale Brasileira",
+  "usage": 0
+ },
+ "afb": {
+  "acronym": "afb",
+  "acronym_display": "AFB",
+  "expansion": "Air Force Base",
+  "usage": 0
+ },
+ "afetr": {
+  "acronym": "afetr",
+  "acronym_display": "AFETR",
+  "expansion": "Air Force Eastern Test Range",
+  "usage": 0
+ },
+ "afss": {
+  "acronym": "afss",
+  "acronym_display": "AFSS",
+  "expansion": "Autonomous Flight Safety System",
+  "usage": 0
+ },
+ "agl": {
+  "acronym": "agl",
+  "acronym_display": "AGL",
+  "expansion": "Above Ground Level",
+  "usage": 0
+ },
+ "ajr": {
+  "acronym": "ajr",
+  "acronym_display": "AJR",
+  "expansion": "Aerojet Rocketdyne",
+  "usage": 0
+ },
+ "amos6": {
+  "acronym": "amos6",
+  "acronym_display": "AMOS6",
+  "expansion": "RIP :(",
+  "usage": 0
+ },
+ "aos": {
+  "acronym": "aos",
+  "acronym_display": "AOS",
+  "expansion": "Acquisition of Signal",
+  "usage": 0
+ },
+ "apas": {
+  "acronym": "apas",
+  "acronym_display": "APAS",
+  "expansion": "Androgynous Peripheral Attach System",
+  "usage": 0
+ },
+ "apas-95": {
+  "acronym": "apas-95",
+  "acronym_display": "APAS-95",
+  "expansion": "Version of Androgynous Peripheral Attach System, docking port used by the shuttle",
+  "usage": 0
+ },
+ "apfsds": {
+  "acronym": "apfsds",
+  "acronym_display": "APFSDS",
+  "expansion": "Armour-piercing fin-stabilized discarding-sabot",
+  "usage": 0
+ },
+ "arm": {
+  "acronym": "arm",
+  "acronym_display": "ARM",
+  "expansion": "Asteroid Redirect Mission",
+  "usage": 0
+ },
+ "armd": {
+  "acronym": "armd",
+  "acronym_display": "ARMD",
+  "expansion": "Aeronautics Research Mission Directorate, NASA",
+  "usage": 0
+ },
+ "arum": {
+  "acronym": "arum",
+  "acronym_display": "ARUM",
+  "expansion": "Asteroid Redirect Mission",
+  "usage": 0
+ },
+ "asat": {
+  "acronym": "asat",
+  "acronym_display": "ASAT",
+  "expansion": "Anti-Satellite weapon",
+  "usage": 0
+ },
+ "asds": {
+  "acronym": "asds",
+  "acronym_display": "ASDS",
+  "expansion": "Autonomous Spaceport Drone Ship (landing barge)",
+  "usage": 0
+ },
+ "ass": {
+  "acronym": "ass",
+  "acronym_display": "ASS",
+  "expansion": "Acronyms Seriously Suck",
+  "usage": 0
+ },
+ "ast": {
+  "acronym": "ast",
+  "acronym_display": "AST",
+  "expansion": "Federal Aviation Administration Administrator for Space Transportation",
+  "usage": 0
+ },
+ "athlete": {
+  "acronym": "athlete",
+  "acronym_display": "ATHLETE",
+  "expansion": " All-Terrain Hex-Limbed Extra-Terrestrial Explorer",
+  "usage": 0
+ },
+ "atlas": {
+  "acronym": "atlas",
+  "acronym_display": "ATLAS",
+  "expansion": "Nothing to expand; balloon tanks were discontinued",
+  "usage": 0
+ },
+ "atlast": {
+  "acronym": "atlast",
+  "acronym_display": "ATLAST",
+  "expansion": "Advanced Technology Large-Aperture Space Telescope",
+  "usage": 0
+ },
+ "atv": {
+  "acronym": "atv",
+  "acronym_display": "ATV",
+  "expansion": "Automated Transfer Vehicle, ESA cargo craft",
+  "usage": 0
+ },
+ "avi": {
+  "acronym": "avi",
+  "acronym_display": "AVI",
+  "expansion": "Avionics Operator",
+  "usage": 0
+ },
+ "beam": {
+  "acronym": "beam",
+  "acronym_display": "BEAM",
+  "expansion": "It already is expanded, you fool! (Bigelow Expandable Activity Module)",
+  "usage": 0
+ },
+ "beco": {
+  "acronym": "beco",
+  "acronym_display": "BECO",
+  "expansion": "Booster Engine Cut-Off",
+  "usage": 0
+ },
+ "beo": {
+  "acronym": "beo",
+  "acronym_display": "BEO",
+  "expansion": "Beyond Earth Orbit",
+  "usage": 0
+ },
+ "bfr": {
+  "acronym": "bfr",
+  "acronym_display": "BFR",
+  "expansion": "Big ~~Fu-~~ *Falcon* Rocket",
+  "usage": 0
+ },
+ "bfs": {
+  "acronym": "bfs",
+  "acronym_display": "BFS",
+  "expansion": "Big ~~Fu-~~ Falcon Spaceship (see MCT)",
+  "usage": 0
+ },
+ "bo": {
+  "acronym": "bo",
+  "acronym_display": "BO",
+  "expansion": "Blue Origin; Body Odour",
+  "usage": 0
+ },
+ "boatam": {
+  "acronym": "boatam",
+  "acronym_display": "BOATAM",
+  "expansion": "see NTM",
+  "usage": 0
+ },
+ "c3po": {
+  "acronym": "c3po",
+  "acronym_display": "C3PO",
+  "expansion": "Commercial Crew and Cargo Program Office, NASA",
+  "usage": 0
+ },
+ "cap": {
+  "acronym": "cap",
+  "acronym_display": "CAP",
+  "expansion": "Combat Air Patrol",
+  "usage": 0
+ },
+ "casic": {
+  "acronym": "casic",
+  "acronym_display": "CASIC",
+  "expansion": "China Aerospace Science & Industry Corporation",
+  "usage": 0
+ },
+ "cast": {
+  "acronym": "cast",
+  "acronym_display": "CAST",
+  "expansion": "China Academy of Space Technology",
+  "usage": 0
+ },
+ "cbc": {
+  "acronym": "cbc",
+  "acronym_display": "CBC",
+  "expansion": "Common Booster Core",
+  "usage": 0
+ },
+ "cbm": {
+  "acronym": "cbm",
+  "acronym_display": "CBM",
+  "expansion": "Common Berthing Mechanism",
+  "usage": 0
+ },
+ "ccafs": {
+  "acronym": "ccafs",
+  "acronym_display": "CCAFS",
+  "expansion": "Cape Canaveral Air Force Station",
+  "usage": 0
+ },
+ "ccam": {
+  "acronym": "ccam",
+  "acronym_display": "CCAM",
+  "expansion": "Collision and Contaminance Avoidance Maneuver",
+  "usage": 0
+ },
+ "ccdev": {
+  "acronym": "ccdev",
+  "acronym_display": "CCDEV",
+  "expansion": "Commercial Crew DEVelopment",
+  "usage": 0
+ },
+ "ccicap": {
+  "acronym": "ccicap",
+  "acronym_display": "CCICAP",
+  "expansion": "Commercial Crew Integrated Capability",
+  "usage": 0
+ },
+ "cctcap": {
+  "acronym": "cctcap",
+  "acronym_display": "CCTCAP",
+  "expansion": "Commercial Crew Transportation Capability",
+  "usage": 0
+ },
+ "cd": {
+  "acronym": "cd",
+  "acronym_display": "CD",
+  "expansion": "Coefficient of Drag",
+  "usage": 0
+ },
+ "cdfrv2": {
+  "acronym": "cdfrv2",
+  "acronym_display": "CDFRV2",
+  "expansion": "Crew DragonflyRider V2",
+  "usage": 0
+ },
+ "cdr": {
+  "acronym": "cdr",
+  "acronym_display": "CDR",
+  "expansion": "Critical Design Review",
+  "usage": 0
+ },
+ "cfht": {
+  "acronym": "cfht",
+  "acronym_display": "CFHT",
+  "expansion": "Canada France Hawaii Telescope",
+  "usage": 0
+ },
+ "clr": {
+  "acronym": "clr",
+  "acronym_display": "CLR",
+  "expansion": "Cumulative Likelihood Ratio",
+  "usage": 0
+ },
+ "cme": {
+  "acronym": "cme",
+  "acronym_display": "CME",
+  "expansion": "Coronal Mass Ejection",
+  "usage": 0
+ },
+ "cmg": {
+  "acronym": "cmg",
+  "acronym_display": "CMG",
+  "expansion": "Control Moment Gyroscope",
+  "usage": 0
+ },
+ "cnes": {
+  "acronym": "cnes",
+  "acronym_display": "CNES",
+  "expansion": "Centre National d'Etudes Spatiales, space agency of France",
+  "usage": 0
+ },
+ "cnsa": {
+  "acronym": "cnsa",
+  "acronym_display": "CNSA",
+  "expansion": "Chinese National Space Administration",
+  "usage": 0
+ },
+ "com": {
+  "acronym": "com",
+  "acronym_display": "COM",
+  "expansion": "Center of Mass",
+  "usage": 0
+ },
+ "conus": {
+  "acronym": "conus",
+  "acronym_display": "CONUS",
+  "expansion": "Contiguous United States",
+  "usage": 0
+ },
+ "copv": {
+  "acronym": "copv",
+  "acronym_display": "COPV",
+  "expansion": "Composite Overwrapped Pressure Vessel",
+  "usage": 0
+ },
+ "cospar": {
+  "acronym": "cospar",
+  "acronym_display": "COSPAR",
+  "expansion": "Committee for Space Research",
+  "usage": 0
+ },
+ "cots": {
+  "acronym": "cots",
+  "acronym_display": "COTS",
+  "expansion": "Commercial Orbital Transportation Services contract",
+  "usage": 0
+ },
+ "crs": {
+  "acronym": "crs",
+  "acronym_display": "CRS",
+  "expansion": "Commercial Resupply Services contract with NASA",
+  "usage": 0
+ },
+ "crs2": {
+  "acronym": "crs2",
+  "acronym_display": "CRS2",
+  "expansion": "Commercial Resupply Services, second round contract",
+  "usage": 0
+ },
+ "csa": {
+  "acronym": "csa",
+  "acronym_display": "CSA",
+  "expansion": "Canadian Space Agency",
+  "usage": 0
+ },
+ "cst": {
+  "acronym": "cst",
+  "acronym_display": "CST",
+  "expansion": "(Boeing) Crew Space Transportation capsules",
+  "usage": 0
+ },
+ "ctf": {
+  "acronym": "ctf",
+  "acronym_display": "CTF",
+  "expansion": "Chlorine Trifluoride",
+  "usage": 0
+ },
+ "cucu": {
+  "acronym": "cucu",
+  "acronym_display": "CUCU",
+  "expansion": "COTS UHF Communications Unit (ISS-to-Dragon radio)",
+  "usage": 0
+ },
+ "cxo": {
+  "acronym": "cxo",
+  "acronym_display": "CXO",
+  "expansion": "Chandra X-ray Observatory",
+  "usage": 0
+ },
+ "dcs": {
+  "acronym": "dcs",
+  "acronym_display": "DCS",
+  "expansion": "Decompression Sickness",
+  "usage": 0
+ },
+ "dcss": {
+  "acronym": "dcss",
+  "acronym_display": "DCSS",
+  "expansion": "Delta Cryogenic Second Stage",
+  "usage": 0
+ },
+ "dec": {
+  "acronym": "dec",
+  "acronym_display": "DEC",
+  "expansion": "Dual Engine Centaur",
+  "usage": 0
+ },
+ "div": {
+  "acronym": "div",
+  "acronym_display": "DIV",
+  "expansion": "Delta IV",
+  "usage": 0
+ },
+ "divh": {
+  "acronym": "divh",
+  "acronym_display": "DIVH",
+  "expansion": "Delta IV Heavy",
+  "usage": 0
+ },
+ "dlrr": {
+  "acronym": "dlrr",
+  "acronym_display": "DLRR",
+  "expansion": "Delta Launch Readiness Review",
+  "usage": 0
+ },
+ "dmls": {
+  "acronym": "dmls",
+  "acronym_display": "DMLS",
+  "expansion": "Direct Metal Laser Sintering additive manufacture",
+  "usage": 0
+ },
+ "dod": {
+  "acronym": "dod",
+  "acronym_display": "DOD",
+  "expansion": "US Department of Defense",
+  "usage": 0
+ },
+ "dpl": {
+  "acronym": "dpl",
+  "acronym_display": "DPL",
+  "expansion": "Downrange Propulsive Landing (on an ocean barge/ASDS)",
+  "usage": 0
+ },
+ "drl": {
+  "acronym": "drl",
+  "acronym_display": "DRL",
+  "expansion": "Downrange Landing",
+  "usage": 0
+ },
+ "dro": {
+  "acronym": "dro",
+  "acronym_display": "DRO",
+  "expansion": "Distant Retrograde Orbit",
+  "usage": 0
+ },
+ "drrpl": {
+  "acronym": "drrpl",
+  "acronym_display": "DRRPL",
+  "expansion": "Down-Range Retro-Propulsive Landing",
+  "usage": 0
+ },
+ "drrrpl": {
+  "acronym": "drrrpl",
+  "acronym_display": "DRRRPL",
+  "expansion": "Down-Range Re-entry and Retro-Propulsive Landing",
+  "usage": 0
+ },
+ "drrrrpl": {
+  "acronym": "drrrrpl",
+  "acronym_display": "DRRRRPL",
+  "expansion": "Down-Range Retrograde, Re-entry, and Retro-Propulsive Landing maneuver",
+  "usage": 0
+ },
+ "drrrrrrpl": {
+  "acronym": "drrrrrrpl",
+  "acronym_display": "DRRRRRRPL",
+  "expansion": "Down-Range Retrograde RCS Rotation, Re-entry, and Retro-Propulsive Landing maneuver",
+  "usage": 0
+ },
+ "dsn": {
+  "acronym": "dsn",
+  "acronym_display": "DSN",
+  "expansion": "Deep Space Network",
+  "usage": 0
+ },
+ "dtn": {
+  "acronym": "dtn",
+  "acronym_display": "DTN",
+  "expansion": "Delay/Disruption Tolerant Networking",
+  "usage": 0
+ },
+ "ebam": {
+  "acronym": "ebam",
+  "acronym_display": "EBAM",
+  "expansion": "Electron Beam Additive Manufacture",
+  "usage": 0
+ },
+ "ebm": {
+  "acronym": "ebm",
+  "acronym_display": "EBM",
+  "expansion": "Electron Beam Melting additive manufacture",
+  "usage": 0
+ },
+ "eclss": {
+  "acronym": "eclss",
+  "acronym_display": "ECLSS",
+  "expansion": "Environment Control and Life Support System",
+  "usage": 0
+ },
+ "edl": {
+  "acronym": "edl",
+  "acronym_display": "EDL",
+  "expansion": "Entry/Descent/Landing",
+  "usage": 0
+ },
+ "edm": {
+  "acronym": "edm",
+  "acronym_display": "EDM",
+  "expansion": "Electrical Discharge Machining",
+  "usage": 0
+ },
+ "edrs": {
+  "acronym": "edrs",
+  "acronym_display": "EDRS",
+  "expansion": "European Data Relay System",
+  "usage": 0
+ },
+ "eelv": {
+  "acronym": "eelv",
+  "acronym_display": "EELV",
+  "expansion": "Evolved Expendable Launch Vehicle",
+  "usage": 0
+ },
+ "eeufpf9v1.2ftub2": {
+  "acronym": "eeufpf9v1.2ftub2",
+  "acronym_display": "EEUFPF9V1.2FTUB2",
+  "expansion": "Ersatz Enhanced Upgraded Full-Performance Falcon 9 v1.2 Full Thrust Upgrade Block 2",
+  "usage": 0
+ },
+ "elc": {
+  "acronym": "elc",
+  "acronym_display": "ELC",
+  "expansion": "EELV Launch Capability contract (\"assured access to space\")",
+  "usage": 0
+ },
+ "em-1": {
+  "acronym": "em-1",
+  "acronym_display": "EM-1",
+  "expansion": "Exploration Mission 1, first flight of SLS",
+  "usage": 0
+ },
+ "eml1": {
+  "acronym": "eml1",
+  "acronym_display": "EML1",
+  "expansion": "Earth-Moon Lagrange point 1",
+  "usage": 0
+ },
+ "emu": {
+  "acronym": "emu",
+  "acronym_display": "EMU",
+  "expansion": "Extravehicular Mobility Unit (spacesuit)",
+  "usage": 0
+ },
+ "eoi": {
+  "acronym": "eoi",
+  "acronym_display": "EOI",
+  "expansion": "Earth Orbital Insertion maneuver",
+  "usage": 0
+ },
+ "erv": {
+  "acronym": "erv",
+  "acronym_display": "ERV",
+  "expansion": "Earth Return Vehicle",
+  "usage": 0
+ },
+ "esa": {
+  "acronym": "esa",
+  "acronym_display": "ESA",
+  "expansion": "European Space Agency",
+  "usage": 0
+ },
+ "etla": {
+  "acronym": "etla",
+  "acronym_display": "ETLA",
+  "expansion": "Extended Three Letter Acronym (4+ letters)",
+  "usage": 0
+ },
+ "eto": {
+  "acronym": "eto",
+  "acronym_display": "ETO",
+  "expansion": "Earth-To-Orbit transport of materials",
+  "usage": 0
+ },
+ "etov": {
+  "acronym": "etov",
+  "acronym_display": "ETOV",
+  "expansion": "Earth to Orbit Vehicle",
+  "usage": 0
+ },
+ "eus": {
+  "acronym": "eus",
+  "acronym_display": "EUS",
+  "expansion": "Exploration Upper Stage, second stage of SLS",
+  "usage": 0
+ },
+ "eva": {
+  "acronym": "eva",
+  "acronym_display": "EVA",
+  "expansion": "Extra-Vehicular Activity",
+  "usage": 0
+ },
+ "f9ft": {
+  "acronym": "f9ft",
+  "acronym_display": "F9FT",
+  "expansion": "Falcon 9 Full Thrust *or* Upgraded Falcon 9 *or* v1.2",
+  "usage": 0
+ },
+ "faa": {
+  "acronym": "faa",
+  "acronym_display": "FAA",
+  "expansion": "Federal Aviation Administration",
+  "usage": 0
+ },
+ "faa-ast": {
+  "acronym": "faa-ast",
+  "acronym_display": "FAA-AST",
+  "expansion": "Federal Aviation Administration Administrator for Space Transportation",
+  "usage": 0
+ },
+ "fae": {
+  "acronym": "fae",
+  "acronym_display": "FAE",
+  "expansion": "Fuel Air Explosion",
+  "usage": 0
+ },
+ "fap": {
+  "acronym": "fap",
+  "acronym_display": "FAP",
+  "expansion": "Fairing Acoustic Protection",
+  "usage": 0
+ },
+ "fcc": {
+  "acronym": "fcc",
+  "acronym_display": "FCC",
+  "expansion": "Federal Communications Commission",
+  "usage": 0
+ },
+ "ffsc": {
+  "acronym": "ffsc",
+  "acronym_display": "FFSC",
+  "expansion": "Full-Flow Staged Combustion",
+  "usage": 0
+ },
+ "fido": {
+  "acronym": "fido",
+  "acronym_display": "FIDO",
+  "expansion": "Flight Dynamics Officer",
+  "usage": 0
+ },
+ "fiso": {
+  "acronym": "fiso",
+  "acronym_display": "FISO",
+  "expansion": "Future In-Space Operations teleconferences",
+  "usage": 0
+ },
+ "flo": {
+  "acronym": "flo",
+  "acronym_display": "FLO",
+  "expansion": "Falcon Launch Operations",
+  "usage": 0
+ },
+ "flw": {
+  "acronym": "flw",
+  "acronym_display": "FLW",
+  "expansion": "The Following (as found on NOTAMs)",
+  "usage": 0
+ },
+ "fod": {
+  "acronym": "fod",
+  "acronym_display": "FOD",
+  "expansion": "Foreign Object Damage / Debris",
+  "usage": 0
+ },
+ "fonsei": {
+  "acronym": "fonsei",
+  "acronym_display": "FONSEI",
+  "expansion": "Findings of No Significant Environmental Impact",
+  "usage": 0
+ },
+ "fonsi": {
+  "acronym": "fonsi",
+  "acronym_display": "FONSI",
+  "expansion": "Findings of No Significant Environmental Impact",
+  "usage": 0
+ },
+ "fpip": {
+  "acronym": "fpip",
+  "acronym_display": "FPIP",
+  "expansion": "Flight Planning Integration Panel",
+  "usage": 0
+ },
+ "fram": {
+  "acronym": "fram",
+  "acronym_display": "FRAM",
+  "expansion": "Flight Releasable Attachment Mechanism",
+  "usage": 0
+ },
+ "frr": {
+  "acronym": "frr",
+  "acronym_display": "FRR",
+  "expansion": "Flight Readiness Review",
+  "usage": 0
+ },
+ "frsc": {
+  "acronym": "frsc",
+  "acronym_display": "FRSC",
+  "expansion": "Fuel-Rich Staged Combustion",
+  "usage": 0
+ },
+ "fss": {
+  "acronym": "fss",
+  "acronym_display": "FSS",
+  "expansion": "Fixed Service Structure at LC-39",
+  "usage": 0
+ },
+ "ftba": {
+  "acronym": "ftba",
+  "acronym_display": "FTBA",
+  "expansion": "\"Flip This ~~Bi-~~ Booster Around\" boostback burn, part of first-stage landing procedure",
+  "usage": 0
+ },
+ "fts": {
+  "acronym": "fts",
+  "acronym_display": "FTS",
+  "expansion": "Flight Termination System",
+  "usage": 0
+ },
+ "geo": {
+  "acronym": "geo",
+  "acronym_display": "GEO",
+  "expansion": "Geostationary Earth Orbit (35786km)",
+  "usage": 0
+ },
+ "glast": {
+  "acronym": "glast",
+  "acronym_display": "GLAST",
+  "expansion": "Gamma-ray Large Area Space Telescope",
+  "usage": 0
+ },
+ "gnc": {
+  "acronym": "gnc",
+  "acronym_display": "GNC",
+  "expansion": "Guidance/Navigation/Control",
+  "usage": 0
+ },
+ "grb": {
+  "acronym": "grb",
+  "acronym_display": "GRB",
+  "expansion": "Gamma Ray Burst",
+  "usage": 0
+ },
+ "gse": {
+  "acronym": "gse",
+  "acronym_display": "GSE",
+  "expansion": "Ground Support Equipment",
+  "usage": 0
+ },
+ "gsfc": {
+  "acronym": "gsfc",
+  "acronym_display": "GSFC",
+  "expansion": "Goddard Space Flight Center, Maryland",
+  "usage": 0
+ },
+ "gslv": {
+  "acronym": "gslv",
+  "acronym_display": "GSLV",
+  "expansion": "(India's) Geostationary Launch Vehicle",
+  "usage": 0
+ },
+ "gso": {
+  "acronym": "gso",
+  "acronym_display": "GSO",
+  "expansion": "Geosynchronous Orbit (any Earth orbit with a 24-hour period)",
+  "usage": 0
+ },
+ "gto": {
+  "acronym": "gto",
+  "acronym_display": "GTO",
+  "expansion": "Geosynchronous Transfer Orbit",
+  "usage": 0
+ },
+ "gto-1500": {
+  "acronym": "gto-1500",
+  "acronym_display": "GTO-1500",
+  "expansion": "Geosynchronous Transfer Orbit (185 x 35786km, 0 inclination), requires 1500m/s to reach GEO",
+  "usage": 0
+ },
+ "gto-1800": {
+  "acronym": "gto-1800",
+  "acronym_display": "GTO-1800",
+  "expansion": "Geosynchronous Transfer Orbit (185 x 35786km, 27-degree inclination), requires 1800m/s to reach GEO",
+  "usage": 0
+ },
+ "heeo": {
+  "acronym": "heeo",
+  "acronym_display": "HEEO",
+  "expansion": "Highly Elliptical Earth Orbit",
+  "usage": 0
+ },
+ "hemo": {
+  "acronym": "hemo",
+  "acronym_display": "HEMO",
+  "expansion": "Highly Elliptical Mars Orbit",
+  "usage": 0
+ },
+ "heo": {
+  "acronym": "heo",
+  "acronym_display": "HEO",
+  "expansion": "High Earth Orbit (above 35780km)",
+  "usage": 0
+ },
+ "heomd": {
+  "acronym": "heomd",
+  "acronym_display": "HEOMD",
+  "expansion": "Human Exploration and Operations Mission Directorate, NASA",
+  "usage": 0
+ },
+ "hiad": {
+  "acronym": "hiad",
+  "acronym_display": "HIAD",
+  "expansion": "Hypersonic Inflatable Aerodynamic Decelerator",
+  "usage": 0
+ },
+ "hif": {
+  "acronym": "hif",
+  "acronym_display": "HIF",
+  "expansion": "Horizontal Integration Facility",
+  "usage": 0
+ },
+ "hllv": {
+  "acronym": "hllv",
+  "acronym_display": "HLLV",
+  "expansion": "Heavy Lift Launch Vehicle (20-50 tons to LEO)",
+  "usage": 0
+ },
+ "hlv": {
+  "acronym": "hlv",
+  "acronym_display": "HLV",
+  "expansion": "Heavy Lift Launch Vehicle (20-50 tons to LEO)",
+  "usage": 0
+ },
+ "hog": {
+  "acronym": "hog",
+  "acronym_display": "HOG",
+  "expansion": "Heart of Gold",
+  "usage": 0
+ },
+ "hpftp": {
+  "acronym": "hpftp",
+  "acronym_display": "HPFTP",
+  "expansion": "High Pressure Fuel Turbopump",
+  "usage": 0
+ },
+ "hpotp": {
+  "acronym": "hpotp",
+  "acronym_display": "HPOTP",
+  "expansion": "High Pressure Oxidiser Turbopump",
+  "usage": 0
+ },
+ "hptp": {
+  "acronym": "hptp",
+  "acronym_display": "HPTP",
+  "expansion": "High Pressure Turbopump",
+  "usage": 0
+ },
+ "hsf": {
+  "acronym": "hsf",
+  "acronym_display": "HSF",
+  "expansion": "Human Space Flight",
+  "usage": 0
+ },
+ "hst": {
+  "acronym": "hst",
+  "acronym_display": "HST",
+  "expansion": "Hubble Space Telescope",
+  "usage": 0
+ },
+ "hts": {
+  "acronym": "hts",
+  "acronym_display": "HTS",
+  "expansion": "Horizontal Test Stand",
+  "usage": 0
+ },
+ "hula": {
+  "acronym": "hula",
+  "acronym_display": "HULA",
+  "expansion": "HIAD for ULA",
+  "usage": 0
+ },
+ "i_sp_": {
+  "acronym": "i_sp_",
+  "acronym_display": "I_SP_",
+  "expansion": "Specific impulse",
+  "usage": 0
+ },
+ "iac": {
+  "acronym": "iac",
+  "acronym_display": "IAC",
+  "expansion": "International Astronautical Conference",
+  "usage": 0
+ },
+ "ianars": {
+  "acronym": "ianars",
+  "acronym_display": "IANARS",
+  "expansion": "I Am Not A Rocket Scientist, but...",
+  "usage": 0
+ },
+ "icbm": {
+  "acronym": "icbm",
+  "acronym_display": "ICBM",
+  "expansion": "Intercontinental Ballistic Missile",
+  "usage": 0
+ },
+ "icps": {
+  "acronym": "icps",
+  "acronym_display": "ICPS",
+  "expansion": "Interim Cryogenic Propulsion Stage",
+  "usage": 0
+ },
+ "ida": {
+  "acronym": "ida",
+  "acronym_display": "IDA",
+  "expansion": "International Docking Adapter",
+  "usage": 0
+ },
+ "idss": {
+  "acronym": "idss",
+  "acronym_display": "IDSS",
+  "expansion": "International Docking System Standard",
+  "usage": 0
+ },
+ "ifr": {
+  "acronym": "ifr",
+  "acronym_display": "IFR",
+  "expansion": "Instrument Flight Rules",
+  "usage": 0
+ },
+ "ilc": {
+  "acronym": "ilc",
+  "acronym_display": "ILC",
+  "expansion": "Initial Launch Capability",
+  "usage": 0
+ },
+ "ils": {
+  "acronym": "ils",
+  "acronym_display": "ILS",
+  "expansion": "International Launch Services",
+  "usage": 0
+ },
+ "imrs": {
+  "acronym": "imrs",
+  "acronym_display": "IMRS",
+  "expansion": "International Mars Research Station (proposed by Blue Mars)",
+  "usage": 0
+ },
+ "imu": {
+  "acronym": "imu",
+  "acronym_display": "IMU",
+  "expansion": "Inertial Measurement Unit",
+  "usage": 0
+ },
+ "isap": {
+  "acronym": "isap",
+  "acronym_display": "ISAP",
+  "expansion": "In-Situ Air Production",
+  "usage": 0
+ },
+ "isecg": {
+  "acronym": "isecg",
+  "acronym_display": "ISECG",
+  "expansion": "International Space Exploration Coordinating Group",
+  "usage": 0
+ },
+ "isep": {
+  "acronym": "isep",
+  "acronym_display": "ISEP",
+  "expansion": "In-Situ Electricity/Energy Production",
+  "usage": 0
+ },
+ "isfp": {
+  "acronym": "isfp",
+  "acronym_display": "ISFP",
+  "expansion": "In-Situ Food Production",
+  "usage": 0
+ },
+ "isis": {
+  "acronym": "isis",
+  "acronym_display": "ISIS",
+  "expansion": "Integrated Standby Instrument System",
+  "usage": 0
+ },
+ "isp": {
+  "acronym": "isp",
+  "acronym_display": "ISP",
+  "expansion": "Specific impulse",
+  "usage": 0
+ },
+ "ispp": {
+  "acronym": "ispp",
+  "acronym_display": "ISPP",
+  "expansion": "In-Situ Propellant Production",
+  "usage": 0
+ },
+ "isro": {
+  "acronym": "isro",
+  "acronym_display": "ISRO",
+  "expansion": "Indian Space Research Organisation",
+  "usage": 0
+ },
+ "isru": {
+  "acronym": "isru",
+  "acronym_display": "ISRU",
+  "expansion": "In-Situ Resource Utilization",
+  "usage": 0
+ },
+ "iss": {
+  "acronym": "iss",
+  "acronym_display": "ISS",
+  "expansion": "International Space Station",
+  "usage": 0
+ },
+ "iswp": {
+  "acronym": "iswp",
+  "acronym_display": "ISWP",
+  "expansion": "In-Situ Water Production",
+  "usage": 0
+ },
+ "itar": {
+  "acronym": "itar",
+  "acronym_display": "ITAR",
+  "expansion": "(US) International Traffic in Arms Regulations",
+  "usage": 0
+ },
+ "itn": {
+  "acronym": "itn",
+  "acronym_display": "ITN",
+  "expansion": "Interplanetary Transport Network",
+  "usage": 0
+ },
+ "its": {
+  "acronym": "its",
+  "acronym_display": "ITS",
+  "expansion": "Interplanetary Transport System",
+  "usage": 0
+ },
+ "ius": {
+  "acronym": "ius",
+  "acronym_display": "IUS",
+  "expansion": "Intertial Upper Stage",
+  "usage": 0
+ },
+ "iva": {
+  "acronym": "iva",
+  "acronym_display": "IVA",
+  "expansion": "Intra-Vehicular Activity",
+  "usage": 0
+ },
+ "ivf": {
+  "acronym": "ivf",
+  "acronym_display": "IVF",
+  "expansion": "Integrated Vehicle Fluids",
+  "usage": 0
+ },
+ "jaxa": {
+  "acronym": "jaxa",
+  "acronym_display": "JAXA",
+  "expansion": "Japan Aerospace eXploration Agency",
+  "usage": 0
+ },
+ "jpl": {
+  "acronym": "jpl",
+  "acronym_display": "JPL",
+  "expansion": "Jet Propulsion Lab, Pasadena, California",
+  "usage": 0
+ },
+ "jrti": {
+  "acronym": "jrti",
+  "acronym_display": "JRTI",
+  "expansion": "Just Read The Instructions, Pacific landing barge",
+  "usage": 0
+ },
+ "jsc": {
+  "acronym": "jsc",
+  "acronym_display": "JSC",
+  "expansion": "Johnson Space Center, Houston",
+  "usage": 0
+ },
+ "juno": {
+  "acronym": "juno",
+  "acronym_display": "JUNO",
+  "expansion": "JUpiter Near-polar Orbiter",
+  "usage": 0
+ },
+ "jwst": {
+  "acronym": "jwst",
+  "acronym_display": "JWST",
+  "expansion": "James Webb infra-red Space Telescope",
+  "usage": 0
+ },
+ "kari": {
+  "acronym": "kari",
+  "acronym_display": "KARI",
+  "expansion": "Korean Aerospace Research Institute",
+  "usage": 0
+ },
+ "kbo": {
+  "acronym": "kbo",
+  "acronym_display": "KBO",
+  "expansion": "Kuiper Belt Object",
+  "usage": 0
+ },
+ "kos": {
+  "acronym": "kos",
+  "acronym_display": "KOS",
+  "expansion": "Keep Out Sphere, 200m radius from ISS",
+  "usage": 0
+ },
+ "krusty": {
+  "acronym": "krusty",
+  "acronym_display": "KRUSTY",
+  "expansion": "Kilopower Reactor Using Stirling TechnologY",
+  "usage": 0
+ },
+ "ksc": {
+  "acronym": "ksc",
+  "acronym_display": "KSC",
+  "expansion": "Kennedy Space Center, Florida",
+  "usage": 0
+ },
+ "ksp": {
+  "acronym": "ksp",
+  "acronym_display": "KSP",
+  "expansion": "*Kerbal Space Program*, the rocketry simulator",
+  "usage": 0
+ },
+ "l2": {
+  "acronym": "l2",
+  "acronym_display": "L2",
+  "expansion": "Paywalled section of the NasaSpaceFlight forum; Lagrange point 2",
+  "usage": 0
+ },
+ "las": {
+  "acronym": "las",
+  "acronym_display": "LAS",
+  "expansion": "Launch Abort System",
+  "usage": 0
+ },
+ "lc-1": {
+  "acronym": "lc-1",
+  "acronym_display": "LC-1",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "lc-13": {
+  "acronym": "lc-13",
+  "acronym_display": "LC-13",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "lc-39a": {
+  "acronym": "lc-39a",
+  "acronym_display": "LC-39A",
+  "expansion": "Launch Complex 39A, Kennedy (SpaceX F9/Heavy)",
+  "usage": 0
+ },
+ "lc1": {
+  "acronym": "lc1",
+  "acronym_display": "LC1",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "lc13": {
+  "acronym": "lc13",
+  "acronym_display": "LC13",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "lc39a": {
+  "acronym": "lc39a",
+  "acronym_display": "LC39A",
+  "expansion": "Launch Complex 39A, Kennedy (SpaceX F9/Heavy)",
+  "usage": 0
+ },
+ "ldsd": {
+  "acronym": "ldsd",
+  "acronym_display": "LDSD",
+  "expansion": "Low-Density Supersonic Decelerator test vehicle",
+  "usage": 0
+ },
+ "lem": {
+  "acronym": "lem",
+  "acronym_display": "LEM",
+  "expansion": "(Apollo) Lunar Excursion Module (also Lunar Module)",
+  "usage": 0
+ },
+ "leo": {
+  "acronym": "leo",
+  "acronym_display": "LEO",
+  "expansion": "Low Earth Orbit (180-2000km)",
+  "usage": 0
+ },
+ "les": {
+  "acronym": "les",
+  "acronym_display": "LES",
+  "expansion": "Launch Escape System",
+  "usage": 0
+ },
+ "lh2": {
+  "acronym": "lh2",
+  "acronym_display": "LH2",
+  "expansion": "Liquid Hydrogen",
+  "usage": 0
+ },
+ "lidar": {
+  "acronym": "lidar",
+  "acronym_display": "LIDAR",
+  "expansion": "Light Detection and Ranging",
+  "usage": 0
+ },
+ "llo": {
+  "acronym": "llo",
+  "acronym_display": "LLO",
+  "expansion": "Low Lunar Orbit (below 100km)",
+  "usage": 0
+ },
+ "lmo": {
+  "acronym": "lmo",
+  "acronym_display": "LMO",
+  "expansion": "Low Mars Orbit",
+  "usage": 0
+ },
+ "lmp": {
+  "acronym": "lmp",
+  "acronym_display": "LMP",
+  "expansion": "(Apollo) Lunar Module Pilot",
+  "usage": 0
+ },
+ "ln2": {
+  "acronym": "ln2",
+  "acronym_display": "LN2",
+  "expansion": "Liquid Nitrogen",
+  "usage": 0
+ },
+ "lo2": {
+  "acronym": "lo2",
+  "acronym_display": "LO2",
+  "expansion": "Liquid Oxygen (more commonly LOX)",
+  "usage": 0
+ },
+ "loc": {
+  "acronym": "loc",
+  "acronym_display": "LOC",
+  "expansion": "Loss of Crew",
+  "usage": 0
+ },
+ "lom": {
+  "acronym": "lom",
+  "acronym_display": "LOM",
+  "expansion": "Loss of Mission",
+  "usage": 0
+ },
+ "los": {
+  "acronym": "los",
+  "acronym_display": "LOS",
+  "expansion": "Loss of Signal",
+  "usage": 0
+ },
+ "lox": {
+  "acronym": "lox",
+  "acronym_display": "LOX",
+  "expansion": "Liquid Oxygen",
+  "usage": 0
+ },
+ "lpftp": {
+  "acronym": "lpftp",
+  "acronym_display": "LPFTP",
+  "expansion": "Low Pressure Fuel Turbopump",
+  "usage": 0
+ },
+ "lpotp": {
+  "acronym": "lpotp",
+  "acronym_display": "LPOTP",
+  "expansion": "Low Pressure Oxidiser Turbopump",
+  "usage": 0
+ },
+ "lptp": {
+  "acronym": "lptp",
+  "acronym_display": "LPTP",
+  "expansion": "Low Pressure Turbopump",
+  "usage": 0
+ },
+ "lr": {
+  "acronym": "lr",
+  "acronym_display": "LR",
+  "expansion": "Likelihood Ratio",
+  "usage": 0
+ },
+ "lrr": {
+  "acronym": "lrr",
+  "acronym_display": "LRR",
+  "expansion": "Launch Readiness Review",
+  "usage": 0
+ },
+ "luvoir": {
+  "acronym": "luvoir",
+  "acronym_display": "LUVOIR",
+  "expansion": "Large UV/Optical/Infrared Surveyor",
+  "usage": 0
+ },
+ "lz": {
+  "acronym": "lz",
+  "acronym_display": "LZ",
+  "expansion": "Landing Zone",
+  "usage": 0
+ },
+ "lz-1": {
+  "acronym": "lz-1",
+  "acronym_display": "LZ-1",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "lz1": {
+  "acronym": "lz1",
+  "acronym_display": "LZ1",
+  "expansion": "Launch Complex 13, Canaveral (SpaceX Landing Zone 1)",
+  "usage": 0
+ },
+ "m1a": {
+  "acronym": "m1a",
+  "acronym_display": "M1A",
+  "expansion": "Merlin 1 kerolox rocket engine, original (2006), 340kN",
+  "usage": 0
+ },
+ "m1b": {
+  "acronym": "m1b",
+  "acronym_display": "M1B",
+  "expansion": "Merlin 1 kerolox rocket engine, revision B (unflown), 360kN",
+  "usage": 0
+ },
+ "m1c": {
+  "acronym": "m1c",
+  "acronym_display": "M1C",
+  "expansion": "Merlin 1 kerolox rocket engine, revision C (2008), 556-660kN",
+  "usage": 0
+ },
+ "m1d": {
+  "acronym": "m1d",
+  "acronym_display": "M1D",
+  "expansion": "Merlin 1 kerolox rocket engine, revision D (2013), 620-690kN",
+  "usage": 0
+ },
+ "m1dvac": {
+  "acronym": "m1dvac",
+  "acronym_display": "M1DVAC",
+  "expansion": "Merlin 1 kerolox rocket engine, revision D (2013), vacuum optimized, 934kN",
+  "usage": 0
+ },
+ "mav": {
+  "acronym": "mav",
+  "acronym_display": "MAV",
+  "expansion": "*Mars Ascent Vehicle* (possibly fictional)",
+  "usage": 0
+ },
+ "maven": {
+  "acronym": "maven",
+  "acronym_display": "MAVEN",
+  "expansion": "Mars Atmosphere and Volatile EvolutioN mission",
+  "usage": 0
+ },
+ "maxq": {
+  "acronym": "maxq",
+  "acronym_display": "MAXQ",
+  "expansion": "Maximum aerodynamic pressure",
+  "usage": 0
+ },
+ "mcp": {
+  "acronym": "mcp",
+  "acronym_display": "MCP",
+  "expansion": "Mechanical Counterpressure spacesuit",
+  "usage": 0
+ },
+ "mct": {
+  "acronym": "mct",
+  "acronym_display": "MCT",
+  "expansion": "Mars Colonial Transporter",
+  "usage": 0
+ },
+ "meco": {
+  "acronym": "meco",
+  "acronym_display": "MECO",
+  "expansion": "Main Engine Cut-Off",
+  "usage": 0
+ },
+ "megarosa": {
+  "acronym": "megarosa",
+  "acronym_display": "MEGAROSA",
+  "expansion": "Multi-element Roll-Out Solar Array",
+  "usage": 0
+ },
+ "meo": {
+  "acronym": "meo",
+  "acronym_display": "MEO",
+  "expansion": "Medium Earth Orbit (2000-35780km)",
+  "usage": 0
+ },
+ "mer": {
+  "acronym": "mer",
+  "acronym_display": "MER",
+  "expansion": "Mars Exploration Rover (Spirit/Opportunity)",
+  "usage": 0
+ },
+ "mes": {
+  "acronym": "mes",
+  "acronym_display": "MES",
+  "expansion": "Main Engine Start",
+  "usage": 0
+ },
+ "mhi": {
+  "acronym": "mhi",
+  "acronym_display": "MHI",
+  "expansion": "Mitsubish Heavy Industries",
+  "usage": 0
+ },
+ "mllv": {
+  "acronym": "mllv",
+  "acronym_display": "MLLV",
+  "expansion": "Medium Lift Launch Vehicle (2-20 tons to LEO)",
+  "usage": 0
+ },
+ "mlv": {
+  "acronym": "mlv",
+  "acronym_display": "MLV",
+  "expansion": "Medium Lift Launch Vehicle (2-20 tons to LEO)",
+  "usage": 0
+ },
+ "mmod": {
+  "acronym": "mmod",
+  "acronym_display": "MMOD",
+  "expansion": "Micrometeoroid and Orbital Debris",
+  "usage": 0
+ },
+ "moi": {
+  "acronym": "moi",
+  "acronym_display": "MOI",
+  "expansion": "Mars Orbital Insertion maneuver",
+  "usage": 0
+ },
+ "mom": {
+  "acronym": "mom",
+  "acronym_display": "MOM",
+  "expansion": "Mars Orbiter Mission (Indian Mars Orbiter)",
+  "usage": 0
+ },
+ "mro": {
+  "acronym": "mro",
+  "acronym_display": "MRO",
+  "expansion": "Mars Reconnaisance Orbiter",
+  "usage": 0
+ },
+ "msl": {
+  "acronym": "msl",
+  "acronym_display": "MSL",
+  "expansion": "Mars Science Laboratory (Curiosity)",
+  "usage": 0
+ },
+ "mt": {
+  "acronym": "mt",
+  "acronym_display": "MT",
+  "expansion": "~~Milli-~~ *Metric* Tonnes",
+  "usage": 0
+ },
+ "na": {
+  "acronym": "na",
+  "acronym_display": "NA",
+  "expansion": "New Armstrong (Blue Origin)",
+  "usage": 0
+ },
+ "nas": {
+  "acronym": "nas",
+  "acronym_display": "NAS",
+  "expansion": "National Airspace System",
+  "usage": 0
+ },
+ "nasa": {
+  "acronym": "nasa",
+  "acronym_display": "NASA",
+  "expansion": "National Aeronautics and Space Administration",
+  "usage": 0
+ },
+ "nde": {
+  "acronym": "nde",
+  "acronym_display": "NDE",
+  "expansion": "Non-Destructive Examination",
+  "usage": 0
+ },
+ "ndgt": {
+  "acronym": "ndgt",
+  "acronym_display": "NDGT",
+  "expansion": "Neil deGrasse Tyson",
+  "usage": 0
+ },
+ "nds": {
+  "acronym": "nds",
+  "acronym_display": "NDS",
+  "expansion": "Nasa Docking Standard, implementation of the international standard",
+  "usage": 0
+ },
+ "ndt": {
+  "acronym": "ndt",
+  "acronym_display": "NDT",
+  "expansion": "Non-Destructive Testing",
+  "usage": 0
+ },
+ "neo": {
+  "acronym": "neo",
+  "acronym_display": "NEO",
+  "expansion": "Near-Earth Object",
+  "usage": 0
+ },
+ "nep": {
+  "acronym": "nep",
+  "acronym_display": "NEP",
+  "expansion": "Nuclear Electric Vehicle propulsion",
+  "usage": 0
+ },
+ "nerva": {
+  "acronym": "nerva",
+  "acronym_display": "NERVA",
+  "expansion": "Nuclear Engine for Rocket Vehicle Application (proposed engine design)",
+  "usage": 0
+ },
+ "net": {
+  "acronym": "net",
+  "acronym_display": "NET",
+  "expansion": "No Earlier Than",
+  "usage": 0
+ },
+ "nev": {
+  "acronym": "nev",
+  "acronym_display": "NEV",
+  "expansion": "Nuclear Electric Vehicle propulsion",
+  "usage": 0
+ },
+ "ng": {
+  "acronym": "ng",
+  "acronym_display": "NG",
+  "expansion": "New Glenn (first orbital BO rocket); Northrop Grumman",
+  "usage": 0
+ },
+ "ngllc": {
+  "acronym": "ngllc",
+  "acronym_display": "NGLLC",
+  "expansion": "Northrop-Grumman Lunar Lander Challenge, 2006-09",
+  "usage": 0
+ },
+ "nmusaf": {
+  "acronym": "nmusaf",
+  "acronym_display": "NMUSAF",
+  "expansion": "National Museum of the United States Air Force",
+  "usage": 0
+ },
+ "notam": {
+  "acronym": "notam",
+  "acronym_display": "NOTAM",
+  "expansion": "Notice to Airmen of flight hazards",
+  "usage": 0
+ },
+ "nro": {
+  "acronym": "nro",
+  "acronym_display": "NRO",
+  "expansion": "National Reconnaissance Office",
+  "usage": 0
+ },
+ "nrol": {
+  "acronym": "nrol",
+  "acronym_display": "NROL",
+  "expansion": "National Reconnaissance Office Launch",
+  "usage": 0
+ },
+ "ns": {
+  "acronym": "ns",
+  "acronym_display": "NS",
+  "expansion": "New Shephard (Blue Origin suborbital rocket)",
+  "usage": 0
+ },
+ "nsf": {
+  "acronym": "nsf",
+  "acronym_display": "NSF",
+  "expansion": "NasaSpaceFlight forum; National Science Foundation",
+  "usage": 0
+ },
+ "ntm": {
+  "acronym": "ntm",
+  "acronym_display": "NTM",
+  "expansion": "Notice to Mariners",
+  "usage": 0
+ },
+ "ntr": {
+  "acronym": "ntr",
+  "acronym_display": "NTR",
+  "expansion": "Nuclear Thermal Rocket",
+  "usage": 0
+ },
+ "ntrs": {
+  "acronym": "ntrs",
+  "acronym_display": "NTRS",
+  "expansion": "NASA Technical Report Server",
+  "usage": 0
+ },
+ "ocisly": {
+  "acronym": "ocisly",
+  "acronym_display": "OCISLY",
+  "expansion": "Of Course I Still Love You, Atlantic landing barge",
+  "usage": 0
+ },
+ "og2": {
+  "acronym": "og2",
+  "acronym_display": "OG2",
+  "expansion": "Orbcomm's Generation 2 17-satellite network",
+  "usage": 0
+ },
+ "oml": {
+  "acronym": "oml",
+  "acronym_display": "OML",
+  "expansion": "Outer Mold Line",
+  "usage": 0
+ },
+ "ooa": {
+  "acronym": "ooa",
+  "acronym_display": "OOA",
+  "expansion": "Orbit Once Around launch maneuver",
+  "usage": 0
+ },
+ "opf": {
+  "acronym": "opf",
+  "acronym_display": "OPF",
+  "expansion": "Orbiter Processing Facilities",
+  "usage": 0
+ },
+ "orsc": {
+  "acronym": "orsc",
+  "acronym_display": "ORSC",
+  "expansion": "Oxidizer-Rich Staged Combustion",
+  "usage": 0
+ },
+ "osiris-rex": {
+  "acronym": "osiris-rex",
+  "acronym_display": "OSIRIS-REX",
+  "expansion": "Origins, Spectral Interpretation, Resource Identification, Security, Regolith EXplorer",
+  "usage": 0
+ },
+ "osm": {
+  "acronym": "osm",
+  "acronym_display": "OSM",
+  "expansion": "Operations Safety Manager",
+  "usage": 0
+ },
+ "owl": {
+  "acronym": "owl",
+  "acronym_display": "OWL",
+  "expansion": "Overwhelmingly Large Telescope",
+  "usage": 0
+ },
+ "paf": {
+  "acronym": "paf",
+  "acronym_display": "PAF",
+  "expansion": "Payload Attach Fitting",
+  "usage": 0
+ },
+ "pam": {
+  "acronym": "pam",
+  "acronym_display": "PAM",
+  "expansion": "Payload Assist Module",
+  "usage": 0
+ },
+ "pbdes": {
+  "acronym": "pbdes",
+  "acronym_display": "PBDES",
+  "expansion": "Peter B. de Selding (Spaceflight Now journalist)",
+  "usage": 0
+ },
+ "pbds": {
+  "acronym": "pbds",
+  "acronym_display": "PBDS",
+  "expansion": "Peter B. de Selding (Spaceflight Now journalist)",
+  "usage": 0
+ },
+ "pesca": {
+  "acronym": "pesca",
+  "acronym_display": "PESCA",
+  "expansion": "Pneumatogen Enhanced Silicate-Carbon Ablator",
+  "usage": 0
+ },
+ "pica": {
+  "acronym": "pica",
+  "acronym_display": "PICA",
+  "expansion": "Phenolic Impregnated-Carbon Ablative heatshield compound",
+  "usage": 0
+ },
+ "pica-x": {
+  "acronym": "pica-x",
+  "acronym_display": "PICA-X",
+  "expansion": "Phenolic Impregnated-Carbon Ablative heatshield compound, as modified by SpaceX",
+  "usage": 0
+ },
+ "plf": {
+  "acronym": "plf",
+  "acronym_display": "PLF",
+  "expansion": "Payload Fairing",
+  "usage": 0
+ },
+ "plss": {
+  "acronym": "plss",
+  "acronym_display": "PLSS",
+  "expansion": "Personal Life Support System",
+  "usage": 0
+ },
+ "pma": {
+  "acronym": "pma",
+  "acronym_display": "PMA",
+  "expansion": "ISS Pressurized Mating Adapter",
+  "usage": 0
+ },
+ "pmf": {
+  "acronym": "pmf",
+  "acronym_display": "PMF",
+  "expansion": "Propellant Mass Fraction",
+  "usage": 0
+ },
+ "pp": {
+  "acronym": "pp",
+  "acronym_display": "PP",
+  "expansion": "Planetary Protection",
+  "usage": 0
+ },
+ "ppg": {
+  "acronym": "ppg",
+  "acronym_display": "PPG",
+  "expansion": "Payload Planners Guide (also known as PUG)",
+  "usage": 0
+ },
+ "pslv": {
+  "acronym": "pslv",
+  "acronym_display": "PSLV",
+  "expansion": "Polar Satellite Launch Vehicle (Indian Launch Vehicle)",
+  "usage": 0
+ },
+ "ptc": {
+  "acronym": "ptc",
+  "acronym_display": "PTC",
+  "expansion": "Passive Thermal Control",
+  "usage": 0
+ },
+ "ptk": {
+  "acronym": "ptk",
+  "acronym_display": "PTK",
+  "expansion": "Roscosmos Piloted Transport Ship, New Generation",
+  "usage": 0
+ },
+ "ptk-np": {
+  "acronym": "ptk-np",
+  "acronym_display": "PTK-NP",
+  "expansion": "Roscosmos Piloted Transport Ship, New Generation",
+  "usage": 0
+ },
+ "pug": {
+  "acronym": "pug",
+  "acronym_display": "PUG",
+  "expansion": "Payload User Guide",
+  "usage": 0
+ },
+ "qa": {
+  "acronym": "qa",
+  "acronym_display": "QA",
+  "expansion": "Quality Assurance",
+  "usage": 0
+ },
+ "raan": {
+  "acronym": "raan",
+  "acronym_display": "RAAN",
+  "expansion": "Right Ascension of the Ascending Node",
+  "usage": 0
+ },
+ "rad": {
+  "acronym": "rad",
+  "acronym_display": "RAD",
+  "expansion": "Rapid Anticipated Disassembly",
+  "usage": 0
+ },
+ "rcc": {
+  "acronym": "rcc",
+  "acronym_display": "RCC",
+  "expansion": "Reinforced Carbon-Carbon",
+  "usage": 0
+ },
+ "rco": {
+  "acronym": "rco",
+  "acronym_display": "RCO",
+  "expansion": "Range Control Officer",
+  "usage": 0
+ },
+ "rcs": {
+  "acronym": "rcs",
+  "acronym_display": "RCS",
+  "expansion": "Reaction Control System; Radar Cross Section",
+  "usage": 0
+ },
+ "rd-180": {
+  "acronym": "rd-180",
+  "acronym_display": "RD-180",
+  "expansion": "RD-series Russian-built rocket engine, used in the Atlas V first stage",
+  "usage": 0
+ },
+ "rio": {
+  "acronym": "rio",
+  "acronym_display": "RIO",
+  "expansion": "Radar Intercept Officer",
+  "usage": 0
+ },
+ "rlv": {
+  "acronym": "rlv",
+  "acronym_display": "RLV",
+  "expansion": "Reusable Launch Vehicle",
+  "usage": 0
+ },
+ "roc": {
+  "acronym": "roc",
+  "acronym_display": "ROC",
+  "expansion": "Range Operations Coordinator",
+  "usage": 0
+ },
+ "rosa": {
+  "acronym": "rosa",
+  "acronym_display": "ROSA",
+  "expansion": "Roll-Out Solar Array (designed by Deployable Space Systems)",
+  "usage": 0
+ },
+ "rp-1": {
+  "acronym": "rp-1",
+  "acronym_display": "RP-1",
+  "expansion": "Rocket Propellant 1 (enhanced kerosene)",
+  "usage": 0
+ },
+ "rpd": {
+  "acronym": "rpd",
+  "acronym_display": "RPD",
+  "expansion": "Rapid Planned Disassembly",
+  "usage": 0
+ },
+ "rpe": {
+  "acronym": "rpe",
+  "acronym_display": "RPE",
+  "expansion": "Rocket Propulsion Elements, by George Sutton",
+  "usage": 0
+ },
+ "rpy": {
+  "acronym": "rpy",
+  "acronym_display": "RPY",
+  "expansion": "Roll/Pitch/Yaw",
+  "usage": 0
+ },
+ "rsls": {
+  "acronym": "rsls",
+  "acronym_display": "RSLS",
+  "expansion": "Redundant Set Launch Sequencer",
+  "usage": 0
+ },
+ "rss": {
+  "acronym": "rss",
+  "acronym_display": "RSS",
+  "expansion": "Rotating Service Structure at LC-39; Realscale Solar System, mod for KSP",
+  "usage": 0
+ },
+ "rtf": {
+  "acronym": "rtf",
+  "acronym_display": "RTF",
+  "expansion": "Return to Flight",
+  "usage": 0
+ },
+ "rtg": {
+  "acronym": "rtg",
+  "acronym_display": "RTG",
+  "expansion": "Radioisotope Thermoelectric Generator",
+  "usage": 0
+ },
+ "rtls": {
+  "acronym": "rtls",
+  "acronym_display": "RTLS",
+  "expansion": "Return to Launch Site",
+  "usage": 0
+ },
+ "rud": {
+  "acronym": "rud",
+  "acronym_display": "RUD",
+  "expansion": "Rapid Unscheduled Disassembly",
+  "usage": 0
+ },
+ "sabre": {
+  "acronym": "sabre",
+  "acronym_display": "SABRE",
+  "expansion": "Synergistic Air-Breathing Rocket Engine",
+  "usage": 0
+ },
+ "sbsp": {
+  "acronym": "sbsp",
+  "acronym_display": "SBSP",
+  "expansion": "Space Based Solar Power",
+  "usage": 0
+ },
+ "sc": {
+  "acronym": "sc",
+  "acronym_display": "SC",
+  "expansion": "Scaled Composites",
+  "usage": 0
+ },
+ "sca": {
+  "acronym": "sca",
+  "acronym_display": "SCA",
+  "expansion": "Shuttle Carrier Aircraft",
+  "usage": 0
+ },
+ "scai": {
+  "acronym": "scai",
+  "acronym_display": "SCAI",
+  "expansion": "Staged Combustion Aft-Injection",
+  "usage": 0
+ },
+ "scramble": {
+  "acronym": "scramble",
+  "acronym_display": "SCRAMBLE",
+  "expansion": "Short-notice Characterization and Reconnaissance of Asteroids by Microsats Between Luna and Earth",
+  "usage": 0
+ },
+ "sd": {
+  "acronym": "sd",
+  "acronym_display": "SD",
+  "expansion": "SuperDraco hypergolic abort/landing engines",
+  "usage": 0
+ },
+ "seco": {
+  "acronym": "seco",
+  "acronym_display": "SECO",
+  "expansion": "Second-stage Engine Cut-Off",
+  "usage": 0
+ },
+ "see": {
+  "acronym": "see",
+  "acronym_display": "SEE",
+  "expansion": "Single Event Effect",
+  "usage": 0
+ },
+ "sep": {
+  "acronym": "sep",
+  "acronym_display": "SEP",
+  "expansion": "Solar Electric Propulsion",
+  "usage": 0
+ },
+ "ses": {
+  "acronym": "ses",
+  "acronym_display": "SES",
+  "expansion": "Formerly Societe Europeenne des Satellites, comsat builder",
+  "usage": 0
+ },
+ "seu": {
+  "acronym": "seu",
+  "acronym_display": "SEU",
+  "expansion": "Single Event Upset",
+  "usage": 0
+ },
+ "sf": {
+  "acronym": "sf",
+  "acronym_display": "SF",
+  "expansion": "Static fire",
+  "usage": 0
+ },
+ "shllv": {
+  "acronym": "shllv",
+  "acronym_display": "SHLLV",
+  "expansion": "Super-Heavy Lift Launch Vehicle (over 50 tons to LEO)",
+  "usage": 0
+ },
+ "shlv": {
+  "acronym": "shlv",
+  "acronym_display": "SHLV",
+  "expansion": "Super-Heavy Lift Launch Vehicle (over 50 tons to LEO)",
+  "usage": 0
+ },
+ "sl": {
+  "acronym": "sl",
+  "acronym_display": "SL",
+  "expansion": "Sea Launch",
+  "usage": 0
+ },
+ "slc-37": {
+  "acronym": "slc-37",
+  "acronym_display": "SLC-37",
+  "expansion": "Space Launch Complex 37, Canaveral (ULA Delta IV)",
+  "usage": 0
+ },
+ "slc-40": {
+  "acronym": "slc-40",
+  "acronym_display": "SLC-40",
+  "expansion": "Space Launch Complex 40, Canaveral (SpaceX F9)",
+  "usage": 0
+ },
+ "slc-41": {
+  "acronym": "slc-41",
+  "acronym_display": "SLC-41",
+  "expansion": "Space Launch Complex 41, Canaveral (ULA Atlas V)",
+  "usage": 0
+ },
+ "slc-4e": {
+  "acronym": "slc-4e",
+  "acronym_display": "SLC-4E",
+  "expansion": "Space Launch Complex 4-East, Vandenberg (SpaceX F9)",
+  "usage": 0
+ },
+ "slc-4w": {
+  "acronym": "slc-4w",
+  "acronym_display": "SLC-4W",
+  "expansion": "Space Launch Complex 4-West, Vandenberg (SpaceX F9, landing)",
+  "usage": 0
+ },
+ "slm": {
+  "acronym": "slm",
+  "acronym_display": "SLM",
+  "expansion": "Selective Laser Melting additive manufacture",
+  "usage": 0
+ },
+ "sls": {
+  "acronym": "sls",
+  "acronym_display": "SLS",
+  "expansion": "Space Launch System heavy-lift",
+  "usage": 0
+ },
+ "sls-1": {
+  "acronym": "sls-1",
+  "acronym_display": "SLS-1",
+  "expansion": "Exploration Mission 1, first flight of SLS",
+  "usage": 0
+ },
+ "smab": {
+  "acronym": "smab",
+  "acronym_display": "SMAB",
+  "expansion": "Solid Motor Assembly Building",
+  "usage": 0
+ },
+ "smd": {
+  "acronym": "smd",
+  "acronym_display": "SMD",
+  "expansion": "Science Mission Directorate, NASA",
+  "usage": 0
+ },
+ "snc": {
+  "acronym": "snc",
+  "acronym_display": "SNC",
+  "expansion": "Sierra Nevada Corporation",
+  "usage": 0
+ },
+ "sof": {
+  "acronym": "sof",
+  "acronym_display": "SOF",
+  "expansion": "Safety of Flight",
+  "usage": 0
+ },
+ "sofia": {
+  "acronym": "sofia",
+  "acronym_display": "SOFIA",
+  "expansion": "Stratospheric Observatory For Infrared Astronomy",
+  "usage": 0
+ },
+ "somd": {
+  "acronym": "somd",
+  "acronym_display": "SOMD",
+  "expansion": "Space Operations Mission Directorate, NASA",
+  "usage": 0
+ },
+ "spacex": {
+  "acronym": "spacex",
+  "acronym_display": "SpaceX",
+  "expansion": "Space               X",
+  "usage": 0
+ },
+ "spam": {
+  "acronym": "spam",
+  "acronym_display": "SPAM",
+  "expansion": "*SpaceX Proprietary Ablative Material* (backronym)",
+  "usage": 0
+ },
+ "srb": {
+  "acronym": "srb",
+  "acronym_display": "SRB",
+  "expansion": "Solid Rocket Booster",
+  "usage": 0
+ },
+ "srp": {
+  "acronym": "srp",
+  "acronym_display": "SRP",
+  "expansion": "Supersonic Retro-Propulsion",
+  "usage": 0
+ },
+ "ssau": {
+  "acronym": "ssau",
+  "acronym_display": "SSAU",
+  "expansion": "State Space Agency of Ukraine",
+  "usage": 0
+ },
+ "ssf": {
+  "acronym": "ssf",
+  "acronym_display": "SSF",
+  "expansion": "Sneaky Static Fire",
+  "usage": 0
+ },
+ "ssme": {
+  "acronym": "ssme",
+  "acronym_display": "SSME",
+  "expansion": "Space Shuttle Main Engine",
+  "usage": 0
+ },
+ "ssmehpftp": {
+  "acronym": "ssmehpftp",
+  "acronym_display": "SSMEHPFTP",
+  "expansion": "Space Shuttle Main Engine High-Pressure Fuel Turbopump",
+  "usage": 0
+ },
+ "ssmehpotp": {
+  "acronym": "ssmehpotp",
+  "acronym_display": "SSMEHPOTP",
+  "expansion": "Space Shuttle Main Engine High-Pressure Oxygen Turbopump",
+  "usage": 0
+ },
+ "sso": {
+  "acronym": "sso",
+  "acronym_display": "SSO",
+  "expansion": "Sun-Synchronous Orbit; Super-Synchronous Orbit",
+  "usage": 0
+ },
+ "ssp": {
+  "acronym": "ssp",
+  "acronym_display": "SSP",
+  "expansion": "Space-based Solar Power",
+  "usage": 0
+ },
+ "ssrms": {
+  "acronym": "ssrms",
+  "acronym_display": "SSRMS",
+  "expansion": "Space Station Remote Manipulator System (*Canadarm*)",
+  "usage": 0
+ },
+ "ssto": {
+  "acronym": "ssto",
+  "acronym_display": "SSTO",
+  "expansion": "Single Stage to Orbit",
+  "usage": 0
+ },
+ "sta": {
+  "acronym": "sta",
+  "acronym_display": "STA",
+  "expansion": "Structural Test Article; Special Temporary Authorization (issued by FCC for rocket launches and other special situations)",
+  "usage": 0
+ },
+ "stargate": {
+  "acronym": "stargate",
+  "acronym_display": "STARGATE",
+  "expansion": "Spacecraft Tracking and Astronomical Research into Gigahertz Astrophysical Transient Emission",
+  "usage": 0
+ },
+ "stereo": {
+  "acronym": "stereo",
+  "acronym_display": "STEREO",
+  "expansion": "Solar Terrestrial Relations Observatory",
+  "usage": 0
+ },
+ "stp": {
+  "acronym": "stp",
+  "acronym_display": "STP",
+  "expansion": "Standard Temperature and Pressure",
+  "usage": 0
+ },
+ "stp-2": {
+  "acronym": "stp-2",
+  "acronym_display": "STP-2",
+  "expansion": "Space Test Program 2, DoD programme, second round",
+  "usage": 0
+ },
+ "stp2": {
+  "acronym": "stp2",
+  "acronym_display": "STP2",
+  "expansion": "Space Test Program 2, DoD programme, second round",
+  "usage": 0
+ },
+ "sts": {
+  "acronym": "sts",
+  "acronym_display": "STS",
+  "expansion": "Space Transportation System (*Shuttle*)",
+  "usage": 0
+ },
+ "swot": {
+  "acronym": "swot",
+  "acronym_display": "SWOT",
+  "expansion": "Surface Water and Ocean Topography",
+  "usage": 0
+ },
+ "t/e": {
+  "acronym": "t/e",
+  "acronym_display": "T/E",
+  "expansion": "Transporter/Erector launch pad support equipment",
+  "usage": 0
+ },
+ "tardis": {
+  "acronym": "tardis",
+  "acronym_display": "TARDIS",
+  "expansion": "Time and Relative Dimension in Space",
+  "usage": 0
+ },
+ "tcm": {
+  "acronym": "tcm",
+  "acronym_display": "TCM",
+  "expansion": "Trajectory Correction Maneuver",
+  "usage": 0
+ },
+ "tdrs": {
+  "acronym": "tdrs",
+  "acronym_display": "TDRS",
+  "expansion": "Tracking and Data Relay Satellite",
+  "usage": 0
+ },
+ "tdrss": {
+  "acronym": "tdrss",
+  "acronym_display": "TDRSS",
+  "expansion": "(US) Tracking and Data Relay Satellite System",
+  "usage": 0
+ },
+ "te": {
+  "acronym": "te",
+  "acronym_display": "TE",
+  "expansion": "Transporter/Erector launch pad support equipment",
+  "usage": 0
+ },
+ "tea-teb": {
+  "acronym": "tea-teb",
+  "acronym_display": "TEA-TEB",
+  "expansion": "Triethylaluminium-Triethylborane, igniter for Merlin engines; spontaneously burns, green flame",
+  "usage": 0
+ },
+ "tei": {
+  "acronym": "tei",
+  "acronym_display": "TEI",
+  "expansion": "Trans-Earth Injection maneuver",
+  "usage": 0
+ },
+ "tel": {
+  "acronym": "tel",
+  "acronym_display": "TEL",
+  "expansion": "Transporter Erector Launcher",
+  "usage": 0
+ },
+ "test": {
+  "acronym": "test",
+  "acronym_display": "tEsT",
+  "expansion": "test2",
+  "usage": 1
+ },
+ "tfr": {
+  "acronym": "tfr",
+  "acronym_display": "TFR",
+  "expansion": "Temporary Flight Restriction",
+  "usage": 0
+ },
+ "tig": {
+  "acronym": "tig",
+  "acronym_display": "TIG",
+  "expansion": "Gas Tungsten Arc Welding (or Tungsten Inert Gas)",
+  "usage": 0
+ },
+ "tla": {
+  "acronym": "tla",
+  "acronym_display": "TLA",
+  "expansion": "Three Letter Acronym",
+  "usage": 0
+ },
+ "tle": {
+  "acronym": "tle",
+  "acronym_display": "TLE",
+  "expansion": "Two-Line element set, satellite orbit data",
+  "usage": 0
+ },
+ "tli": {
+  "acronym": "tli",
+  "acronym_display": "TLI",
+  "expansion": "Trans-Lunar Injection maneuver",
+  "usage": 0
+ },
+ "tma": {
+  "acronym": "tma",
+  "acronym_display": "TMA",
+  "expansion": "Too Many Acronyms",
+  "usage": 0
+ },
+ "tmi": {
+  "acronym": "tmi",
+  "acronym_display": "TMI",
+  "expansion": "Trans-Mars Injection maneuver",
+  "usage": 0
+ },
+ "tmt": {
+  "acronym": "tmt",
+  "acronym_display": "TMT",
+  "expansion": "Thirty Meter Telescope",
+  "usage": 0
+ },
+ "tps": {
+  "acronym": "tps",
+  "acronym_display": "TPS",
+  "expansion": "Thermal Protection System",
+  "usage": 0
+ },
+ "trl": {
+  "acronym": "trl",
+  "acronym_display": "TRL",
+  "expansion": "Technology Readiness Level",
+  "usage": 0
+ },
+ "tsm": {
+  "acronym": "tsm",
+  "acronym_display": "TSM",
+  "expansion": "Tail Service Mast",
+  "usage": 0
+ },
+ "tsto": {
+  "acronym": "tsto",
+  "acronym_display": "TSTO",
+  "expansion": "Two Stage To Orbit rocket",
+  "usage": 0
+ },
+ "ttba": {
+  "acronym": "ttba",
+  "acronym_display": "TTBA",
+  "expansion": "\"Flip This ~~Bi-~~ Booster Around\" boostback burn, part of first-stage landing procedure",
+  "usage": 0
+ },
+ "tvc": {
+  "acronym": "tvc",
+  "acronym_display": "TVC",
+  "expansion": "Thrust Vector Control",
+  "usage": 0
+ },
+ "twr": {
+  "acronym": "twr",
+  "acronym_display": "TWR",
+  "expansion": "Thrust-to-Weight Ratio",
+  "usage": 0
+ },
+ "uf9": {
+  "acronym": "uf9",
+  "acronym_display": "UF9",
+  "expansion": "Falcon 9 Full Thrust *or* Upgraded Falcon 9 *or* v1.2",
+  "usage": 0
+ },
+ "uhf": {
+  "acronym": "uhf",
+  "acronym_display": "UHF",
+  "expansion": "Ultra-High Frequency radio",
+  "usage": 0
+ },
+ "ula": {
+  "acronym": "ula",
+  "acronym_display": "ULA",
+  "expansion": "United Launch Alliance (Lockheed/Boeing joint venture)",
+  "usage": 0
+ },
+ "usa": {
+  "acronym": "usa",
+  "acronym_display": "USA",
+  "expansion": "United Space Alliance",
+  "usage": 0
+ },
+ "usos": {
+  "acronym": "usos",
+  "acronym_display": "USOS",
+  "expansion": "United States Orbital Segment",
+  "usage": 0
+ },
+ "vab": {
+  "acronym": "vab",
+  "acronym_display": "VAB",
+  "expansion": "Vehicle Assembly Building",
+  "usage": 0
+ },
+ "vafb": {
+  "acronym": "vafb",
+  "acronym_display": "VAFB",
+  "expansion": "Vandenberg Air Force Base, California",
+  "usage": 0
+ },
+ "vbb": {
+  "acronym": "vbb",
+  "acronym_display": "VBB",
+  "expansion": "Very Big Brother (Blue Origin's proposed VTVL vehicle, unknown payload to LEO)",
+  "usage": 0
+ },
+ "vfr": {
+  "acronym": "vfr",
+  "acronym_display": "VFR",
+  "expansion": "Visual Flight Rules",
+  "usage": 0
+ },
+ "vg": {
+  "acronym": "vg",
+  "acronym_display": "VG",
+  "expansion": "Virgin Galactic",
+  "usage": 0
+ },
+ "vhlv": {
+  "acronym": "vhlv",
+  "acronym_display": "VHLV",
+  "expansion": "Super-Heavy Lift Launch Vehicle (over 50 tons to LEO)",
+  "usage": 0
+ },
+ "vib": {
+  "acronym": "vib",
+  "acronym_display": "VIB",
+  "expansion": "Vertical Integration Facility",
+  "usage": 0
+ },
+ "vif": {
+  "acronym": "vif",
+  "acronym_display": "VIF",
+  "expansion": "Vertical Integration Facility",
+  "usage": 0
+ },
+ "vtol": {
+  "acronym": "vtol",
+  "acronym_display": "VTOL",
+  "expansion": "Vertical Take-Off and Landing",
+  "usage": 0
+ },
+ "vts": {
+  "acronym": "vts",
+  "acronym_display": "VTS",
+  "expansion": "Vertical Test Stand",
+  "usage": 0
+ },
+ "vtvl": {
+  "acronym": "vtvl",
+  "acronym_display": "VTVL",
+  "expansion": "Vertical Takeoff, Vertical Landing",
+  "usage": 0
+ },
+ "vv": {
+  "acronym": "vv",
+  "acronym_display": "VV",
+  "expansion": "Visiting Vehicle (visitor to the Station)",
+  "usage": 0
+ },
+ "wdr": {
+  "acronym": "wdr",
+  "acronym_display": "WDR",
+  "expansion": "Wet Dress Rehearsal",
+  "usage": 0
+ },
+ "wfirst": {
+  "acronym": "wfirst",
+  "acronym_display": "WFIRST",
+  "expansion": "Wide Field Infrared Survey Telescope",
+  "usage": 0
+ },
+ "wise": {
+  "acronym": "wise",
+  "acronym_display": "WISE",
+  "expansion": "Wide-field Infrared Survey Explorer",
+  "usage": 0
+ },
+ "wso": {
+  "acronym": "wso",
+  "acronym_display": "WSO",
+  "expansion": "Weapons Systems Officer",
+  "usage": 0
+ },
+ "zbp": {
+  "acronym": "zbp",
+  "acronym_display": "ZBP",
+  "expansion": "Zero Pre-Breathe (spacesuit and habitat at same pressure",
+  "usage": 0
+ },
+ "zps": {
+  "acronym": "zps",
+  "acronym_display": "ZPS",
+  "expansion": "Zero Prebreathe Spacesuit",
+  "usage": 0
+ }
+}
