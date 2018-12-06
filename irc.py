@@ -202,6 +202,10 @@ while True:
 
             elif '!!say' in message_contents.rstrip():
                 send_message_to_channels(message_contents.replace('!!say ', ''))
+            
+            elif message_contents.startswith('!!add'):
+                acronymservice.add_expansion(message_contents.replace('!!add', ''))
+                logger.info("Added acronym {}".format(message_contents.replace('!!add', '')))
 
             elif message_contents.startswith(("%s: ") % NICK) and not is_privmsg:
                 logger.info('Got command')
@@ -229,6 +233,18 @@ while True:
 
             send_message_to_channel(message_channel, launchservice.get_launch(launch_param)) 
 
+        if message_contents.rstrip().startswith(".expand"):
+        
+            try:
+                expand_param = message_contents.rstrip().replace(".expand", '')
+            except:
+                expand_param = ''
+            
+            logger.info("Got expand with parameter {}".format(expand_param))
+            expansion = acronymservice.get_expansion(expand_param)
+            
+            send_message_to_channel(message_channel, expansion)
+            
     for row in db.get_post_queue():
 
         # Assembles and sends the IRC message
