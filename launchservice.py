@@ -57,7 +57,7 @@ def get_launch(search):
     if search.replace(" ", "") == "":
         # no search
         try:
-            with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?mode=verbose&next=1") as url:
+            with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?mode=verbose&limit=1&startdate={}") as url:
                 data = json.loads(url.read().decode())
                 launch_list = data["launches"]
                 if len(launch_list) > 0:
@@ -68,7 +68,7 @@ def get_launch(search):
     # Query for search
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
-    query = "mode=verbose&next=1&name={}"\
+    query = "mode=verbose&limit=1&startdate={}&name={}"\
             .format(url_starttime, urllib.parse.quote(search))
 
     # Get the launches

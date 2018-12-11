@@ -1,7 +1,7 @@
 # Reddit AMA mode
 
 from bot_logging import logger
-import twitterservice, instagramservice, redditservice, launchservice
+import twitterservice, instagramservice, redditservice, launchservice, acronymservice
 import commands, db
 import socket, ssl
 import threading
@@ -16,12 +16,12 @@ config = json.load(open('_config.json'))
 password = config['nickserv_password']
 
 # IRC Config
-# HOST = 'irc.esper.net'
-HOST = 'irc.snoonet.org'
+HOST = 'irc.esper.net'
+# HOST = 'irc.snoonet.org'
 PORT = 6697
 NICK = 'MaxQ'
 admins = config["admin_hostnames"]
-channels = ['#lishbot']
+channels = ['#SpaceX']
 
 
 # Responds to server pings
