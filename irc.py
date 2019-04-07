@@ -6,6 +6,7 @@ import commands, db
 import socket, ssl
 import threading
 import time
+import math
 import json
 import os
 
@@ -16,12 +17,12 @@ config = json.load(open("_config.json"))
 password = config["nickserv_password"]
 
 # IRC Config
-# HOST = "irc.esper.net"
-HOST = "irc.snoonet.org"
+HOST = "irc.esper.net"
+# HOST = "irc.snoonet.org"
 PORT = 6697
 NICK = "MaxQ"
 admins = config["admin_hostnames"]
-channels = ["#lishbot"]
+channels = ["#SpaceX"]
 
 
 # Responds to server pings
@@ -48,7 +49,7 @@ def send_privmsg(target, message):
 
 def restart_irc():
     logger.info("Restarting...")
-    os.system("start cmd /c irc.py")
+    os.system("nohup python3 irc &")
     time.sleep(5)
     irc.send(parse("QUIT :Be right back!"))
     exit()
@@ -174,7 +175,7 @@ while True:
         # Admins can make the bot check status, restart, and quit
         if message_author_hostname in admins or message_author == "jclishman":
 
-            if message_contents.rstrip() == "!!status":
+            if message_contents.rstrip() == ".status":
                 status = get_status()
 
                 message = (f"Alive: Twitter - {status[0]} | Instagram - {status[1]} | Reddit - {status[2]}")
@@ -183,16 +184,16 @@ while True:
                 if not is_privmsg: send_message_to_channel(message_channel, message)
                 else: send_privmsg(message_author, message)
             
-            elif message_contents.rstrip() == "!!restart":
+            elif message_contents.rstrip() == ".restart":
                 restart_irc()
                 os.system("exit")
 
-            elif message_contents.rstrip() == "!!quit":
+            elif message_contents.rstrip() == ".quit":
                 irc.send(parse("QUIT :HTTP Error 418 - Stuck in orbit between Earth and Mars."))
                 logger.info("Exiting")
                 exit()
 
-            elif message_contents.rstrip() == "!!following":
+            elif message_contents.rstrip() == ".following":
                 twitter_following = {'@' + x[0] for x in db.get_following("twitter")}
                 instagram_following = {'@' + x[0] for x in db.get_following("instagram")}
 
@@ -200,11 +201,11 @@ while True:
                 send_privmsg(message_author, f"Instagram: {instagram_following}")
 
 
-            elif "!!say" in message_contents.rstrip():
-                send_message_to_channels(message_contents.replace("!!say ", ''))
+            elif ".say" in message_contents.rstrip():
+                send_message_to_channels(message_contents.replace(".say ", ''))
             
-            elif message_contents.startswith("!!add"):
-                acronym = message_contents.replace("!!add ", '')
+            elif message_contents.startswith(".add"):
+                acronym = message_contents.replace(".add ", '')
                 acronymservice.add_expansion(acronym)
 
                 logger.info(f"Added acronym {acronym}")
@@ -223,6 +224,21 @@ while True:
                 parsed_command = commands.parse(message_contents)
                 send_privmsg(message_author, parsed_command)
                 logger.info(f"Returned: {parsed_command}")
+
+        if message_contents.rstrip().startswith(".tell"):
+
+            message_clean = message_contents.replace(".tell ", '')
+            letter = message_clean.split(' ')
+            sender = message_author
+            recipient  = letter[0]
+            mail_content = ' '.join(letter[1:])
+
+            logger.info("Mail received")
+            logger.info(f"Sender: {sender}")
+            logger.info(f"Recipient : {recipient }")
+            logger.info(f"Mail Content: {mail_content}")
+
+            db.send_mail(sender, recipient , int(time.time()), mail_content)
 
         if message_contents.rstrip().startswith(".nextlaunch"):
             
@@ -248,6 +264,42 @@ while True:
             
             send_message_to_channel(message_channel, expansion)
             
+        for row in db.get_mail(message_author):
+            #print("Getting mail")
+
+            time_between = int(time.time() - row[3])
+            #print(f"Time between: {time_between}")
+
+            # Days
+            if time_between > 86400:
+                days = math.floor(time_between / 86400)
+                time_between -= (days * 86400)
+
+            else: days = 0
+
+            # Hours
+            if time_between > 3600:
+                hours = math.floor(time_between / 3600)
+                time_between -= (hours * 3600)
+
+            else: hours = 0
+
+            # Minutes
+            if time_between > 60:
+                minutes = math.floor(time_between / 60)
+                time_between -= (minutes * 60)
+
+            else: minutes = 0
+
+            seconds = time_between
+
+            timeDiffStr = f"{days}d {hours}h {minutes}m {seconds}s ago"
+
+            send_message_to_channel(message_channel, f"[Mail] {message_author}: New message from {row[1]} sent {timeDiffStr}: {row[4]}")
+            logger.info(f"Deilvered message for {message_author} (ID: {row[0]})")
+
+
+
     for row in db.get_post_queue():
 
         # Assembles and sends the IRC message

@@ -26,7 +26,7 @@ def update_after_publish(target_id):
     try:
         database = sqlite3.connect('database.db')
         update_cursor = database.cursor()
-        update_cursor.execute("UPDATE messages SET published = 1 WHERE id =%s" % str(target_id))
+        update_cursor.execute("UPDATE messages SET published = 1 WHERE id =?", [str(target_id)])
         database.commit()
 
     except sqlite3.OperationalError as e:
@@ -54,7 +54,7 @@ def unfollow_account(user_id):
         database = sqlite3.connect('database.db')
         unfollow_cursor = database.cursor()
 
-        unfollow_cursor.execute("DELETE FROM following WHERE twitter_id = %s" % user_id)
+        unfollow_cursor.execute("DELETE FROM following WHERE twitter_id = ?", [user_id])
         database.commit()
         logger.info('Deleted from DB')
 
@@ -69,7 +69,7 @@ def set_flags(user_id, retweets, replies):
         set_flags_cursor = database.cursor()
 
         set_flags_cursor.execute(
-            "UPDATE following SET retweets = %i, replies = %i WHERE twitter_id = %s" % (retweets, replies, user_id))
+            "UPDATE following SET retweets = ?, replies = ? WHERE twitter_id = ?", [retweets, replies, user_id])
         logger.info('Updated DB flags')
         database.commit()
     except sqlite3.OperationalError as e:
@@ -82,7 +82,7 @@ def get_instagram_timestamp(username):
         insta_get_timestamp_cursor = database.cursor()
 
         insta_get_timestamp_cursor.execute(
-            "SELECT instagram_timestamp_at FROM following WHERE username = '%s'" % username)
+            "SELECT instagram_timestamp_at FROM following WHERE username = ?", [username])
 
         return insta_get_timestamp_cursor.fetchone()[0]
 
@@ -96,7 +96,7 @@ def update_instagram_timestamp(username, timestamp):
         insta_timestamp_cursor = database.cursor()
 
         insta_timestamp_cursor.execute(
-            "UPDATE following SET instagram_timestamp_at = %s WHERE username = '%s'" % (timestamp, username))
+            "UPDATE following SET instagram_timestamp_at = ? WHERE username = ?", [timestamp, username])
 
         database.commit()
 
@@ -139,7 +139,7 @@ def get_tweet_posted(tweet_url):
         database = sqlite3.connect('database.db')
         get_tweet_posted_cursor = database.cursor()
 
-        get_tweet_posted_cursor.execute("SELECT id FROM messages WHERE url='%s'" % tweet_url)
+        get_tweet_posted_cursor.execute("SELECT id FROM messages WHERE url = ?", [tweet_url])
 
         return get_tweet_posted_cursor.fetchall()
 
@@ -147,3 +147,32 @@ def get_tweet_posted(tweet_url):
         logger.error(str(e))
 
         
+def get_mail(user):
+    try:
+        database = sqlite3.connect('database.db')
+        get_mail_cursor = database.cursor()
+
+        print(f"DB: Getting mail for {user}")
+        get_mail_cursor.execute("SELECT * FROM mailbox WHERE published=0 and recipient = ?", [user])
+
+        mailbox = get_mail_cursor.fetchall()
+        get_mail_cursor.execute("UPDATE mailbox SET published=1 WHERE published=0 and recipient = ?", [user])
+        database.commit()
+
+        return mailbox
+
+    except sqlite3.OperationalError as e:
+        logger.error(str(e))
+
+def send_mail(sender, recipient , time, content):
+    try:
+        database = sqlite3.connect('database.db')
+        send_mail_cursor = database.cursor()
+
+        send_mail_cursor.execute("INSERT INTO mailbox (sender, recipient , date_sent, content, published) VALUES(?, ?, ?, ?, ?)", [sender, recipient , time, content, 0])
+        #print(f"DB: Mail sent to {recipient } from {sender} at {time} with body of {content}")
+        database.commit()
+
+    except sqlite3.OperationalError as e:
+        logger.error(str(e))
+
