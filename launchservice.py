@@ -80,8 +80,8 @@ def get_launch(search):
         if len(launch_list) > 0:
             return format_launch(launch_list[0])
         else:
-            return "Next launch for query '{}' not found.".format(search)
+            return f"Next launch for query '{search}' not found."
 
     except urllib.error.HTTPError:
-        return "Next launch for query '{}' not found.".format(search)
+        return f"Next launch for query '{search}' not found."
 

@@ -54,7 +54,7 @@ def parse(message_contents):
         return 'Error: Invalid command'
 
     # print('Command: ' + str(command))
-    logger.info('Action: %s | Target: %s | Retweets: %i | Replies: %i' % (action, target, retweets, replies))
+    logger.info(f"Action: {action} | Target: {target} | Retweets: {retweets} | Replies: {replies}")
 
     if target is not None:
 
@@ -71,24 +71,23 @@ def parse(message_contents):
                     # Is the user not already in the database?
                     if not in_database(user_id):
                         db.follow_account(target, user_id, retweets, replies)
-                        return '@%s is now being followed on Twitter | Retweets %s | Replies %s' % (
-                        target, retweets, replies)
+                        return f"@{target} is now being followed on Twitter | Retweets {retweets} | Replies {replies}"
 
                     elif in_database(user_id):
-                        return '@%s is already being followed on Twitter' % str(target)
+                        return f"@{target} is already being followed on Twitter"
 
                 if action == 'set':
 
                     if in_database(user_id):
                         db.set_flags(user_id, retweets, replies)
-                        return '@%s now has retweets set to %s and replies set to %s' % (target, retweets, replies)
+                        return f"@{target} now has retweets set to {retweets} and replies set to {replies}"
 
                     elif not in_database(user_id):
-                        return 'Error: @%s is not in the database' % (target)
+                        return f"Error: @{target} is not in the database"
 
             else: return 'Error: Missing valid flag(s)'
 
-        elif user_id is None: return 'Error: @%s does not exist' % target
+        elif user_id is None: return f"Error: @{target} does not exist"
 
     else: return 'Error: No target account'
 

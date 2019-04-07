@@ -49,14 +49,14 @@ def run():
                 start_time = time.time()
                 db.update_instagram_timestamp(user_screen_name, int(timestamp))
 
-                logger.info("New Instagram post by @%s, id %s" % (user_screen_name, user_id_str))
-                logger.info("Post shortcode: %s" % shortcode)
-                logger.info("Post caption: %s" % caption)
-                logger.info("Post timestamp: %s" % timestamp)
+                logger.info(f"New Instagram post by @{user_screen_name}, id {user_id_str}")
+                logger.info(f"Post shortcode: {shortcode}")
+                logger.info(f"Post caption: {caption}")
+                logger.info(f"Post timestamp: {timestamp}")
 
-                url = 'https://instagram.com/p/%s' % shortcode
+                url = f"https://instagram.com/p/{shortcode}"
                 if not startup:
-                    db.insert_message('Instagram', user_screen_name, caption, url, start_time)
+                    db.insert_message('Instagram', user_screen_name, caption.replace("\n", " "), url, start_time)
 
         time.sleep(10)
         startup = False

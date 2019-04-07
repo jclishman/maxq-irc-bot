@@ -13,7 +13,7 @@ def get_expansion(acronym):
 
     if acronym in acronyms:
         acronyms[acronym]["usage"] += 1
-        expansion = acronyms[acronym]["acronym_display"] + ": " + acronyms[acronym]["expansion"]
+        expansion = f"{acronyms[acronym]['acronym_display']}: {acronyms[acronym]['expansion']}"
 
     with open(ACRONYM_FILE, "w") as file:
         file.write(json.dumps(acronyms, indent=1, sort_keys=True))

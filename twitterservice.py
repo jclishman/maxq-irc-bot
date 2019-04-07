@@ -13,7 +13,7 @@ credentials = json.load(open('_config.json'))
 # API Authentication
 auth = tweepy.OAuthHandler(credentials["consumer_key"], credentials["consumer_secret"])
 auth.set_access_token(credentials["access_token"], credentials["access_secret"])
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 # Gets the list of users and their attributes from the database
 users_list = db.get_following("twitter")
@@ -26,10 +26,13 @@ following = {x[1] for x in users_list}
 class MyStreamListener(StreamListener):
 
 
-    def on_data(self, data):
+    def on_status(self, status):
+
+        #print(status.text)
+        #print(json.dumps(status._json))
 
         # Converts the data into usable JSON
-        data = json.loads(data)
+        data = status._json
 
 
         # Puts user attributes into this list if the tweeet is from somebody the bot is following
@@ -52,7 +55,7 @@ class MyStreamListener(StreamListener):
             # Gets the full retweet text if it's concatenated by Twitter
             elif "retweeted_status" in tweet_data and "extended_tweet" in tweet_data['retweeted_status']:
                 rt_data = tweet_data['retweeted_status']
-                text = "RT @%s: %s" % (rt_data['user']['screen_name'], html.unescape(rt_data['extended_tweet']['full_text']))
+                text = f"RT @{rt_data['user']['screen_name']}: {html.unescape(rt_data['extended_tweet']['full_text'])}"
 
             # Not an extended tweet
             else:
@@ -67,7 +70,7 @@ class MyStreamListener(StreamListener):
             else:
                 tweet_url = ''
 
-            db.insert_message('Twitter', tweet_data['user']['screen_name'], text, tweet_url, start_time)
+            db.insert_message('Twitter', tweet_data['user']['screen_name'], text.replace("\n", " "), tweet_url, start_time)
 
         # Is the tweet from somebody the bot cares about?
         if user_of_tweet is not None:
@@ -124,9 +127,13 @@ class MyStreamListener(StreamListener):
             elif "retweeted_status" not in data and data["in_reply_to_status_id"] is None:
                 send_tweet_to_db(data, start_time)
 
+    # Trying to find out what's causing the random Twitter crashes
     def on_error(self, status):
         if status == 420:
+            logger.error("----RATELIMITED ERROR 420----")
             return False
+        else:
+            logger.error("----ERROR----")
 
 def run():
 
@@ -154,7 +161,7 @@ def get_status(id):
         return str(e)
 
 def make_url_from_tweet(screen_name, id_str):
-    return 'https://twitter.com/%s/status/%s' % (screen_name, id_str)
+    return f"https://twitter.com/{screen_name}/status/{id_str}"
 
 def has_tweet_been_posted(screen_name, id_str):
     return db.get_tweet_posted(make_url_from_tweet(screen_name, id_str)) != []

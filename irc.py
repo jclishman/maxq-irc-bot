@@ -9,29 +9,29 @@ import time
 import json
 import os
 
-logger.info('Now Entering MaxQ...')
+logger.info("Now Entering MaxQ...")
 
 # Secret credentials :)
-config = json.load(open('_config.json'))
-password = config['nickserv_password']
+config = json.load(open("_config.json"))
+password = config["nickserv_password"]
 
 # IRC Config
-HOST = 'irc.esper.net'
-# HOST = 'irc.snoonet.org'
+# HOST = "irc.esper.net"
+HOST = "irc.snoonet.org"
 PORT = 6697
-NICK = 'MaxQ'
+NICK = "MaxQ"
 admins = config["admin_hostnames"]
-channels = ['#SpaceX']
+channels = ["#lishbot"]
 
 
 # Responds to server pings
 def pong(text):
-    logger.debug('PONG' + text.split()[1])
-    irc.send(parse('PONG ' + text.split()[1]))
+    logger.debug("PONG" + text.split()[1])
+    irc.send(parse("PONG " + text.split()[1]))
 
 
 # Helper methods
-def parse(string): return bytes(string + '\r\n', 'UTF-8')
+def parse(string): return bytes(string + "\r\n", "UTF-8")
 
 
 def send_message_to_channels(message):
@@ -44,14 +44,13 @@ def send_message_to_channel(channel, message):
 
 
 def send_privmsg(target, message):
-    irc.send(parse('PRIVMSG  %s :%s' % (target, message)))
-
+    irc.send(parse(f"PRIVMSG {target} :{message}"))
 
 def restart_irc():
-    logger.info('Restarting...')
-    os.system('start cmd /c irc.py')
+    logger.info("Restarting...")
+    os.system("start cmd /c irc.py")
     time.sleep(5)
-    irc.send(parse('QUIT :Be right back!'))
+    irc.send(parse("QUIT :Be right back!"))
     exit()
 
 
@@ -67,45 +66,45 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 irc = ssl.wrap_socket(s)
 
-logger.info('Connecting...')
+logger.info("Connecting...")
 
 time.sleep(5)
 
 # Tells the server who it is
-irc.send(parse('USER ' + NICK + ' ' + NICK + ' ' + NICK + ' :Bot'))
-irc.send(parse('NICK ' + NICK))
-logger.info('Server Ident')
+irc.send(parse(f"USER {NICK} {NICK} {NICK} :Bot"))
+irc.send(parse(f"NICK {NICK}"))
+logger.info("Server Ident")
 
 # Responds to the initial server ping on connection
 has_responded_to_ping = False
 
 while not has_responded_to_ping:
-    text = irc.recv(1024).decode('UTF-8').strip('\r\n')
+    text = irc.recv(1024).decode("UTF-8").strip("\r\n")
 
-    if text.find('PING') != -1:
+    if text.find("PING") != -1:
         pong(text)
         has_responded_to_ping = True
 
 
 # Creates and starts threads
 def twitter_thread():
-    logger.info('Starting Twitter Thread')
+    logger.info("Starting Twitter Thread")
     twitterservice.run()
 
 
 def insta_thread():
-    logger.info('Starting Instragram Thread')
+    logger.info("Starting Instragram Thread")
     instagramservice.run()
 
 
 def reddit_thread():
-    logger.info('Starting Reddit Thread')
+    logger.info("Starting Reddit Thread")
     redditservice.run()
 
 
-twitter = threading.Thread(name='Twitter_Thread', target=twitter_thread)
-insta = threading.Thread(name='Instagram_Thread', target=insta_thread)
-reddit = threading.Thread(name='Reddit_Thread', target=reddit_thread)
+twitter = threading.Thread(name="Twitter_Thread", target=twitter_thread)
+insta = threading.Thread(name="Instagram_Thread", target=insta_thread)
+reddit = threading.Thread(name="Reddit_Thread", target=reddit_thread)
 
 # Set to true so that threads exit on IRC quit
 twitter.daemon = True
@@ -124,21 +123,22 @@ irc.setblocking(False)
 time.sleep(2)
 
 # Identifies nickname
-irc.send(parse(('NickServ IDENTIFY %s %s\n' % (NICK, password))))
-logger.info('NickServ Ident')
+# TODO Change this                VVVVVV
+irc.send(parse(f"NickServ IDENTIFY {NICK} {password}\n"))
+logger.info("NickServ Ident")
 
 time.sleep(2)
 
 # Joins channel(s)
 for channel in channels:
-    irc.send(('JOIN %s\n' % channel).encode())
+    irc.send((f"JOIN {channel}\n").encode())
     time.sleep(2)
 
 while True:
     irc_stream = None
 
     try:
-        irc_stream = str(irc.recv(1024), 'UTF-8', errors='replace')
+        irc_stream = str(irc.recv(1024), "UTF-8", errors="replace")
 
     except OSError as e:
         time.sleep(0.01)
@@ -147,16 +147,16 @@ while True:
         logger.info(irc_stream)
 
     # Sends server ping
-    if irc_stream is not None and irc_stream.find('PING') != -1:
+    if irc_stream is not None and irc_stream.find("PING") != -1:
         pong(text)
 
     # print(time.ctime())
-    if irc_stream is not None and irc_stream.find('PRIVMSG') != -1:
+    if irc_stream is not None and irc_stream.find("PRIVMSG") != -1:
         is_privmsg = False
 
         message_author = irc_stream.split('!', 1)[0][1:]
-        message_channel = irc_stream.split('PRIVMSG', 1)[1].split(':', 1)[0].lstrip()
-        message_contents = irc_stream.split('PRIVMSG', 1)[1].split(':', 1)[1]
+        message_channel = irc_stream.split("PRIVMSG", 1)[1].split(':', 1)[0].lstrip()
+        message_contents = irc_stream.split("PRIVMSG", 1)[1].split(':', 1)[1]
 
         try:
             message_author_hostname = irc_stream.split('@', 1)[1].split()[0]
@@ -164,62 +164,65 @@ while True:
             logger.error(str(e))
             message_author_hostname = ''
 
-        logger.info('Author: ' + message_author)
-        logger.info('Hostname: ' + message_author_hostname)
-        logger.info('Channel: ' + message_channel)
-        logger.info('Content: ' + message_contents)
+        logger.info("Author: " + message_author)
+        logger.info("Hostname: " + message_author_hostname)
+        logger.info("Channel: " + message_channel)
+        logger.info("Content: " + message_contents)
 
         if not message_channel.startswith('#'): is_privmsg = True
 
         # Admins can make the bot check status, restart, and quit
-        if message_author_hostname in admins or message_author == 'jclishman':
+        if message_author_hostname in admins or message_author == "jclishman":
 
-            if message_contents.rstrip() == '!!status':
+            if message_contents.rstrip() == "!!status":
                 status = get_status()
 
-                message = 'Alive: Twitter - %r | Instagram - %r | Reddit - %r' % (status[0], status[1], status[2])
+                message = (f"Alive: Twitter - {status[0]} | Instagram - {status[1]} | Reddit - {status[2]}")
                 logger.info(message)
 
                 if not is_privmsg: send_message_to_channel(message_channel, message)
                 else: send_privmsg(message_author, message)
             
-            elif message_contents.rstrip() == '!!restart':
+            elif message_contents.rstrip() == "!!restart":
                 restart_irc()
-                os.system('exit')
+                os.system("exit")
 
-            elif message_contents.rstrip() == '!!quit':
-                irc.send(parse('QUIT :HTTP Error 418 - Stuck in orbit between Earth and Mars.'))
-                logger.info('Exiting')
+            elif message_contents.rstrip() == "!!quit":
+                irc.send(parse("QUIT :HTTP Error 418 - Stuck in orbit between Earth and Mars."))
+                logger.info("Exiting")
                 exit()
 
-            elif message_contents.rstrip() == '!!following':
-                twitter_following = {'@' + x[0] for x in db.get_following('twitter')}
-                instagram_following = {'@' + x[0] for x in db.get_following('instagram')}
+            elif message_contents.rstrip() == "!!following":
+                twitter_following = {'@' + x[0] for x in db.get_following("twitter")}
+                instagram_following = {'@' + x[0] for x in db.get_following("instagram")}
 
-                send_privmsg(message_author, 'Twitter: ' + str(twitter_following))
-                send_privmsg(message_author, 'Instagram: ' + str(instagram_following))
+                send_privmsg(message_author, f"Twitter: {twitter_following}")
+                send_privmsg(message_author, f"Instagram: {instagram_following}")
 
 
-            elif '!!say' in message_contents.rstrip():
-                send_message_to_channels(message_contents.replace('!!say ', ''))
+            elif "!!say" in message_contents.rstrip():
+                send_message_to_channels(message_contents.replace("!!say ", ''))
             
-            elif message_contents.startswith('!!add'):
-                acronymservice.add_expansion(message_contents.replace('!!add', ''))
-                logger.info("Added acronym {}".format(message_contents.replace('!!add', '')))
+            elif message_contents.startswith("!!add"):
+                acronym = message_contents.replace("!!add ", '')
+                acronymservice.add_expansion(acronym)
 
-            elif message_contents.startswith(("%s: ") % NICK) and not is_privmsg:
-                logger.info('Got command')
+                logger.info(f"Added acronym {acronym}")
+                send_message_to_channels(f"Added acronym {acronym}")
+
+            elif message_contents.startswith(f"{NICK}: ") and not is_privmsg:
+                logger.info("Got command")
 
                 parsed_command = commands.parse(message_contents)
                 send_message_to_channel(message_channel, parsed_command)
-                logger.info('Returned: ' + parsed_command)
+                logger.info(f"Returned: {parsed_command}")
 
             elif is_privmsg:
-                logger.info('Got command as PM')
+                logger.info("Got command as PM")
 
                 parsed_command = commands.parse(message_contents)
                 send_privmsg(message_author, parsed_command)
-                logger.info('Returned: ' + parsed_command)
+                logger.info(f"Returned: {parsed_command}")
 
         if message_contents.rstrip().startswith(".nextlaunch"):
             
@@ -236,11 +239,11 @@ while True:
         if message_contents.rstrip().startswith(".expand"):
         
             try:
-                expand_param = message_contents.rstrip().replace(".expand", '')
+                expand_param = message_contents.rstrip().replace(".expand ", '')
             except:
                 expand_param = ''
             
-            logger.info("Got expand with parameter {}".format(expand_param))
+            logger.info(f"Got expand with parameter {expand_param}")
             expansion = acronymservice.get_expansion(expand_param)
             
             send_message_to_channel(message_channel, expansion)
@@ -249,20 +252,24 @@ while True:
 
         # Assembles and sends the IRC message
         # Platform-specific formatting
-        if row[1] == 'Instagram' or row[1] == 'Twitter':
-            send_message_to_channels('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
-            logger.info('[%s] @%s wrote: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+        if row[1] == "Instagram" or row[1] == "Twitter":
 
-        elif row[1] == 'Reddit':
-            send_message_to_channels('[%s] %s %s' % (row[1], row[3], row[4]))
-            logger.info('[%s] %s %s' % (row[1], row[3], row[4]))
+            msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
 
-        elif row[1] == 'Reddit AMA':
-            send_message_to_channels('[%s] u/%s: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
-            logger.info('[%s] u/%s: %s %s' % (row[1], row[2], row[3].replace('\n', ' '), row[4]))
+            send_message_to_channels(msg)
+            logger.info(msg)
+
+        elif row[1] == "Reddit":
+
+            msg = f"[{row[1]}] {row[2]} {row[3]}"
+
+            send_message_to_channels(msg)
+            logger.info(msg)
+
 
         # Sends how long it took from tweet creation to irc message (debug)
-        logger.info('Post #' + str(row[0]) + ', Took ' + str(round(time.time() - row[6], 5)) + 's\n')
+        time_to_post = round(time.time() - row[6], 5)
+        logger.info(f"Post #{row[0]}, Took {time_to_post}s\n")
 
         # Updates the database after it posts something
         db.update_after_publish(row[0])
