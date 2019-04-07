@@ -5,3 +5,5 @@ JSON
 _config.json
 *.db
 *.txt
+
+acronyms.json
