@@ -244,7 +244,7 @@ while True:
         if message_contents.rstrip().startswith(".wa"):
             
             message_clean = message_contents.replace(".wa ", '')
-            send_message_to_channel(message_channel, get_wa(message_clean))
+            send_message_to_channel(message_channel, wolfram.get_wa(message_clean))
 
             
         if message_contents.rstrip().startswith(".nextlaunch"):
