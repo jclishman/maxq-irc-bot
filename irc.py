@@ -172,7 +172,7 @@ while True:
         if not message_channel.startswith('#'): is_privmsg = True
 
         # Admins can make the bot check status, restart, and quit
-        if message_author_hostname in admins or message_author == "jclishman" or message_author == "jan":
+        if message_author_hostname in admins or message_author.starts_with('j'):
 
             if message_contents.rstrip() == ".status":
                 status = get_status()
