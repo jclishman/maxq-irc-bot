@@ -2,7 +2,7 @@
 
 from bot_logging import logger
 import twitterservice, instagramservice, redditservice, launchservice, acronymservice
-import commands, db
+import commands, db, wolfram
 import socket, ssl
 import threading
 import time
@@ -172,7 +172,7 @@ while True:
         if not message_channel.startswith('#'): is_privmsg = True
 
         # Admins can make the bot check status, restart, and quit
-        if message_author_hostname in admins or message_author == "jclishman":
+        if message_author_hostname in admins or message_author == "jclishman" or message_author == "jan":
 
             if message_contents.rstrip() == ".status":
                 status = get_status()
@@ -240,6 +240,13 @@ while True:
             db.send_mail(sender, recipient , int(time.time()), mail_content)
             send_message_to_channel(message_channel, f"Message sent to {recipient}.")
 
+        
+        if message_contents.rstrip().startswith(".wa"):
+            
+            message_clean = message_contents.replace(".wa ", '')
+            send_message_to_channel(message_channel, get_wa(message_clean))
+
+            
         if message_contents.rstrip().startswith(".nextlaunch"):
             
             try:
