@@ -152,7 +152,7 @@ def get_mail(user):
         database = sqlite3.connect('database.db')
         get_mail_cursor = database.cursor()
 
-        print(f"DB: Getting mail for {user}")
+        #print(f"DB: Getting mail for {user}")
         get_mail_cursor.execute("SELECT * FROM mailbox WHERE published=0 and recipient = ?", [user])
 
         mailbox = get_mail_cursor.fetchall()

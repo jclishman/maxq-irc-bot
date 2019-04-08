@@ -57,12 +57,13 @@ def get_launch(search):
     if search.replace(" ", "") == "":
         # no search
         try:
-            with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?mode=verbose&limit=1&startdate={}") as url:
+            with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?mode=verbose&limit=1") as url:
                 data = json.loads(url.read().decode())
                 launch_list = data["launches"]
                 if len(launch_list) > 0:
                     return format_launch(launch_list[0])
-        except urllib.error.HTTPError:
+        except urllib.error.HTTPError as e:
+            print(str(e))
             return "Useless error message. LL is probably down."
 
     # Query for search

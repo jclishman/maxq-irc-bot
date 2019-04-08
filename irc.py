@@ -124,7 +124,6 @@ irc.setblocking(False)
 time.sleep(2)
 
 # Identifies nickname
-# TODO Change this                VVVVVV
 irc.send(parse(f"NickServ IDENTIFY {NICK} {password}\n"))
 logger.info("NickServ Ident")
 
@@ -230,7 +229,7 @@ while True:
             message_clean = message_contents.replace(".tell ", '')
             letter = message_clean.split(' ')
             sender = message_author
-            recipient  = letter[0]
+            recipient  = letter[0].lower()
             mail_content = ' '.join(letter[1:])
 
             logger.info("Mail received")
@@ -239,6 +238,7 @@ while True:
             logger.info(f"Mail Content: {mail_content}")
 
             db.send_mail(sender, recipient , int(time.time()), mail_content)
+            send_message_to_channel(message_channel, f"Message sent to {recipient}.")
 
         if message_contents.rstrip().startswith(".nextlaunch"):
             
@@ -264,7 +264,7 @@ while True:
             
             send_message_to_channel(message_channel, expansion)
             
-        for row in db.get_mail(message_author):
+        for row in db.get_mail(message_author.lower()):
             #print("Getting mail")
 
             time_between = int(time.time() - row[3])
@@ -295,7 +295,7 @@ while True:
 
             timeDiffStr = f"{days}d {hours}h {minutes}m {seconds}s ago"
 
-            send_message_to_channel(message_channel, f"[Mail] {message_author}: New message from {row[1]} sent {timeDiffStr}: {row[4]}")
+            send_message_to_channel(message_channel, f"{message_author}: New message from {row[1]} sent {timeDiffStr}: {row[4]}")
             logger.info(f"Deilvered message for {message_author} (ID: {row[0]})")
 
 
