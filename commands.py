@@ -56,40 +56,37 @@ def parse(message_contents):
     # print('Command: ' + str(command))
     logger.info(f"Action: {action} | Target: {target} | Retweets: {retweets} | Replies: {replies}")
 
-    if target is not None:
+    if target is None:
+        return 'Error: No target account'
 
-        user_id = twitter.getID(target)
+    user_id = twitter.getID(target)
 
-        # Is the target a user? Does the user actually exist?
-        if user_id is not None:
+    # Is the target a user? Does the user actually exist?
+    if user_id is None:
+        return f"Error: @{target} does not exist"
 
-            # Are flags specified?
-            if retweets is not None and replies is not None:
+    # Are flags specified?
+    if retweets is None or replies is None:
+        return 'Error: Missing valid flag(s)'
 
-                if action == 'follow':
+    if action == 'follow':
 
-                    # Is the user not already in the database?
-                    if not in_database(user_id):
-                        db.follow_account(target, user_id, retweets, replies)
-                        return f"@{target} is now being followed on Twitter | Retweets {retweets} | Replies {replies}"
+        # Is the user not already in the database?
+        if not in_database(user_id):
+            db.follow_account(target, user_id, retweets, replies)
+            return f"@{target} is now being followed on Twitter | Retweets {retweets} | Replies {replies}"
 
-                    elif in_database(user_id):
-                        return f"@{target} is already being followed on Twitter"
+        return f"@{target} is already being followed on Twitter"
 
-                if action == 'set':
+    if action == 'set':
 
-                    if in_database(user_id):
-                        db.set_flags(user_id, retweets, replies)
-                        return f"@{target} now has retweets set to {retweets} and replies set to {replies}"
+        if in_database(user_id):
+            db.set_flags(user_id, retweets, replies)
+            return f"@{target} now has retweets set to {retweets} and replies set to {replies}"
 
-                    elif not in_database(user_id):
-                        return f"Error: @{target} is not in the database"
+        return f"Error: @{target} is not in the database"
 
-            else: return 'Error: Missing valid flag(s)'
 
-        elif user_id is None: return f"Error: @{target} does not exist"
-
-    else: return 'Error: No target account'
 
 def in_database(user_id):
     users_list = db.get_following('twitter')

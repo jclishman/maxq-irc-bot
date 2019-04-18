@@ -18,10 +18,11 @@ password = config["nickserv_password"]
 
 # IRC Config
 HOST = "irc.esper.net"
-# HOST = "irc.snoonet.org"
+#HOST = "irc.snoonet.org"
 PORT = 6697
 NICK = "MaxQ"
 admins = config["admin_hostnames"]
+#channels = ["#lishbot"]
 channels = ["#SpaceX"]
 
 
@@ -164,9 +165,8 @@ while True:
             logger.error(str(e))
             message_author_hostname = ''
 
-        logger.info("Author: " + message_author)
-        logger.info("Hostname: " + message_author_hostname)
-        logger.info("Channel: " + message_channel)
+        logger.info(f"Author: {message_author} // Host: {message_author_hostname}")
+        #logger.info("Channel: " + message_channel)
         logger.info("Content: " + message_contents)
 
         if not message_channel.startswith('#'): is_privmsg = True
@@ -229,7 +229,7 @@ while True:
             message_clean = message_contents.replace(".tell ", '')
             letter = message_clean.split(' ')
             sender = message_author
-            recipient  = letter[0].lower()
+            recipient  = letter[0]
             mail_content = ' '.join(letter[1:])
 
             logger.info("Mail received")
@@ -237,8 +237,8 @@ while True:
             logger.info(f"Recipient : {recipient }")
             logger.info(f"Mail Content: {mail_content}")
 
-            db.send_mail(sender, recipient , int(time.time()), mail_content)
-            send_message_to_channel(message_channel, f"Message sent to {recipient}.")
+            db.send_mail(sender, recipient.lower() , int(time.time()), mail_content)
+            send_message_to_channel(message_channel, f"Message sent to {recipient}")
 
         if message_contents.rstrip().startswith(".nextlaunch"):
             
@@ -313,7 +313,7 @@ while True:
 
         elif row[1] == "Reddit":
 
-            msg = f"[{row[1]}] {row[2]} {row[3]}"
+            msg = f"[{row[1]}] {row[3]} {row[4]}"
 
             send_message_to_channels(msg)
             logger.info(msg)
