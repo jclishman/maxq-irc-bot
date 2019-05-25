@@ -17,14 +17,15 @@ config = json.load(open("_config.json"))
 password = config["nickserv_password"]
 
 # IRC Config
-HOST = "irc.esper.net"
-#HOST = "irc.snoonet.org"
+#HOST = "irc.esper.net"
+HOST = "irc.snoonet.org"
 PORT = 6697
 NICK = "MaxQ"
 admins = config["admin_hostnames"]
-#channels = ["#lishbot"]
-channels = ["#SpaceX"]
-
+channels = ["#lishbot"]
+#channels = ["#SpaceX"]
+launch_whitelist = config["whitelist"]
+launchmode = False
 
 # Responds to server pings
 def pong(text):
@@ -50,7 +51,7 @@ def send_privmsg(target, message):
 
 def restart_irc():
     logger.info("Restarting...")
-    os.system("nohup python3 irc &")
+    os.system("nohup python3 irc.py &")
     time.sleep(5)
     irc.send(parse("QUIT :Be right back!"))
     exit()
@@ -210,6 +211,12 @@ while True:
                 logger.info(f"Added acronym {acronym}")
                 send_message_to_channels(f"Added acronym {acronym}")
 
+            elif message_contents.startswith(".launchmode"):
+
+                launchmode = not launchmode
+                send_message_to_channel(message_channel, f"Launch mode set to {launchmode}")
+                logger.info(f"Launch mode set to {launchmode}")
+
             elif message_contents.startswith(f"{NICK}: ") and not is_privmsg:
                 logger.info("Got command")
 
@@ -297,19 +304,26 @@ while True:
 
             send_message_to_channel(message_channel, f"{message_author}: New message from {row[1]} sent {timeDiffStr}: {row[4]}")
             logger.info(f"Deilvered message for {message_author} (ID: {row[0]})")
-
+            time.sleep(0.5)
 
 
     for row in db.get_post_queue():
 
         # Assembles and sends the IRC message
         # Platform-specific formatting
+
         if row[1] == "Instagram" or row[1] == "Twitter":
 
-            msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
+            if launchmode and row[2] in launch_whitelist:
+                msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
 
-            send_message_to_channels(msg)
-            logger.info(msg)
+                send_message_to_channels(msg)
+                logger.info(msg)
+            elif not launchmode:
+                msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
+
+                send_message_to_channels(msg)
+                logger.info(msg)                
 
         elif row[1] == "Reddit":
 

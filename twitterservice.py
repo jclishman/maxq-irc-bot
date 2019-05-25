@@ -140,18 +140,29 @@ class MyStreamListener(StreamListener):
         else:
             logger.error("----ERROR----")
 
-    def on_exception(self, exception):
-        logger.error(exception)
-        return
+    #def on_exception(self, exception):
+        #logger.error("-----ERROR-----")
+        #logger.error(exception)
+        
+        #db.insert_message('Twitter', 'Twitter Thread', 'jclishman: Check logs', '', time.time())
+        #return True
 
 def run():
 
+    logger.info("Starting Twitter Stream...")
     # Makes the stream object
     myStreamListener = MyStreamListener()
     myStream = tweepy.Stream(auth, myStreamListener)
 
     # Streams tweets
-    myStream.filter(follow=following)
+    try:
+        myStream.filter(follow=following, stall_warnings=True)
+    except Exception as e:
+        logger.error("-----CAUGHT ERROR-----")
+        logger.error(str(e))
+        logger.error("-----ATTEMPTING RECONNECT-----")
+
+        run()
 
 def getID(username):
     try:
