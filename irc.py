@@ -17,13 +17,13 @@ config = json.load(open("_config.json"))
 password = config["nickserv_password"]
 
 # IRC Config
-#HOST = "irc.esper.net"
-HOST = "irc.snoonet.org"
+HOST = "irc.esper.net"
+#HOST = "irc.snoonet.org"
 PORT = 6697
 NICK = "MaxQ"
 admins = config["admin_hostnames"]
-channels = ["#lishbot"]
-#channels = ["#SpaceX"]
+#channels = ["#lishbot"]
+channels = ["#SpaceX"]
 launch_whitelist = config["whitelist"]
 launchmode = False
 
@@ -173,7 +173,7 @@ while True:
         if not message_channel.startswith('#'): is_privmsg = True
 
         # Admins can make the bot check status, restart, and quit
-        if message_author_hostname in admins or message_author == "jclishman":
+        if message_author_hostname in admins or message_author == "jclishman" or message_author == "B787_300":
 
             if message_contents.rstrip() == ".status":
                 status = get_status()
@@ -203,7 +203,14 @@ while True:
 
             elif ".say" in message_contents.rstrip():
                 send_message_to_channels(message_contents.replace(".say ", ''))
-            
+
+            elif ".reload" in message_contents.rstrip():
+                config = json.load(open("_config.json"))
+                admins = config["admin_hostnames"]
+                launch_whitelist = config["whitelist"]
+
+                send_message_to_channel(message_channel, "Reloaded config")
+
             elif message_contents.startswith(".add"):
                 acronym = message_contents.replace(".add ", '')
                 acronymservice.add_expansion(acronym)
@@ -249,13 +256,8 @@ while True:
 
         if message_contents.rstrip().startswith(".nextlaunch"):
             
-            try:
-                launch_param = message_contents.rstrip().replace(".nextlaunch", '')
-                logger.info("Got launch with parameters " + str(launch_param))
-
-            except:
-                logger.info("Got launch with no parameters")
-                launch_param = ''
+            launch_param = message_contents.rstrip().replace(".nextlaunch", '')
+            logger.info(f"Got launch with parameter '{launch_param}'")
 
             send_message_to_channel(message_channel, launchservice.get_launch(launch_param)) 
 
@@ -312,31 +314,32 @@ while True:
         # Assembles and sends the IRC message
         # Platform-specific formatting
 
-        if row[1] == "Instagram" or row[1] == "Twitter":
-
-            if launchmode and row[2] in launch_whitelist:
-                msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
-
-                send_message_to_channels(msg)
-                logger.info(msg)
-            elif not launchmode:
-                msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
-
-                send_message_to_channels(msg)
-                logger.info(msg)                
-
-        elif row[1] == "Reddit":
-
-            msg = f"[{row[1]}] {row[3]} {row[4]}"
+        def post():
 
             send_message_to_channels(msg)
             logger.info(msg)
 
+            # Sends how long it took from tweet creation to irc message (debug)
+            time_to_post = round(time.time() - row[6], 5)
+            logger.info(f"Post #{row[0]}, Took {time_to_post}s\n")
 
-        # Sends how long it took from tweet creation to irc message (debug)
-        time_to_post = round(time.time() - row[6], 5)
-        logger.info(f"Post #{row[0]}, Took {time_to_post}s\n")
+        if row[1] == "Instagram" or row[1] == "Twitter":
+
+            msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
+
+            if launchmode and row[2] in launch_whitelist:
+                post()
+                logger.info("Launch mode, user whitelisted")
+            
+            elif not launchmode: 
+                post()
+
+            db.update_after_publish(row[0])
+
+        elif row[1] == "Reddit":
+
+            msg = f"[{row[1]}] {row[3]} {row[4]}"
+            post()
 
         # Updates the database after it posts something
         db.update_after_publish(row[0])
-

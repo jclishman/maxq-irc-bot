@@ -2,8 +2,7 @@ import sys
 import socket
 import string
 import json
-import urllib.request
-import urllib.parse
+import requests
 from datetime import datetime
 from datetime import timedelta
 import dateutil.parser
@@ -54,35 +53,31 @@ def get_launch(search):
 
     search = search.lstrip().rstrip()
 
-    if search.replace(" ", "") == "":
-        # no search
-        try:
-            with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?mode=verbose&next=1") as url:
-                data = json.loads(url.read().decode())
-                launch_list = data["launches"]
-                if len(launch_list) > 0:
-                    return format_launch(launch_list[0])
-        except urllib.error.HTTPError as e:
-            print(str(e))
-            return "Useless error message. LL is probably down."
+    try:
+        response = requests.get(
+            url="https://launchlibrary.net/1.4.1/launch",
+            params={
+                "mode": "verbose",
+                "next": "1",
+                "limit": "1",
+                "name": search
+                },
+            headers={
+                "User-Agent": "MaxQ IRC Bot; linux; compatible;",
+                "Accept": "*/*"
+            })
 
-    # Query for search
+    except requests.exceptions.RequestException:
+        return(f'HTTP Error {response.status_code}, LaunchLibrary might be down.')
+
+    if response.status_code == 404:
+        return(f"Nothing found for query '{search}'. Try something else!")
+
+    data = response.json()
+    launch_list = data["launches"]
+
+    if len(launch_list) > 0:
+        return format_launch(launch_list[0])
+
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
-    query = "mode=verbose&limit=1&next=1&name={}"\
-            .format(urllib.parse.quote(search))
-
-    # Get the launches
-    try:
-        with urllib.request.urlopen("https://launchlibrary.net/1.4/launch?" + query) as url:
-            data = json.loads(url.read().decode())
-            launch_list = data["launches"]
-
-        if len(launch_list) > 0:
-            return format_launch(launch_list[0])
-        else:
-            return f"Next launch for query '{search}' not found."
-
-    except urllib.error.HTTPError:
-        return f"Next launch for query '{search}' not found."
-
