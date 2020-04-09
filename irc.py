@@ -1,7 +1,7 @@
 # Reddit AMA mode
 
 from bot_logging import logger
-import twitterservice, instagramservice, redditservice, launchservice, acronymservice
+import twitterservice, redditservice, launchservice, acronymservice
 import commands, db
 import socket, ssl
 import threading
@@ -59,10 +59,9 @@ def restart_irc():
 
 def get_status():
     twitter_alive = twitter.is_alive()
-    insta_alive = insta.is_alive()
     reddit_alive = reddit.is_alive()
 
-    return [twitter_alive, insta_alive, reddit_alive]
+    return [twitter_alive, reddit_alive]
 
 # Establishes a secure SSL connection
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -94,29 +93,20 @@ def twitter_thread():
     logger.info("Starting Twitter Thread")
     twitterservice.run()
 
-
-def insta_thread():
-    logger.info("Starting Instragram Thread")
-    instagramservice.run()
-
-
 def reddit_thread():
     logger.info("Starting Reddit Thread")
     redditservice.run()
 
 
 twitter = threading.Thread(name="Twitter_Thread", target=twitter_thread)
-insta = threading.Thread(name="Instagram_Thread", target=insta_thread)
 reddit = threading.Thread(name="Reddit_Thread", target=reddit_thread)
 
 # Set to true so that threads exit on IRC quit
 twitter.daemon = True
-insta.daemon = True
 reddit.daemon = True
 
 # Finally, start all the threads
 twitter.start()
-insta.start()
 reddit.start()
 
 # Reads messages
@@ -178,7 +168,7 @@ while True:
             if message_contents.rstrip() == ".status":
                 status = get_status()
 
-                message = (f"Alive: Twitter - {status[0]} | Instagram - {status[1]} | Reddit - {status[2]}")
+                message = (f"Alive: Twitter - {status[0]} | Reddit - {status[1]}")
                 logger.info(message)
 
                 if not is_privmsg: send_message_to_channel(message_channel, message)
@@ -195,10 +185,8 @@ while True:
 
             elif message_contents.rstrip() == ".following":
                 twitter_following = {'@' + x[0] for x in db.get_following("twitter")}
-                instagram_following = {'@' + x[0] for x in db.get_following("instagram")}
 
                 send_privmsg(message_author, f"Twitter: {twitter_following}")
-                send_privmsg(message_author, f"Instagram: {instagram_following}")
 
 
             elif ".say" in message_contents.rstrip():
@@ -323,7 +311,7 @@ while True:
             time_to_post = round(time.time() - row[6], 5)
             logger.info(f"Post #{row[0]}, Took {time_to_post}s\n")
 
-        if row[1] == "Instagram" or row[1] == "Twitter":
+        if row[1] == "Twitter":
 
             msg = f"[{row[1]}] @{row[2]} wrote: {row[3]} {row[4]}"
 

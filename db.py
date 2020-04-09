@@ -75,35 +75,6 @@ def set_flags(user_id, retweets, replies):
     except sqlite3.OperationalError as e:
         logger.error(str(e))
 
-
-def get_instagram_timestamp(username):
-    try:
-        database = sqlite3.connect('database.db')
-        insta_get_timestamp_cursor = database.cursor()
-
-        insta_get_timestamp_cursor.execute(
-            "SELECT instagram_timestamp_at FROM following WHERE username = ?", [username])
-
-        return insta_get_timestamp_cursor.fetchone()[0]
-
-    except sqlite3.OperationalError as e:
-        logger.error(str(e))
-
-
-def update_instagram_timestamp(username, timestamp):
-    try:
-        database = sqlite3.connect('database.db')
-        insta_timestamp_cursor = database.cursor()
-
-        insta_timestamp_cursor.execute(
-            "UPDATE following SET instagram_timestamp_at = ? WHERE username = ?", [timestamp, username])
-
-        database.commit()
-
-    except sqlite3.OperationalError as e:
-        logger.error(str(e))
-
-
 # Gets the queue of messages that haven't been posted
 def get_post_queue():
     try:
@@ -124,7 +95,6 @@ def get_following(platform):
         get_following_cursor = database.cursor()
 
         if platform == 'twitter': get_following_cursor.execute(("SELECT * FROM following WHERE twitter_id != 0"))
-        if platform == 'instagram': get_following_cursor.execute(("SELECT * FROM following WHERE instagram != 0"))
 
         # print("> db.py - Got the following list")
         return get_following_cursor.fetchall()
