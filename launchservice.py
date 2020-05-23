@@ -67,7 +67,7 @@ def get_launch(search):
     # alias the names
     search = aliases[search] if search in aliases else search
 
-    # search using launch provider name if valid
+    # search using launch service provider name if valid
     search_type = "lsp" if search in LSPs else "name"
 
     # increments for more launches in the future (.nextlaunch +1 etc.)
@@ -81,7 +81,7 @@ def get_launch(search):
         if launchnum > 5 or launchnum < 0:
             return(f"Integer out of range")
 
-        # empty search string get next launches
+        # empty search string to get next launches
         search = ""
 
     try:
@@ -113,4 +113,3 @@ def get_launch(search):
 
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
-    
