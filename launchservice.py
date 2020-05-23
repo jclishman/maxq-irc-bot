@@ -51,16 +51,47 @@ def format_launch(launch_item):
 def get_launch(search):
     # Get launch string from name/search
 
-    search = search.lstrip().rstrip()
+    search = search.lstrip().rstrip().lower()
+
+    # common launch providers and aliases
+    aliases = {
+        "boeing":"ba",
+        "lockheed martin":"lmt",
+        "arianespace": "asa",
+        "spacex":"spx",
+        "roscosmos": "rfsa"
+    }
+
+    LSPs = ["isro", "jaxa", "nasa", "cnes", "ba", "lmt", "casic", "asa", "ils", "spx", "ula", "rfsa"]
+    
+    # alias the names
+    search = aliases[search] if search in aliases else search
+
+    # search using launch service provider name if valid
+    search_type = "lsp" if search in LSPs else "name"
+
+    # increments for more launches in the future (.nextlaunch +1 etc.)
+    launchnum = 1
+    if len(search) > 0 and search[0] == "+":
+        try:
+            launchnum = 1 + int(search)
+        except ValueError:
+            return(f"Invalid integer")
+
+        if launchnum > 5 or launchnum < 0:
+            return(f"Integer out of range")
+
+        # empty search string to get next launches
+        search = ""
 
     try:
         response = requests.get(
             url="https://launchlibrary.net/1.4.1/launch",
             params={
                 "mode": "verbose",
-                "next": "1",
-                "limit": "1",
-                "name": search
+                "next": launchnum,
+                "limit": launchnum,
+                search_type: search
                 },
             headers={
                 "User-Agent": "MaxQ IRC Bot; linux; compatible;",
@@ -77,7 +108,8 @@ def get_launch(search):
     launch_list = data["launches"]
 
     if len(launch_list) > 0:
-        return format_launch(launch_list[0])
+        # last item in list
+        return format_launch(launch_list[-1])
 
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
