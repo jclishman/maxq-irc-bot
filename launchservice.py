@@ -48,49 +48,77 @@ def format_launch(launch_item):
     return " - ".join(message_parts)
 
 
-def get_launch(search):
+def get_launch(query):
     # Get launch string from name/search
 
-    search = search.lstrip().rstrip().lower()
+    query = query.lstrip().rstrip()
+    search = query.lower()
 
-    # common launch providers and aliases
-    aliases = {
+    search_type = "name"
+
+    country_keyword = "from"
+
+    launchnum = 0
+
+    # countries, common launch providers and aliases
+    lsp_aliases = {
         "boeing":"ba",
         "lockheed martin":"lmt",
         "arianespace": "asa",
         "spacex":"spx",
-        "roscosmos": "rfsa"
+        "roscosmos": "rfsa",
+        "rocketlab": "rl",
+        "rocket lab": "rl",
     }
 
-    LSPs = ["isro", "jaxa", "nasa", "cnes", "ba", "lmt", "casic", "asa", "ils", "spx", "ula", "rfsa"]
-    
-    # alias the names
-    search = aliases[search] if search in aliases else search
+    # https://launchlibrary.net/1.4.1/location
+    country_aliases = {
+        "china": "1,2,25,33",
+        "notchina": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,31,32",
+        "russia": "11,12,13,14,10",
+        "usa": "16,17,18,19,28,32",
+        "japan": "8,9",
+        "india": "5",
+        "kourou": "3",
+        "french guiana": "3",
+        "israel": "26,27",
+        "north korea": "29",
+        "australia": "20"
+    }
 
-    # search using launch service provider name if valid
-    search_type = "lsp" if search in LSPs else "name"
+    LSPs = ["isro", "jaxa", "nasa", "cnes", "ba", "lmt", "casic", "asa", "ils", "spx", "ula", "rfsa", "rl"]
+    
+    if search in lsp_aliases or search in LSPs:
+        search = lsp_aliases[search]
+        search_type = "lsp"
+
+    # search by country
+    elif country_keyword in search and search[len(country_keyword):].lstrip() in country_aliases:
+        search = search[5:].lstrip()
+        search = country_aliases[search]
+        search_type = "padLocation"
 
     # increments for more launches in the future (.nextlaunch +1 etc.)
-    launchnum = 1
-    if len(search) > 0 and search[0] == "+":
+    elif len(search) > 0 and search[0] == "+":
         try:
-            launchnum = 1 + int(search)
+            launchnum = 0 + int(search)
         except ValueError:
             return(f"Invalid integer")
 
         if launchnum > 5 or launchnum < 0:
             return(f"Integer out of range")
 
-        # empty search string to get next launches
+        # empty search string get next launches
         search = ""
+
 
     try:
         response = requests.get(
             url="https://launchlibrary.net/1.4.1/launch",
             params={
                 "mode": "verbose",
-                "next": launchnum,
-                "limit": launchnum,
+                "next": 1,
+                "offset": launchnum,
                 search_type: search
                 },
             headers={
@@ -102,14 +130,13 @@ def get_launch(search):
         return(f'HTTP Error {response.status_code}, LaunchLibrary might be down.')
 
     if response.status_code == 404:
-        return(f"Nothing found for query '{search}'. Try something else!")
+        return(f"Nothing found for query '{query}'. Try something else!")
 
     data = response.json()
     launch_list = data["launches"]
 
     if len(launch_list) > 0:
-        # last item in list
-        return format_launch(launch_list[-1])
+        return format_launch(launch_list[0])
 
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
