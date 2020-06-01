@@ -83,19 +83,25 @@ def get_launch(query):
         "french guiana": "3",
         "israel": "26,27",
         "north korea": "29",
-        "australia": "20"
+        "australia": "20",
+        "new zealand": "24",
+        "iran": "6",
+        "sea launch": "15",
+        "south korea": "31",
+        "algeria": "4",
+        "kenya": "7",
     }
 
     LSPs = ["isro", "jaxa", "nasa", "cnes", "ba", "lmt", "casic", "asa", "ils", "spx", "ula", "rfsa", "rl"]
     
     if search in lsp_aliases or search in LSPs:
-        search = lsp_aliases[search]
+        search = lsp_aliases.get(search,search)
         search_type = "lsp"
 
     # search by country
     elif country_keyword in search and search[len(country_keyword):].lstrip() in country_aliases:
         search = search[5:].lstrip()
-        search = country_aliases[search]
+        search = country_aliases.get(search,search)
         search_type = "padLocation"
 
     # increments for more launches in the future (.nextlaunch +1 etc.)
