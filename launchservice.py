@@ -12,13 +12,15 @@ def format_launch(launch_item):
 
     message_parts = [] # list with all the "parts" of the message, name, stream url etc.
     message_parts.append(launch_item["name"])  # name of the launch
-    pads = launch_item["location"]["pads"]
-    if len(pads) <= 1:
-        # add pad name
-        message_parts.append(pads[0]["name"])
+    pads = launch_item["pad"]
 
-    if len(launch_item["vidURLs"]) >= 1:
-        message_parts.append(launch_item["vidURLs"][0])  # first stream url if available
+    message_parts.append(pads["name"])
+
+    try:
+        if len(launch_item["vidURLs"]) >= 1:
+            message_parts.append(launch_item["vidURLs"][0])  # first stream url if available
+    except:
+        launch_item["vidURLs"] = ''
 
     net_time = launch_item["net"]  # NET date
 
@@ -27,7 +29,7 @@ def format_launch(launch_item):
     message_parts.append(net_time)
 
     if not launch_item["tbdtime"]:  # add countdown if it isn't TBD
-        launch_time = dateutil.parser.parse(launch_item["isonet"]).replace(tzinfo=None)  # parse launch time
+        launch_time = dateutil.parser.parse(launch_item["net"]).replace(tzinfo=None)  # parse launch time
         time_now = datetime.utcnow()
 
         def format_timedelta(td):
@@ -55,12 +57,9 @@ def get_launch(search):
 
     try:
         response = requests.get(
-            url="https://launchlibrary.net/1.4.1/launch",
+            url="https://ll.thespacedevs.com/2.0.0/launch/upcoming/",
             params={
-                "mode": "verbose",
-                "next": "1",
-                "limit": "1",
-                "name": search
+                "search": search
                 },
             headers={
                 "User-Agent": "MaxQ IRC Bot; linux; compatible;",
@@ -74,10 +73,13 @@ def get_launch(search):
         return(f"Nothing found for query '{search}'. Try something else!")
 
     data = response.json()
-    launch_list = data["launches"]
+    #print(data)
+    launch_list = data["results"]
 
+    
     if len(launch_list) > 0:
         return format_launch(launch_list[0])
 
     time_now = datetime.utcnow()
     url_starttime = time_now.strftime("%Y-%m-%d")
+
