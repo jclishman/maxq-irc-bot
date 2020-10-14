@@ -1703,6 +1703,12 @@
   "expansion": "Peter B. de Selding (Spaceflight Now journalist)",
   "usage": 0
  },
+ "penis": {
+  "acronym": "penis",
+  "acronym_display": "PENIS",
+  "expansion": "PENISasdf",
+  "usage": 1
+ },
  "pesca": {
   "acronym": "pesca",
   "acronym_display": "PESCA",
@@ -2097,7 +2103,7 @@
   "acronym": "spacex",
   "acronym_display": "SpaceX",
   "expansion": "Space               X",
-  "usage": 0
+  "usage": 2
  },
  "spam": {
   "acronym": "spam",
@@ -2275,8 +2281,8 @@
  },
  "test": {
   "acronym": "test",
-  "acronym_display": "tEsT",
-  "expansion": "test2",
+  "acronym_display": "TEST",
+  "expansion": "Test Experiment SpaceX Testicles",
   "usage": 1
  },
  "tfr": {
