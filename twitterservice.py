@@ -34,70 +34,70 @@ class MyStreamListener(StreamListener):
         data = status._json
 
 
-        # Puts user attributes into this list if the tweeet is from somebody the bot is following
+        # Puts user attributes into this list if the tweet is from somebody the bot is following
         # If the tweet isn't from someone the bot is following, set to None
         # For some reason the twitter API also tells you when someone deletes a tweet
         # If you try to get the needed properties from a deleted tweet, it throws a KeyError
         try:
             user_of_tweet = next((x for x in users_list if x[1] == data['user']['id_str']), None)
-
         except KeyError as e:
-            user_of_tweet = None
+            return
 
-        # Is the tweet from somebody the bot cares about?
-        if user_of_tweet is not None:
+        if user_of_tweet is None:
+            # Not following this user, do nothing.
+            return
 
-            start_time = time.time()
+        start_time = time.time()
 
-            # Is it a retweet?             Is the retweet flag of the user set to 1?
-            if "retweeted_status" in data and user_of_tweet[2] == 1:
-                rt_data = data['retweeted_status']
+        # Is it a retweet?             Is the retweet flag of the user set to 1?
+        if "retweeted_status" in data and user_of_tweet[2] == 1:
+            rt_data = data['retweeted_status']
 
-                # Has the retweeted status already been posted?
-                # No, post it
-                if not has_tweet_been_posted(rt_data['user']['screen_name'], rt_data['id_str']):
-                    send_tweet_to_db(data, start_time)
-
-                # Yes, don't post it
-                else:
-                    logger.info("Retweet has already been posted")
-
-            # Is a reply?                  Is the reply flag of the user set to 1?
-            elif data['in_reply_to_status_id'] is not None and user_of_tweet[3] == 1:
-
-                reply_data = get_status(data['in_reply_to_status_id'])
-
-                # Has the parent tweet to the reply been posted already?
-                # No, send it as context
-                if not has_tweet_been_posted(reply_data['user']['screen_name'], reply_data['id_str']):
-
-                    # Avoid IRC double pings
-                    usernames_to_modify = ['@elonmusk', '@SpaceX']
-
-                    for username in usernames_to_modify:
-                        ZWJ = "‍"
-
-                        # Inserts a Zero Width Joiner
-                        username_zwj = username[:2] + ZWJ + username[2:]
-                        reply_data['full_text'] = reply_data['full_text'].replace(username, username_zwj)
-
-                    reply_data['text'] = reply_data['full_text']
-
-                    # Don't send the ID of the reply tweet
-                    reply_data['id_str'] = None
-
-                    send_tweet_to_db(reply_data, start_time)
-                    time.sleep(0.5)
-                    send_tweet_to_db(data, start_time)
-
-                # Yes, don't send it again
-                else:
-                    send_tweet_to_db(data, start_time)
-                    logger.info("Parent tweet already posted")
-
-            # If it's a normal tweet
-            elif "retweeted_status" not in data and data["in_reply_to_status_id"] is None:
+            # Has the retweeted status already been posted?
+            # No, post it
+            if not has_tweet_been_posted(rt_data['user']['screen_name'], rt_data['id_str']):
                 send_tweet_to_db(data, start_time)
+
+            # Yes, don't post it
+            else:
+                logger.info("Retweet has already been posted")
+
+        # Is a reply?                  Is the reply flag of the user set to 1?
+        elif data['in_reply_to_status_id'] is not None and user_of_tweet[3] == 1:
+
+            reply_data = get_status(data['in_reply_to_status_id'])
+
+            # Has the parent tweet to the reply been posted already?
+            # No, send it as context
+            if not has_tweet_been_posted(reply_data['user']['screen_name'], reply_data['id_str']):
+
+                # Avoid IRC double pings
+                usernames_to_modify = ['@elonmusk', '@SpaceX']
+
+                for username in usernames_to_modify:
+                    ZWJ = "‍"
+
+                    # Inserts a Zero Width Joiner
+                    username_zwj = username[:2] + ZWJ + username[2:]
+                    reply_data['full_text'] = reply_data['full_text'].replace(username, username_zwj)
+
+                reply_data['text'] = reply_data['full_text']
+
+                # Don't send the ID of the reply tweet
+                reply_data['id_str'] = None
+
+                send_tweet_to_db(reply_data, start_time)
+                time.sleep(0.5)
+                send_tweet_to_db(data, start_time)
+
+            # Yes, don't send it again
+            else:
+                send_tweet_to_db(data, start_time)
+                logger.info("Parent tweet already posted")
+
+        # If it's a normal tweet
+        elif "retweeted_status" not in data and data["in_reply_to_status_id"] is None:
+            send_tweet_to_db(data, start_time)
 
     # Trying to find out what's causing the random Twitter crashes
     def on_error(self, status):
