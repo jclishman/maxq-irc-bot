@@ -44,33 +44,6 @@ class MyStreamListener(StreamListener):
         except KeyError as e:
             user_of_tweet = None
 
-        # Sends the tweet to the database
-        def send_tweet_to_db(tweet_data, start_time):
-
-            # Gets the full tweet text if it's concatenated by Twitter
-            if "extended_tweet" in tweet_data:
-                text = html.unescape(tweet_data['extended_tweet']['full_text'])
-
-            # Gets the full retweet text if it's concatenated by Twitter
-            elif "retweeted_status" in tweet_data and "extended_tweet" in tweet_data['retweeted_status']:
-                rt_data = tweet_data['retweeted_status']
-                text = f"RT @{rt_data['user']['screen_name']}: {html.unescape(rt_data['extended_tweet']['full_text'])}"
-
-            # Not an extended tweet
-            else:
-                text = html.unescape(tweet_data['text'])
-
-            # Logs raw JSON
-            #logger.info(json.dumps(data))
-
-            # Checks if the tweet is a parent to a reply, which won't have an ID
-            if tweet_data['id_str'] is not None:
-                tweet_url = make_url_from_tweet(tweet_data['user']['screen_name'], tweet_data['id_str'])
-            else:
-                tweet_url = ''
-
-            db.insert_message('Twitter', tweet_data['user']['screen_name'], text.replace("\n", " "), tweet_url, start_time)
-
         # Is the tweet from somebody the bot cares about?
         if user_of_tweet is not None:
 
@@ -179,3 +152,30 @@ def make_url_from_tweet(screen_name, id_str):
 
 def has_tweet_been_posted(screen_name, id_str):
     return db.get_tweet_posted(make_url_from_tweet(screen_name, id_str)) != []
+
+def send_tweet_to_db(tweet_data, start_time):
+    """Sends the tweet to the database"""
+
+    # Gets the full tweet text if it's concatenated by Twitter
+    if "extended_tweet" in tweet_data:
+        text = html.unescape(tweet_data['extended_tweet']['full_text'])
+
+    # Gets the full retweet text if it's concatenated by Twitter
+    elif "retweeted_status" in tweet_data and "extended_tweet" in tweet_data['retweeted_status']:
+        rt_data = tweet_data['retweeted_status']
+        text = f"RT @{rt_data['user']['screen_name']}: {html.unescape(rt_data['extended_tweet']['full_text'])}"
+
+    # Not an extended tweet
+    else:
+        text = html.unescape(tweet_data['text'])
+
+    # Logs raw JSON
+    #logger.info(json.dumps(data))
+
+    # Checks if the tweet is a parent to a reply, which won't have an ID
+    if tweet_data['id_str'] is not None:
+        tweet_url = make_url_from_tweet(tweet_data['user']['screen_name'], tweet_data['id_str'])
+    else:
+        tweet_url = ''
+
+    db.insert_message('Twitter', tweet_data['user']['screen_name'], text.replace("\n", " "), tweet_url, start_time)
