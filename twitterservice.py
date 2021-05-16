@@ -156,21 +156,7 @@ def has_tweet_been_posted(screen_name, id_str):
 def send_tweet_to_db(tweet_data, start_time):
     """Sends the tweet to the database"""
 
-    # Gets the full tweet text if it's concatenated by Twitter
-    if "extended_tweet" in tweet_data:
-        text = html.unescape(tweet_data['extended_tweet']['full_text'])
-
-    # Gets the full retweet text if it's concatenated by Twitter
-    elif "retweeted_status" in tweet_data and "extended_tweet" in tweet_data['retweeted_status']:
-        rt_data = tweet_data['retweeted_status']
-        text = f"RT @{rt_data['user']['screen_name']}: {html.unescape(rt_data['extended_tweet']['full_text'])}"
-
-    # Not an extended tweet
-    else:
-        text = html.unescape(tweet_data['text'])
-
-    # Logs raw JSON
-    #logger.info(json.dumps(data))
+    screen_name = tweet_data['user']['screen_name']
 
     # Checks if the tweet is a parent to a reply, which won't have an ID
     if tweet_data['id_str'] is not None:
@@ -178,4 +164,38 @@ def send_tweet_to_db(tweet_data, start_time):
     else:
         tweet_url = ''
 
-    db.insert_message('Twitter', tweet_data['user']['screen_name'], text.replace("\n", " "), tweet_url, start_time)
+    rt_prefix = ""
+
+    # If this is a retweet, use the content of the original tweet.
+    if "retweeted_status" in tweet_data:
+        tweet_data = tweet_data['retweeted_status']
+        rt_prefix =  f"RT @{tweet_data['user']['screen_name']}: "
+
+    if "extended_tweet" in tweet_data:
+        tweet_data = tweet_data['extended_tweet']
+
+    # "full_text" isn't cut off for tweets >140 chars, but may not exist.
+    tweet_text = tweet_data.get("full_text") or tweet_data['text']
+
+    # Replace twitter's redirect shortlinks with the original URL;
+    #  makes it easier to see what's being linked to and avoids tracking.
+    for url in tweet_data['entities']['urls']:
+        tweet_text.replace(url['url'], url['expanded_url'])
+
+    # Replace media (image/video) shortlinks with direct links to the file,
+    #  so users don't have to go through Twitter's JS-laden tweet page.
+    if "extended_entities" in tweet_data:
+        for media in tweet_data['extended_entities']['media']:
+            real_url = media['media_url_https']
+            # Get full resolution image. This scheme is "deprecated", but much shorter
+            #  than the recommended `?format=jpg&name=orig` and still works.
+            if real_url.endswith(".jpg"):
+                real_url += ":orig"
+            tweet_text.replace(media['url'], media['media_url_https'])
+
+    text = (rt_prefix + html.unescape(tweet_text)).replace("\n", " ")
+
+    # Logs raw JSON
+    #logger.info(json.dumps(data))
+
+    db.insert_message('Twitter', screen_name, text, tweet_url, start_time)
